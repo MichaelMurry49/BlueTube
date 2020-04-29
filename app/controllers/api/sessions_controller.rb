@@ -14,8 +14,8 @@ class Api::SessionsController < ApplicationController
     end
 
     def destroy
-        if(currentUser)
-            signout(currentUser)
+        if(current_user)
+            sign_out!
             render "api/users/show"
         else
             render json: ["Invalid action: no one is signed in"], status: 404

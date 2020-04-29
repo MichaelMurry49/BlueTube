@@ -1,9 +1,11 @@
 class Api::UsersController < ApplicationController
     def create
         @user = User.new(user_params)
-
+        @user[:session_token] = "off"
+        @user[:created_at] = DateTime.now
+        @user[:updated_at] = DateTime.now
         if @user.save
-            signin(@user)
+            sign_in!(@user)
             render :show
         else
             render json: @user.errors.full_messages, status: 422
@@ -17,6 +19,6 @@ class Api::UsersController < ApplicationController
 
     private 
     def user_params
-        params.require(:user).require(:username, :email, :password)
+        params.require(:user).permit(:username, :email, :password)
     end
 end

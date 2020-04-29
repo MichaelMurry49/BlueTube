@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
-    helper_method :current_user, :signed_in?
+    skip_before_action :verify_authenticity_token
+    helper_method :current_user, :signed_in?, :require_sign_in
 
     # CSS SR
-    def currentUser
+    def current_user
         return @current_user ||= User.find_by(session_token: session[:session_token])
     end
 
@@ -18,6 +19,10 @@ class ApplicationController < ActionController::Base
     def sign_out!
         current_user.reset_session_token!
         session[:session_token] = nil
+    end
+
+    def require_sign_in
+        render json: { base: ["action requires sign in"]}, status: 401
     end
 
 end

@@ -15,12 +15,12 @@ class User < ApplicationRecord
         if(username)
             return username.is_password?(password) ? username : nil
         else
-            return nil;
+            return nil
         end
     end
 
     def password=(password)
-        @password = password;
+        @password = password
         self.password_digest = BCrypt::Password.create(password)
     end
 
