@@ -18,7 +18,7 @@ class Api::SessionsController < ApplicationController
             signout(currentUser)
             render "api/users/show"
         else
-            render :json ["Invalid action: no one is signed in"], status 404
+            render json: ["Invalid action: no one is signed in"], status 404
         end
 
     end
