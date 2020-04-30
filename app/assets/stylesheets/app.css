@@ -1,11 +1,10 @@
+
 body {
     background-color: lightblue;
-    width: 100%;
-    height: 100%;
 }
-
 div#app {
-    height: 100%;
-    width: 100%;
+    background-color: lightblue;
+    height: 100vh;
+    width: 100vw;
     display: flex;
 }
