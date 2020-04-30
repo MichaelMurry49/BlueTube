@@ -1,0 +1,2 @@
+class RepopulateUser < ApplicationRecord
+end
