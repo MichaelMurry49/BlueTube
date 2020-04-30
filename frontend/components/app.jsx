@@ -4,7 +4,7 @@ import CreateSessionContainer from './session/create_session_container';
 import CreateUserContainer from './session/create_user_container';
 
 const App = () => (
-	<div>
+	<div id="app">
 		<Switch>
 			<Route path="/signin" component={CreateSessionContainer} />
 			<Route path="/signup" component={CreateUserContainer} />
