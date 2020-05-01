@@ -1,5 +1,11 @@
-.SignInSignOut {
+.SignInSignOut button {
     background-color: #00A8E8;
+    color: white;
+}
+
+a.SignInSignOut {
+    /* justify-self: flex-end; */
+    /* align-self: flex-end; */
 }
 
 .splash {
@@ -7,8 +13,20 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
 }
 
 .nav {
-    
+    display: flex;
+    background-color: white;
+    width: 100vw;
+    height: 56px;
+    justify-content: space-between;
+    align-content: center;
 }
+
+.nav-logo {
+    height: 30px;
+    width: 30px;
+}
+

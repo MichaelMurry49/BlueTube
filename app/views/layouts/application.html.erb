@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="shortcut icon" href="<%= image_url("logo.png")%>"> 
+    <link rel="shortcut icon" href="<%= image_url("smile.png")%>" height="10px"> 
     <title>Blue Tube</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script type="text/javascript">
+      window.smileURL = "<%= image_url('smile.png') %>";
+    </script>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%if signed_in?%>
@@ -13,7 +15,11 @@
         window.currentUser = <%= render("api/users/user.json.jbuilder", user: current_user).html_safe %>
       </script>
     <%end%>
+    
+   
   </head>
+
+  
 
   <body>
     <%= yield %>

@@ -33,6 +33,7 @@ input.session {
     margin-top: 10px;
     text-align: center;
     font-size: 15px;
+    background-color: white;
 }
 
 div.session-buttons {
