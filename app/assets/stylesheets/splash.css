@@ -6,6 +6,7 @@
 a.SignInSignOut {
     /* justify-self: flex-end; */
     /* align-self: flex-end; */
+    margin-right: 5px;
 }
 
 .splash {
@@ -22,11 +23,48 @@ a.SignInSignOut {
     width: 100vw;
     height: 56px;
     justify-content: space-between;
-    align-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.nav-logo-plus-title {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    margin-left: 25px;
 }
 
 .nav-logo {
     height: 30px;
     width: 30px;
+    margin-right: 2px;
+}
+
+.nav-camera {
+    height: 30px;
+    width: 30px;
+    margin-right: 5px;
+}
+
+.nav-grid {
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+}
+
+.withDemo{
+    /* display: flex; */
+    /* flex-direction: column; */
+}
+
+.withDemo button {
+    font-style: none;
+    text-decoration-style: none;
+    margin-right: 5px;
+}
+
+.right-nav {
+    display: flex;
+    align-items: center;
 }
 

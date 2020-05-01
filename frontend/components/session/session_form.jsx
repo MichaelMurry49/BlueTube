@@ -4,7 +4,9 @@ import { Link, Redirect } from 'react-router-dom';
 class SessionForm extends React.Component {
     constructor(props){
         super(props);
+        debugger
         this.state = this.props.user;
+        window.fillOut = { username: "", password: "" }
         // if() <Redirect to="/"/>
     }
 
