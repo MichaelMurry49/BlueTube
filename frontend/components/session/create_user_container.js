@@ -5,6 +5,7 @@ import SessionForm from './session_form';
 const mapStateToProps = state => ({
     user: {username: "", email: "", password: ""},
     formType: "Create your Bloogle Account",
+    // signedIn:
 }) 
 
 const mapDispatchToProps = dispatch => ({

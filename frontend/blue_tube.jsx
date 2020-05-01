@@ -7,7 +7,21 @@ import {signIn, signUp, signOut} from "./util/session_api_util.js"
 
 
 document.addEventListener("DOMContentLoaded", () => {
-	const store = configureStore();
+	let store;
+	if(window.currentUser){
+		// debugger
+		const preLoadedState = {
+			entities: {
+				users: window.currentUser
+			},
+			session: {currentUser: Object.keys(window.currentUser)[0]} 
+		}
+		store = configureStore(preLoadedState);
+		delete window.currentUser;
+	} else {
+		store = configureStore();
+	}
+	
 	const root = document.getElementById("root");
 	window.getState = store.getState;
 	window.dispatch = store.dispatch;

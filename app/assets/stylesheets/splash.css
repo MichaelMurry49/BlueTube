@@ -1,0 +1,14 @@
+.SignInSignOut {
+    background-color: #00A8E8;
+}
+
+.splash {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav {
+    
+}

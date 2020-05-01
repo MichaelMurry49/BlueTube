@@ -1,5 +1,8 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import Nav from "./nav/nav.jsx";
+import NavContainer from "./nav/nav_container"
+
+import {Link, Button} from "react-router-dom";
 
 
 class Splash extends React.Component {
@@ -7,7 +10,16 @@ class Splash extends React.Component {
         super(props);
     }
     render(){
-        return (<Link to="/signin">Sign In</Link>)      
+        return (
+            <div className="splash">
+                    {/* {window.currentUser ? window.currentUser : "Test"} */}
+                    <NavContainer />
+                    {/* <img source="Untiled.png" />
+                    <Link to="/signin">
+                        <button className="SignInSignOut">Sign In</button>
+                    </Link> */}
+            </div>
+        )
     }
 }
 

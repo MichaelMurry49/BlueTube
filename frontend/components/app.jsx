@@ -3,6 +3,8 @@ import { Route, Switch, Link } from 'react-router-dom';
 import CreateSessionContainer from './session/create_session_container';
 import CreateUserContainer from './session/create_user_container';
 import SplashContainer from './splash_container';
+// import AuthRoute from './util/route_util';
+import { AuthRoute} from '../util/route_util';
 
 const App = () => (
 	<div id="app">
@@ -10,9 +12,10 @@ const App = () => (
 			<SplashContainer />
 		</header> */}
 		<Switch>
-			<Route exact path="/" component={SplashContainer}/>
-			<Route path="/signin" component={CreateSessionContainer} />
-			<Route path="/signup" component={CreateUserContainer} />
+			
+			<AuthRoute path="/signin" component={CreateSessionContainer} />
+			<AuthRoute path="/signup" component={CreateUserContainer} />
+			<Route path="/" component={SplashContainer}/>
 		</Switch>
 	</div>
 );
