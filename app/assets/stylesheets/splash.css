@@ -1,3 +1,6 @@
+/* body{
+    height: 3000px;
+} */
 .SignInSignOut button {
     background-color: #00A8E8;
     color: white;
@@ -25,6 +28,7 @@ a.SignInSignOut {
     justify-content: space-between;
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
+    position: fixed;
 }
 
 .nav-logo-plus-title {

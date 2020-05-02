@@ -6,6 +6,7 @@ import * as UtilAPI from '../util/session_api_util';
 export const RECEIVE_USER = "RECEIVE_USER";
 export const SIGN_OUT_USER = "SIGN_OUT_USER";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 
 
@@ -16,12 +17,16 @@ const receiveUser = user => ({
 }) 
 
 const signOutUser = () => ({
-    type: SIGN_OUT_USER,
+    type: SIGN_OUT_USER
 }) 
 
 const receiveErrors = errors => ({
     type: RECEIVE_ERRORS,
     errors
+})
+
+export const clearErrors = () => ({
+    type: CLEAR_ERRORS
 })
 
 export const signUp = user => dispatch => (

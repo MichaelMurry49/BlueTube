@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { signIn } from '../../actions/session_actions';
+import { signIn, clearErrors } from '../../actions/session_actions';
 import SessionForm from './session_form';
 
 if(!window.fillOut) window.fillOut = {username: "", password: ""}
@@ -8,12 +8,14 @@ const mapStateToProps = (state) => {
     
     return {
     user: window.fillOut,
+    errors: state.errors.sessionErrors,
     formType: "Sign in"/*,
     textAlign: "center" */
 }}
 
 const mapDispatchToProps = dispatch => ({
-    action: user => dispatch(signIn(user))
+    action: user => dispatch(signIn(user)),
+    clearErrors: () => dispatch(clearErrors()) //dispatch(clearErrors())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SessionForm)

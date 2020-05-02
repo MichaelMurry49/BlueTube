@@ -4,10 +4,16 @@ import { Link, Redirect } from 'react-router-dom';
 class SessionForm extends React.Component {
     constructor(props){
         super(props);
-        debugger
+        // debugger
+        // alert(this.props)
         this.state = this.props.user;
+        this.demo = false;
+        // this.state.clearErrors = this.props.clearErrors;
+        
         window.fillOut = { username: "", password: "" }
+        // this.props.clearErrors();
         // if() <Redirect to="/"/>
+        this.setUser = this.setUser.bind(this)
     }
 
     update(field){
@@ -16,7 +22,14 @@ class SessionForm extends React.Component {
 
     handleSubmit(e){
         e.preventDefault();
+        // debugger;
+        // 
         this.props.action(this.state);
+    }
+
+    setUser(){
+        this.state.setState({username: "Demo", password: "password"})
+        // alert("hello");
     }
 
     render(){
@@ -33,6 +46,9 @@ class SessionForm extends React.Component {
                     {/* Session message */}
                     <h1>{formType}</h1>
                     <p>to continue to BlueTube</p>
+                    <br/>
+                    {/* Session errors */}
+                    <p>{this.props.errors.map(error => <div>{error}<br/></div>)}</p>
                     {/* Username input */}
                     <label>
                         <input className="session" type="text" value={this.state.username}
@@ -50,11 +66,15 @@ class SessionForm extends React.Component {
                         <input className="session" type="password" value={this.state.password} 
                             onChange={this.update("password")} placeholder="Enter your password"/>
                     </label>
-                    {/* Submit button and toggle link */}
+                    {/* Submit buttons and toggle link */}
                     <div className="session-buttons">
-                        <Link to={formType === "Sign in" ? "/signup" : "/signin"}>
+                    <Link className="toggle" onClick={this.props.clearErrors} to={formType === "Sign in" ? "/signup" : "/signin"}>
                             {formType === "Sign in" ? "Create account" : "Sign in instead"}</Link>
-                        <button type="submit" className="next">Next</button>
+                        {/* <button type="submit" className="demo" onClick={() => this.setUser()}>Demo</button> */}
+                    {/* <Link className="demo" onClick={this.setUser} to={"/"}>
+                        {formType === "Sign in" ? "Create account" : "Sign in instead"}</Link> */}
+                    <button type="submit" className="next">Next</button>
+                       
                     </div>
                 </form>
             </section>
