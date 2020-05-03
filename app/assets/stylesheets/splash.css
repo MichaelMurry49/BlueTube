@@ -39,20 +39,20 @@ a.SignInSignOut {
 }
 
 .nav-logo {
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     margin-right: 2px;
 }
 
 .nav-camera {
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     margin-right: 5px;
 }
 
 .nav-grid {
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
     margin-right: 5px;
 }
 
@@ -62,6 +62,8 @@ a.SignInSignOut {
 }
 
 .withDemo button {
+    height: 40px;
+    width: 80px;
     font-style: none;
     text-decoration-style: none;
     margin-right: 5px;
