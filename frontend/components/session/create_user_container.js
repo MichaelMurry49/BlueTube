@@ -5,7 +5,7 @@ import SessionForm from './session_form';
 const mapStateToProps = state => ({
     user: {username: "", email: "", password: ""},
     errors: state.errors.sessionErrors,
-    formType: "Create your Bloogle Account",
+    formType: "Create Your Bloogle Account",
     // signedIn:
 }) 
 

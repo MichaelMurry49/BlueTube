@@ -7,6 +7,8 @@ class SessionForm extends React.Component {
         // debugger
         // alert(this.props)
         this.state = this.props.user;
+        this.state.confirm = "";
+        // alert(this.state.values)
         this.demo = false;
         // this.state.clearErrors = this.props.clearErrors;
         
@@ -17,15 +19,16 @@ class SessionForm extends React.Component {
     }
 
     update(field){
-        return e => this.setState({[field]: e.currentTarget.value})
+        return e => this.setState({ [field]: e.currentTarget.value })
     }
+
 
     handleSubmit(e){
         e.preventDefault();
-        // debugger;
-        // 
         this.props.action(this.state);
         this.setState({password: "", username: ""})
+        
+        // this.confirm = ""
     }
 
     setUser(){
@@ -37,7 +40,7 @@ class SessionForm extends React.Component {
         const formType = this.props.formType;
         return(
             <section className="session">
-                <form className="session" onSubmit={e => this.handleSubmit(e)}>
+                <form className={formType === "Sign in" ? "sessionSignIn" : "sessionSignUp"} onSubmit={e => this.handleSubmit(e)}>
                     {/* Bloogle logo */}
                     <div className="bloogle">
                         <div className="one">B</div><div className="four">l</div><div className="two">o</div>
@@ -67,6 +70,13 @@ class SessionForm extends React.Component {
                         <input className="session" type="password" value={this.state.password} 
                             onChange={this.update("password")} placeholder="Enter your password"/>
                     </label>
+                    {/* Confirm Password input */}
+                    {/* <label> */}
+                        {/* {formType === "Sign in" ? "" : "Email: " <input className="session" */}
+                            {/* // type={formType === "Sign in" ? "hidden" : "text"}
+                            // onChange={this.update("confirm")} value={this.state.confirm}
+                            // placeholder="Confirm password" /> */}
+                    {/* // </label> */}
                     {/* Submit buttons and toggle link */}
                     <div className="session-buttons">
                     <Link className="toggle" onClick={this.props.clearErrors} to={formType === "Sign in" ? "/signup" : "/signin"}>

@@ -4,8 +4,6 @@ const sessionReducer = (state={currentUser: null}, action ) => {
     Object.freeze(state);
     switch(action.type){
         case RECEIVE_USER:
-            // debugger
-            // return {id: action.user.id}
             return { currentUser: Object.keys(action.user)[0] }
         case SIGN_OUT_USER:
             return { currentUser: null }

@@ -3,10 +3,11 @@ div {
 }
 
 body {
-    background-color: lightblue;
+    /* background-color: lightblue; */
+    background-image: url("peter-fogden-Jx5IB1f5-4w-unsplash.jpg");
 }
 div#app {
-    background-color: lightblue;
+    /* background-color: lightblue; */
     height: 100vh;
     width: 100vw;
     display: flex;

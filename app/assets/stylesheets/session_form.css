@@ -1,3 +1,4 @@
+
 div {
     justify-content: center;
 }
@@ -12,9 +13,12 @@ p {
 }
 
 section.session {
-    width: 100vh;
+    align-self: center;
+    width: 100vw;
     height: 100vh;
-    background-color: lightblue;
+    background-image: url("bluejellyfish.jpg");
+    /* background-image: url("37832977_10209514860627458_8300305083006976000_o.jpg"); */
+    background-size: cover;
     color: black;
     display: flex;
     font-family: "Arial";
@@ -24,13 +28,27 @@ section.session {
     font-family: "Arial";
 }
 
-form.session {
+form.sessionSignIn {
     align-self: center;
+    background-color: lightblue;
     display: flex;
     text-align: center;
     /* background-color: lightblue; */
     width: 448px; 
     height: 500px;
+    /* justify-content: space-around; */
+    flex-direction: column;
+    border: solid black 1px;
+}
+
+form.sessionSignUp {
+    align-self: center;
+    background-color: lightblue;
+    display: flex;
+    text-align: center;
+    /* background-color: lightblue; */
+    width: 448px; 
+    height: 556px;
     /* justify-content: space-around; */
     flex-direction: column;
     border: solid black 1px;
