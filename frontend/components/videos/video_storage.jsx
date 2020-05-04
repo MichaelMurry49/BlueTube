@@ -8,7 +8,7 @@ class VideoStorage extends React.Component {
 
     render(){
         return(
-            <div>
+            <div className="videoStorage">
                 <VideoCategoryContainer category={"Short-Vids"}/>
             </div>
         )

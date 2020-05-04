@@ -1,19 +1,45 @@
 import React from "react";
+import { Link, Redirect } from 'react-router-dom';
 
-class VideoStorage extends React.Component {
+class VideoCategory extends React.Component {
     constructor(props) {
-        super(props)
-        this.videos = this.props.videos.filter(video => video.description.includes(this.props.category) || video.title.includes(this.props.category))
+        super(props);
+        debugger;
+        if(this.props && this.props.videos){
+            debugger;
+            this.videos = Object.values(this.props.videos)
+        } else {
+            this.videos = [];
+        }
+    }
+
+    componentDidMount(){
+        debugger
+        this.props.fetchVideos()
     }
 
     render() {
+        // if (!this.videos) return null;
+        debugger
+        this.videos = Object.values(this.props.videos)
         return (
             <div className="videoCategories">
+                <label>This is a video</label>
+                <br/>
                 {this.props.category}
-                {this.videos ? this.videos.filter(video => video.category === this.props.category).map(video => <Link to={`/watch/${video.id}`}>{`${video}`}</Link>) : ""}
+                <br/>
+                {this.videos ? this.videos.map((video, id) => {
+                    debugger
+                    return (<div className="miniVidBox">
+                        <Link to={`/watch/${id+1}`}>
+                            {`${video.title}`}
+                        </Link>
+                        <br/>
+                    </div>
+                )}) : ""}
             </div>
         )
     }
 }
 
-export default VideoStorage;
+export default VideoCategory;

@@ -14,13 +14,8 @@ class Splash extends React.Component {
     render(){
         return (
             <div className="splash">
-                    {/* {window.currentUser ? window.currentUser : "Test"} */}
                     <NavContainer />
                     <VideoStorageContainer/>
-                    {/* <img source="Untiled.png" />
-                    <Link to="/signin">
-                        <button className="SignInSignOut">Sign In</button>
-                    </Link> */}
             </div>
         )
     }

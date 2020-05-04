@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_043832) do
+ActiveRecord::Schema.define(version: 2020_05_04_174434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,28 @@ ActiveRecord::Schema.define(version: 2020_05_04_043832) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string "body", null: false
+    t.integer "parent_id"
+    t.integer "video_id", null: false
+    t.integer "author_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_comments_on_author_id"
+    t.index ["parent_id"], name: "index_comments_on_parent_id"
+    t.index ["video_id"], name: "index_comments_on_video_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.boolean "positive_like", null: false
+    t.integer "video_id", null: false
+    t.integer "liker_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["liker_id"], name: "index_likes_on_liker_id"
+    t.index ["video_id"], name: "index_likes_on_video_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
     t.string "email", null: false
@@ -57,6 +79,16 @@ ActiveRecord::Schema.define(version: 2020_05_04_043832) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_videos_on_author_id"
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.boolean "upvote", null: false
+    t.integer "comment_id", null: false
+    t.integer "voter_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_votes_on_comment_id"
+    t.index ["voter_id"], name: "index_votes_on_voter_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

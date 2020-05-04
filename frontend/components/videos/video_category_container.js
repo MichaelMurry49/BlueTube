@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import VideoCategory from "./video_category"
-import { deleteVideo } from '../../actions/video_actions';
+import { deleteVideo, fetchVideos } from '../../actions/video_actions';
 
 const mapStateToProps = (state, ownProps) => ({
     videos: state.entities.videos,
@@ -8,7 +8,8 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    deleteVideo: videoId => dispatch(deleteVideo(videoId))
+    deleteVideo: videoId => dispatch(deleteVideo(videoId)),
+    fetchVideos: () => dispatch(fetchVideos())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(VideoCategory)

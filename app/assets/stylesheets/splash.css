@@ -31,6 +31,14 @@ a.SignInSignOut {
     position: fixed;
 }
 
+.videoStorage{
+    display: flex;
+    background-color: pink;
+    height: 800px;
+    width: 800px;
+    margin-top: 56px;
+}
+
 .nav-logo-plus-title {
     display: flex;
     align-items: center;

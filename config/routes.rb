@@ -5,5 +5,6 @@ Rails.application.routes.draw do
 		resource :session
 		resources :videos
 	end
+	# resource :uploads, only: :show
 	root to: 'static_pages#root'
 end
