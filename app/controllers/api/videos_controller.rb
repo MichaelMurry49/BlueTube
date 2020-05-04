@@ -10,7 +10,12 @@ class Api::VideosController < ApplicationController
     end
 
     def update
-        # @video = 
+        @video = Video.find_by(id: params[:id])
+        if @video.update
+            render :show
+        else
+            render json: @video.errors.full_messages, status: 422
+        end
     end
 
     def create
