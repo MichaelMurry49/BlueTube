@@ -10,7 +10,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
     // debugger
     return {
-    signOut: () => dispatch(signOut())
+    signOut: () => dispatch(signOut()),
+    postVideo: video => dispatch(postVideo(video))
 }}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Nav)
