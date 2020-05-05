@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, Button } from "react-router-dom";
+import PopupContainer from "./popup_container";
 
 class Nav extends React.Component {
     constructor(props) {
@@ -18,13 +19,14 @@ class Nav extends React.Component {
     }
     render() {
         // debugger;
+        // const {openPopup} = this.props
         return (
             <div className="nav">
                 <div className="nav-logo-plus-title">
                     <img className="nav-logo" src={window.smileURL} alt="BlueTube logo"/>BlueTube
                 </div>
                 <div className="right-nav">
-                    <button type="file" onChange={(e) => this.handleFile(e)}><img className="nav-camera" src={window.cameraURL} alt="Camera logo" /></button>    
+                    <button onClick={this.props.openPopup}><img className="nav-camera" src={window.cameraURL} alt="Camera logo" /></button>    
                     <img className="nav-grid" src={window.gridURL} alt="Grid logo" />
                     <Link className="SignInSignOut" to={this.props.signedIn ? "/" : "signin"}>
                         <div className="withDemo">
