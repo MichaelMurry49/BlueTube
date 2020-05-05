@@ -33,7 +33,7 @@ a.SignInSignOut {
 
 .videoStorage{
     display: flex;
-    background-color: green;
+    /* background-color: green; */
     height: 800px;
     width: 800px;
     margin-top: 56px;
@@ -58,6 +58,12 @@ a.SignInSignOut {
     margin-right: 5px;
 }
 
+.camera-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
 .nav-grid {
     height: 30px;
     width: 30px;
@@ -75,6 +81,7 @@ a.SignInSignOut {
     font-style: none;
     text-decoration-style: none;
     margin-right: 5px;
+    cursor: pointer;
 }
 
 .right-nav {

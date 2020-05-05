@@ -1,7 +1,7 @@
 .popup {
-    display: flex;
+    /* display: flex;
     flex-direction: row-reverse;
-    justify-content: flex-start;
+    justify-content: flex-start; */
     position: fixed;
     top: 50%;
     left: 50%;
@@ -17,13 +17,21 @@
 }
 
 .exit{
+    position: fixed;
     height: 25px;
     width: 25px;
+    top: 0%;
+    left: 100%;
+    transform: translate(-90%, -5%);
 }
 
 .upload{
+    position: fixed;
     height: 25px;
     width: 150px;
     align-self: center;
     justify-self: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

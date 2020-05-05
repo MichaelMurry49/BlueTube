@@ -26,7 +26,7 @@ class Nav extends React.Component {
                     <img className="nav-logo" src={window.smileURL} alt="BlueTube logo"/>BlueTube
                 </div>
                 <div className="right-nav">
-                    <button onClick={this.props.openPopup}><img className="nav-camera" src={window.cameraURL} alt="Camera logo" /></button>    
+                    <button className="camera-button" onClick={this.props.openPopup}><img className="nav-camera" src={window.cameraURL} alt="Camera logo" /></button>    
                     <img className="nav-grid" src={window.gridURL} alt="Grid logo" />
                     <Link className="SignInSignOut" to={this.props.signedIn ? "/" : "signin"}>
                         <div className="withDemo">
