@@ -24,8 +24,8 @@ class VideoCategory extends React.Component {
         this.videos = Object.values(this.props.videos)
         return (
             <div className="videoCategories">
-                <label>This is a video</label>
-                {this.props.category}
+                {/* <label>This is a video</label>
+                {this.props.category} */}
                 {this.videos ? this.videos.map((video) => {
                     // debugger
                     return (<div className="miniVidBox">

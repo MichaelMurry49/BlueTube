@@ -35,3 +35,17 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.videoUpload{
+    content: 'upload video';
+}
+
+.thumbNailUpload{
+    content: 'upload video thumbnail'
+}
+
+.uploadControls{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
