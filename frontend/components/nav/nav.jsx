@@ -23,12 +23,12 @@ class Nav extends React.Component {
         return (
             <div className="nav">
                 <div className="nav-logo-plus-title">
-                    <img className="nav-logo" src={window.smileURL} alt="BlueTube logo"/>BlueTube
+                    <Link to={"/"}><img className="nav-logo" src={window.smileURL} alt="BlueTube logo"/>BlueTube</Link>
                 </div>
                 <div className="right-nav">
                     <button className="camera-button" onClick={this.props.openPopup}><img className="nav-camera" src={window.cameraURL} alt="Camera logo" /></button>    
                     <img className="nav-grid" src={window.gridURL} alt="Grid logo" />
-                    <Link className="SignInSignOut" to={this.props.signedIn ? "/" : "signin"}>
+                    <Link className="SignInSignOut" to={this.props.signedIn ? "/" : "/signin"}>
                         <div className="withDemo">
                             <button onClick={this.props.signedIn ? this.props.signOut : () => this.noFill() }
                                 className="SignInSignOut">{this.props.signedIn ? "Sign Out" : "Sign In"}

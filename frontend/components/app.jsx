@@ -10,7 +10,7 @@ import { AuthRoute} from '../util/route_util';
 
 const App = () => (
 	<div id="app">
-		<PopupContainer/>
+		
 		{/* <header>
 			<SplashContainer />
 		</header> */}
@@ -21,6 +21,7 @@ const App = () => (
 			<Route path="/watch/:videoId" component={SingleVideoContainer}/>
 			<Route exact path="/" component={SplashContainer}/>
 		</Switch>
+		<PopupContainer/>
 	</div>
 );
 

@@ -31,7 +31,7 @@ class Api::VideosController < ApplicationController
 
     def destroy
         @video = Video.find_by(id: params[:id])
-        if(@video.author_id == current_user.id)
+        if current_user && @video.author_id == current_user.id
             @video.destroy
         else
             render json: @video.errors.full_messages, status: 401

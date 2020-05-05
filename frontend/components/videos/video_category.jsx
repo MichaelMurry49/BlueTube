@@ -26,11 +26,11 @@ class VideoCategory extends React.Component {
             <div className="videoCategories">
                 <label>This is a video</label>
                 {this.props.category}
-                {this.videos ? this.videos.map((video, id) => {
+                {this.videos ? this.videos.map((video) => {
                     // debugger
                     return (<div className="miniVidBox">
-                        <Link to={`/watch/${id}`}>
-                            {`${video.title}`}
+                        <Link to={`/watch/${video.id}`}>
+                            <img src={video.thumbnail}/>
                         </Link>
                         <br/>
                     </div>
