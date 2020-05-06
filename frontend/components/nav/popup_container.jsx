@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Popup from './popup';
 import { closePopup } from '../../actions/popup_actions';
-import {postVideo} from '../../actions/video_actions'
+import {postVideo, patchVideo} from '../../actions/video_actions'
 
 const mapStateToProps = state => ({
     popup: state.ui.popup,
@@ -10,7 +10,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     closePopup: () => dispatch(closePopup()),
-    postVideo: video => dispatch(postVideo(video))
+    postVideo: video => dispatch(postVideo(video)),
+    updateVideo: video => dispatch(patchVideo(video))
 });
 
 

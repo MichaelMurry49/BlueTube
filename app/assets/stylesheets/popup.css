@@ -38,6 +38,7 @@
 
 .videoUpload{
     content: 'upload video';
+    display: none;
 }
 
 .thumbNailUpload{
