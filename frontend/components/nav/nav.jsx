@@ -23,7 +23,7 @@ class Nav extends React.Component {
         return (
             <div className="nav">
                 <div className="nav-logo-plus-title">
-                    <Link to={"/"}><img className="nav-logo" src={window.smileURL} alt="BlueTube logo"/>BlueTube</Link>
+                    <Link className="nav-logo-plus-title" to={"/"}><img className="nav-logo" src={window.smileURL} alt="BlueTube logo"/>BlueTube</Link>
                 </div>
                 <div className="right-nav">
                     <button className="camera-button" onClick={this.props.openPopup}><img className="nav-camera" src={window.cameraURL} alt="Camera logo" /></button>    

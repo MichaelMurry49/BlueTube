@@ -64,8 +64,8 @@ class Popup extends React.Component{
                 <button className="exit" onClick={closePopup}>X</button>
                 {/* <button className="upload" type="file">Upload Video</button> */}
                 <div className="uploadControls">
-                    <label>Testing<input className="videoUpload" type="file" onChange={e => this.updateVideo(e)}/></label>
-                    <input className="thumbNailUpload" type="file" onChange={e => this.updateThumbnail(e)}/>
+                    <label>Upload Video: <input className="videoUpload" type="file" onChange={e => this.updateVideo(e)}/></label>
+                    <label>Select Thumbnail: <input className="thumbNailUpload" type="file" onChange={e => this.updateThumbnail(e)}/></label>
                     <input className="titleUpload" type="text" onChange={e => this.updateTitle(e)}/>
                     <input className="decriptionUpload" type="text" onChange={e => this.updateDescription(e)} />
                     <button className="uploadSubmit" type="submit" onClick={() => this.createVideo()}>Upload Video</button>

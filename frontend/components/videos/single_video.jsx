@@ -16,14 +16,14 @@ class SingleVideo extends React.Component {
         debugger
         return(
             <div className="singleVideoContainer">
-                <NavContainer/>
+                <button hidden={video.id === currentUser ? false : true} className="delete" onClick={() => deleteVideo(video.id)}>Delete</button>
                 <video className="singleVideo" controls>
                     <source src={this.props.video.uploadUrl}/>
                     {/* <source src="movie.ogg" type="video/ogg"> */}
                     Your browser does not support the video tag.
                 </video>
-                
-                <button hidden={video.id === currentUser ? false : true} className="delete" onClick={() => deleteVideo(video.id)}>Delete</button>
+                <NavContainer/>
+               
             </div>
         )
     }
