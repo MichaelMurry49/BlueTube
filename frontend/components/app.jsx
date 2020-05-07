@@ -22,7 +22,7 @@ const App = () => (
 			<Route exact path="/" component={SplashContainer}/>
 		</Switch>
 		<PopupContainer task={"Create a new Video"}/>
-		<PopupContainer task={"Upload a new Video"} />
+		{/* <PopupContainer task={"Upload a new Video"} /> */}
 
 	</div>
 );
