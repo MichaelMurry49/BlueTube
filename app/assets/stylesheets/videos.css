@@ -46,6 +46,10 @@ img {
     background: lightskyblue;
 }
 
+video::-webkit-media-controls-panel {
+  background-color: transparent;
+}
+
 .singleVideoContainer {
     display: flex;
     flex-direction: column;
