@@ -21,7 +21,9 @@ const App = () => (
 			<Route path="/watch/:videoId" component={SingleVideoContainer}/>
 			<Route exact path="/" component={SplashContainer}/>
 		</Switch>
-		<PopupContainer/>
+		<PopupContainer task={"Create a new Video"}/>
+		<PopupContainer task={"Upload a new Video"} />
+
 	</div>
 );
 

@@ -3,10 +3,14 @@ import Popup from './popup';
 import { closePopup } from '../../actions/popup_actions';
 import {postVideo, patchVideo} from '../../actions/video_actions'
 
-const mapStateToProps = state => ({
+
+const mapStateToProps = (state, ownProps) => {
+    if(ownProps)
+    return{
     popup: state.ui.popup,
-    currentUser: state.session.currentUser
-});
+    currentUser: state.session.currentUser,
+    task: ownProps.task
+}};
 
 const mapDispatchToProps = dispatch => ({
     closePopup: () => dispatch(closePopup()),

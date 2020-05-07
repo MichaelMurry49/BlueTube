@@ -5,7 +5,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-self: center;
-    grid-template-columns: 25% 25% 25% 25%;
+    /* grid-template-columns: 25% 25% 25% 25%; */
     /* margin-top: 100px; */
 }
 
@@ -58,4 +58,8 @@ button.delete {
 
 .singleVideo:focus {
     outline: 0;
+}
+
+video::-webkit-media-controls-panel {
+  /* background-color: mediumblue; */
 }
