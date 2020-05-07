@@ -5,11 +5,12 @@ import {postVideo, patchVideo} from '../../actions/video_actions'
 
 
 const mapStateToProps = (state, ownProps) => {
-    if(ownProps)
+    // if(ownProps)
     return{
     popup: state.ui.popup,
     currentUser: state.session.currentUser,
-    task: ownProps.task
+    task: ownProps.task,
+    errors: state.errors.videoErrors
 }};
 
 const mapDispatchToProps = dispatch => ({

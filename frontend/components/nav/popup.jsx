@@ -54,6 +54,7 @@ class Popup extends React.Component{
                 <div className="uploadControls">
                     <h1>{task}</h1>
                     <br/>
+                    {this.props.errors.map(error => <div className="videoError">{error}</div>)}
                     <label>Upload Video: </label><input className="videoUpload" type="file" onChange={e => this.updateVideo(e)} accept="video/*"/>
                     <label>Select Thumbnail: </label><input className="thumbNailUpload" type="file" onChange={e => this.updateThumbnail(e)} accept="image/*"/>
                     <label>Video Title: </label><input className="titleUpload" value={this.state.title} type="text" onChange={e => this.updateTitle(e)}/>

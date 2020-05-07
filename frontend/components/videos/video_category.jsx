@@ -31,6 +31,7 @@ class VideoCategory extends React.Component {
                     return (<div className="miniVidBox">
                         <Link to={`/watch/${video.id}`}>
                             <img src={video.thumbnail}/>
+                            <div class="videoTitle">{video.title}</div>
                         </Link>
                         <br/>
                     </div>

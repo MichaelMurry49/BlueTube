@@ -22,7 +22,7 @@ const removeVideo = videoId => ({
     videoId
 })
 
-export const receiveVideoErrors = errors => ({
+const receiveVideoErrors = errors => ({
     type: RECEIVE_VIDEO_ERRORS,
     errors
 })
@@ -39,7 +39,8 @@ export const fetchVideos = () => dispatch => (
 
 export const fetchVideo = videoId => dispatch => (
     UtilVideoAPI.fetchVideo(videoId)
-        .then(video => dispatch(receiveVideo(video)))
+        .then(video => dispatch(receiveVideo(video)),
+        errors => dispatch(receiveVideoErrors(errors.responseJSON)))
 )
 
 export const deleteVideo = videoId => dispatch => (
@@ -49,10 +50,13 @@ export const deleteVideo = videoId => dispatch => (
 
 export const postVideo = video => dispatch => (
     UtilVideoAPI.postVideo(video)
-        .then(video => dispatch(receiveVideo(video)))
+        .then(video => dispatch(receiveVideo(video)),
+        errors => {  debugger
+            return dispatch(receiveVideoErrors(errors.responseJSON))})
 )
 
 export const patchVideo = video => dispatch => (
     UtilVideoAPI.patchVideo(video)
-        .then(video => dispatch(receiveVideo(video)))
+        .then(video => dispatch(receiveVideo(video)),
+        errors => dispatch(receiveVideoErrors(errors.responseJSON)))
 )

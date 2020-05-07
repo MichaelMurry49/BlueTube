@@ -1,6 +1,7 @@
 import { RECEIVE_VIDEO_ERRORS, RECEIVE_VIDEO, CLEAR_VIDEO_ERRORS } from '../actions/video_actions';
 
 const videoErrorsReducer = (state=[], action) => {
+    debugger
     switch(action.type){
         case RECEIVE_VIDEO_ERRORS:
             return action.errors;

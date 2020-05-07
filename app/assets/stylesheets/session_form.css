@@ -30,7 +30,7 @@ section.session {
 
 form.sessionSignIn {
     align-self: center;
-    background-color: lightblue;
+    background-color: skyblue;
     display: flex;
     text-align: center;
     /* background-color: lightblue; */
@@ -43,7 +43,7 @@ form.sessionSignIn {
 
 form.sessionSignUp {
     align-self: center;
-    background-color: lightblue;
+    background-color: skyblue;
     display: flex;
     text-align: center;
     /* background-color: lightblue; */
