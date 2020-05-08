@@ -1,5 +1,6 @@
 import React from "react";
-import NavContainer from "../nav/nav_container"
+import NavContainer from "../nav/nav_container";
+import {Link} from "react-router-dom"
 
 class SingleVideo extends React.Component {
     constructor(props){
@@ -17,15 +18,15 @@ class SingleVideo extends React.Component {
         return(
             <div className="singleVideoContainer">
                 
-                <div>Title: {this.props.video.title}</div>
+                
                 <video className="singleVideo" controls>
                     <source src={this.props.video.uploadUrl}/>
                     {/* <source src="movie.ogg" type="video/ogg"> */}
                     Your browser does not support the video tag.
                 </video>
-                
-                <div>Description: {video.description} </div>
-                <button hidden={video.authorId.toString(10) === currentUser ? false : true} className="delete" onClick={() => deleteVideo(video.id)}>Delete</button>
+                <div className="titleTag">Title: {video.title}</div>
+                <div className="descTag">Description: {video.description} </div>
+                <Link to="/"><button hidden={video.authorId.toString(10) === currentUser ? false : true} className="delete" onClick={() => deleteVideo(video.id)}>Delete</button></Link>
                 
                 <NavContainer/>
                

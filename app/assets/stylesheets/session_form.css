@@ -39,11 +39,12 @@ form.sessionSignIn {
     /* justify-content: space-around; */
     flex-direction: column;
     border: solid black 1px;
+    border-radius: 1px;
 }
 
 form.sessionSignUp {
     align-self: center;
-    background-color: skyblue;
+    background-color: lightblue;
     display: flex;
     text-align: center;
     /* background-color: lightblue; */
@@ -52,6 +53,7 @@ form.sessionSignUp {
     /* justify-content: space-around; */
     flex-direction: column;
     border: solid black 1px;
+    border-radius: 1px;
 }
 
 input.session {

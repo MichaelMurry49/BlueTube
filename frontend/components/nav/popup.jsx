@@ -12,6 +12,7 @@ class Popup extends React.Component{
         
     }
     updateVideo(e){
+        debugger
         this.setState({selectedVideo: e.target.files[0]});
     }
     updateThumbnail(e){
