@@ -16,7 +16,7 @@ section.session {
     align-self: center;
     width: 100vw;
     height: 100vh;
-    background-image: url("bluejellyfish.jpg");
+    background-image: image_url("bluejellyfish.jpg");
     /* background-image: url("37832977_10209514860627458_8300305083006976000_o.jpg"); */
     background-size: cover;
     color: black;
@@ -30,7 +30,7 @@ section.session {
 
 form.sessionSignIn {
     align-self: center;
-    background-color: skyblue;
+    background-color: lightblue;
     display: flex;
     text-align: center;
     /* background-color: lightblue; */
