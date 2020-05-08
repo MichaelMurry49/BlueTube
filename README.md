@@ -41,7 +41,7 @@ Step by step how to upload a video:
 1) Click the sign in or demo button on the right of the nav bar
 <img width="171" alt="Screen Shot 2020-05-08 at 10 07 38 AM" src="https://user-images.githubusercontent.com/38839723/81430153-d14b4a80-9113-11ea-8938-e6a4df396b94.png">
 
-2) Click sign in once the input fields are filled. You may click the bolded create account text if you do not have an account and do not plan to use the demo user.
+2) Click the next button once the input fields are filled. You may click the bolded create account text if you do not have an account and do not plan to use the demo user.
 <img width="493" alt="Screen Shot 2020-05-08 at 10 18 27 AM" src="https://user-images.githubusercontent.com/38839723/81431115-79154800-9115-11ea-9a5a-346c484a155c.png">
 
 3) Click the Camera icon
