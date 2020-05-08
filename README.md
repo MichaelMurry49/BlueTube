@@ -67,10 +67,10 @@ Video deletion
 Users can only delete their own videos
 
 # Site Should Eventually support
-Video editing
-Video filtering (via search bar)
-Tracking video views
-Commenting on videos
-Liking videos
-Voting on comments
+Video editing<br/>
+Video filtering (via search bar)<br/>
+Tracking video views<br/>
+Commenting on videos<br/>
+Liking videos<br/>
+Voting on comments<br/>
 User profile page/icon
