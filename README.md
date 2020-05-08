@@ -56,14 +56,14 @@ Step by step how to upload a video:
 
 
 # Site Already Supports
-User authentication
-Demo login
-Video uploads
-Video index page
-Navigation bar
-Video show page
-Video thumbnails
-Video deletion
+User authentication<br/>
+Demo login<br/>
+Video uploads<br/>
+Video index page<br/>
+Navigation bar<br/>
+Video show page<br/>
+Video thumbnails<br/>
+Video deletion<br/>
 Users can only delete their own videos
 
 # Site Should Eventually support
