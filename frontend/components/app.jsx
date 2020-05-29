@@ -7,6 +7,7 @@ import PopupContainer from './nav/popup_container';
 import SingleVideoContainer from './videos/single_video_container';
 // import AuthRoute from './util/route_util';
 import { AuthRoute} from '../util/route_util';
+import VideoSearchIndexContainer from './videos/video_search_index_container';
 
 const App = () => (
 	<div id="app">
@@ -19,6 +20,7 @@ const App = () => (
 			<AuthRoute path="/signin" component={CreateSessionContainer} />
 			<AuthRoute path="/signup" component={CreateUserContainer} />
 			<Route path="/watch/:videoId" component={SingleVideoContainer}/>
+			<Route path="/result/:search" component={VideoSearchIndexContainer}/>
 			<Route exact path="/" component={SplashContainer}/>
 		</Switch>
 		<PopupContainer task={"Create a new Video"}/>

@@ -11,6 +11,10 @@
     /* margin-top: 100px; */
 }
 
+.videoSearch {
+    margin-top: 50px;
+}
+
 .videoTitle {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
@@ -35,6 +39,7 @@
     justify-content: center;
     /* align-items: center; */
 }
+
 
 img {
     height: 200px;

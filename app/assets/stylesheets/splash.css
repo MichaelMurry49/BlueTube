@@ -89,3 +89,30 @@ a.SignInSignOut {
     align-items: center;
 }
 
+.nav-search-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.search-button {
+    background: #00A8E8;
+    color: white;
+    border: 1px solid black;
+    /* padding-left: 5px;
+    padding-right: 5px;
+    height: 20px;
+     */
+     padding: 3px;
+}
+
+.search-bar {
+    height: 20px;
+    width: 30vw;
+    max-width: 575px;
+    border: 1px solid black;
+    border-right: none;
+}
+

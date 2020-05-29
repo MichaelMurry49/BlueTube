@@ -5,12 +5,12 @@ class VideoCategory extends React.Component {
     constructor(props) {
         super(props);
         // debugger;
-        if(this.props && this.props.videos){
-            // debugger;
-            this.videos = Object.values(this.props.videos)
-        } else {
-            this.videos = [];
-        }
+        // if(this.props && this.props.videos){
+        //     // debugger;
+        //     this.videos = Object.values(this.props.videos)
+        // } else {
+        //     this.videos = [];
+        // }
     }
 
     componentDidMount(){
@@ -31,7 +31,7 @@ class VideoCategory extends React.Component {
                     return (<div className="miniVidBox">
                         <Link to={`/watch/${video.id}`}>
                             <img src={video.thumbnail}/>
-                            <div class="videoTitle">{video.title}</div>
+                            <div className="videoTitle">{video.title}</div>
                         </Link>
                         <br/>
                     </div>
