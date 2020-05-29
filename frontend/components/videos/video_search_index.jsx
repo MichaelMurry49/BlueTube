@@ -15,7 +15,8 @@ class VideoSearchIndex extends React.Component {
     render(){
         let {videos, filter} = this.props;
         this.videos = Object.values(videos);
-        this.videos = this.videos.filter(video => video.title.includes(filter) || 
+        this.videos = this.videos.filter(video => 
+            video.title.toLowerCase().includes(filter.toLowerCase()) || 
             video.description.toLowerCase().includes(filter.toLowerCase()))
         // debugger;
         // videos = video.filter(video =>)
@@ -33,7 +34,7 @@ class VideoSearchIndex extends React.Component {
                         <br />
                     </div>
                     )
-                }) : "hello"}
+                }) : "No Videos Found"}
             </div>
         )
     }
