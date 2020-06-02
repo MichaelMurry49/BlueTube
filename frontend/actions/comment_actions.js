@@ -12,15 +12,18 @@ const receiveComments = comments => ({
     comments
 })
 
-const receiveComment = comment => ({
+const receiveComment = comment => {
+    // debugger;
+    return {
     type: RECEIVE_COMMENT,
     comment
-})
+}}
 
-const removeComment = commentId => ({
+const removeComment = commentId => {
+    return {
     type: REMOVE_COMMENT,
     commentId
-})
+}}
 
 const receiveCommentErrors = errors => ({
     type: RECEIVE_COMMENT_ERRORS,
@@ -33,31 +36,36 @@ export const clearCommentErrors = () => ({
 
 // Thunk Actions
 export const fetchComments = () => dispatch => (
-    UtilcommentAPI.fetchComments()
+    UtilCommentAPI.fetchComments()
         .then(comments => dispatch(receiveComments(comments)))
 )
 
 export const fetchComment = commentId => dispatch => (
-    UtilcommentAPI.fetchComment(commentId)
+    UtilCommentAPI.fetchComment(commentId)
         .then(comment => dispatch(receiveComment(comment)),
             errors => dispatch(receiveCommentErrors(errors.responseJSON)))
 )
 
 export const deleteComment = commentId => dispatch => (
-    UtilcommentAPI.deleteComment(commentId)
+    UtilCommentAPI.deleteComment(commentId)
         .then(() => dispatch(removeComment(commentId)))
 )
 
-export const postComment = comment => dispatch => (
-    UtilcommentAPI.postComment(comment)
-        .then(comment => dispatch(receiveComment(comment)),
-            errors => {
-                return dispatch(receiveCommentErrors(errors.responseJSON))
-            })
-)
+export const postComment = comment => dispatch => {
+    // debugger
+    return UtilCommentAPI.postComment(comment)
+        .then(comment => {
+            // debugger;
+            return dispatch(receiveComment(comment))
+        },
+        errors => {
+            // debugger;
+            return dispatch(receiveCommentErrors(errors.responseJSON))
+        })
+    }
 
 export const patchComment = comment => dispatch => (
-    UtilcommentAPI.patchComment(comment)
+    UtilCommentAPI.patchComment(comment)
         .then(comment => dispatch(receiveComment(comment)),
             errors => dispatch(receiveCommentErrors(errors.responseJSON)))
 )

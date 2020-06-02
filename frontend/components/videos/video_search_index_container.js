@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
 import VideoSearchIndex from "./video_search_index"
 import { fetchVideos } from '../../actions/video_actions';
-debugger;
+// debugger;
 const mapStateToProps = (state, ownProps) => {
-    debugger;
+    // debugger;
     return {
     videos: state.entities.videos,
     filter: ownProps.match.params.search,

@@ -1,5 +1,6 @@
 import React from "react";
 import VideoSearchIndexContainer from "./video_search_index_container";
+import NavContainer from "../nav/nav_container";
 import { Link, Redirect } from 'react-router-dom';
 
 class VideoSearchIndex extends React.Component {
@@ -22,10 +23,11 @@ class VideoSearchIndex extends React.Component {
         // videos = video.filter(video =>)
         return (
             <div className="videoSearch">
+                
                 {/* <label>This is a video</label>
                 {this.props.category} */}
                 {this.videos ? this.videos.map((video) => {
-                    debugger
+                    // debugger
                     return (<div className="miniVidBox">
                         <Link to={`/watch/${video.id}`}>
                             <img src={video.thumbnail} />
@@ -35,6 +37,7 @@ class VideoSearchIndex extends React.Component {
                     </div>
                     )
                 }) : "No Videos Found"}
+                <NavContainer />
             </div>
         )
     }

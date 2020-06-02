@@ -3,7 +3,7 @@ import VideoCategory from "./video_category"
 import { deleteVideo, fetchVideos } from '../../actions/video_actions';
 
 const mapStateToProps = (state, ownProps) => {
-    debugger;
+    // debugger;
     return {
     videos: state.entities.videos,
     category: ownProps.category

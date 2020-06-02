@@ -12,22 +12,21 @@ export const fetchComment = commentId => (
     })
 )
 
-export const postComment = comment => (
-    $.ajax({
+export const postComment = comment => {
+    // debugger;
+    return $.ajax({
         method: 'POST',
         url: `api/comments`,
-        data: comment,
-        contentType: false,
-        processData: false
+        data: {comment},
     })
 
-)
+}
 
 export const patchComment = comment => (
     $.ajax({
         method: 'PATCH',
         url: `api/comments/${comment.id}`,
-        data: comment
+        data: {comment},
     })
 )
 

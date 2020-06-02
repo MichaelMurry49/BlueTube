@@ -8,7 +8,8 @@ class Comment < ApplicationRecord
         class_name: :Video
     belongs_to :parent,
         foreign_key: :parent_id,
-        class_name: :Comment
+        class_name: :Comment,
+        optional: :true
     has_many :comments,
         foreign_key: :parent_id,
         class_name: :Comment

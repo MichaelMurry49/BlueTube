@@ -5,16 +5,53 @@ import {Link} from "react-router-dom"
 class SingleVideo extends React.Component {
     constructor(props){
         super(props);
+        this.state = {
+            body: "",
+            video_id: parseInt(this.props.match.params.videoId),
+            author_id: parseInt(this.props.currentUser, 10),
+        }
     }
 
     componentDidMount(){
         this.props.fetchVideo(this.props.match.params.videoId)
+        
+
+        // this.props.fetchVideo("a");
+    }
+
+    updateBody(e){
+        this.setState({body: e.target.value})
+    }
+
+    createComment(parentId){
+        if(parentId !== null){
+             this.setState({parentId: parentId})
+        }
+        // debugger;
+        let comment = this.state;
+        // debugger;
+        this.props.createComment(comment);
+        // debugger;
+       
+    }
+
+    renderComment(comment){
+        // debugger;
+        return(
+            <div className="comment">
+                {comment.body}
+                <button>Reply</button>
+                {comment.coments ? comment.comments.map(childId => {
+                    return renderComment(this.props.fetchComment(childId));
+                }) : ""}
+            </div>
+        )
     }
 
     render(){
-        const {video, currentUser, deleteVideo} = this.props;
+        const {video, currentUser, deleteVideo, fetchComment} = this.props;
         if(!this.props.video) return null;
-        debugger
+        // debugger
         return(
             <div className="singleVideoContainer">
                 
@@ -27,7 +64,13 @@ class SingleVideo extends React.Component {
                 <div className="titleTag">Title: {video.title}</div>
                 <div className="descTag">Description: {video.description} </div>
                 <Link to="/"><button hidden={video.authorId.toString(10) === currentUser ? false : true} className="delete" onClick={() => deleteVideo(video.id)}>Delete</button></Link>
-                
+                <input type="text" onChange={e => this.updateBody(e)}/>
+                <button className="createComment" onClick={() => this.createComment(null)}>Post Comment</button>
+                <div className="comments">
+                    {video.comments.map(commentId => {
+                        return this.renderComment(fetchComment(commentId));
+                    })}
+                </div>
                 <NavContainer/>
                
             </div>

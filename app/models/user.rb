@@ -9,6 +9,18 @@ class User < ApplicationRecord
         foreign_key: :author_id,
         class_name: :Video
 
+    has_many :comments,
+        foreign_key: :author_id,
+        class_name: :Comment
+
+    has_many :likes,
+        foreign_key: :liker_id,
+        class_name: :Like
+
+    has_many :votes,
+        foreign_key: :voter_id,
+        class_name: :Voter
+
     # SPIRE
     def self.find_by_user_credentials(username, password)
         username = User.find_by(username: username)

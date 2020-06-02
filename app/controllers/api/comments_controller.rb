@@ -21,9 +21,9 @@ class Api::CommentsController < ApplicationController
 
     def create
         # debugger
+        puts "The params: #{params}"
         @comment = Comment.new(comment_params)
 
-        # debugger
         # @video[view_count] = 0
         if @comment.save
             render :show
@@ -42,7 +42,8 @@ class Api::CommentsController < ApplicationController
     end
     private
     def comment_params
-        # puts params
-        params.require(:comment).permit(:body, :video_id, :author_id, :parent_id)
+        puts params
+        # debugger
+        params.require(:comment).permit(:body, :video_id, :author_id)
     end
 end

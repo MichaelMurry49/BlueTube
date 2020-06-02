@@ -12,7 +12,7 @@ class Popup extends React.Component{
         
     }
     updateVideo(e){
-        debugger
+        // debugger
         this.setState({selectedVideo: e.target.files[0]});
     }
     updateThumbnail(e){
@@ -25,7 +25,7 @@ class Popup extends React.Component{
         this.setState({ description: e.target.value });
     }
     createVideo(){
-        debugger;
+        // debugger;
         const formData = new FormData();
         formData.append('video[title]', this.state.title);
         formData.append('video[description]', this.state.description);
@@ -37,6 +37,7 @@ class Popup extends React.Component{
         this.setState({ description: "" });
         this.setState({ selectedVideo: "" });
         this.setState({ selectedThumbNail: "" });
+        console.log("form data ",formData);
         if (this.props.task === "Create a new Video"){
             this.props.postVideo(formData)
         } else {
