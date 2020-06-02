@@ -13,7 +13,9 @@ class SingleVideo extends React.Component {
     }
 
     componentDidMount(){
-        this.props.fetchVideo(this.props.match.params.videoId)
+        let vid = this.props.fetchVideo(this.props.match.params.videoId)
+        this.yes = true;
+        
         
 
         // this.props.fetchVideo("a");
@@ -49,8 +51,16 @@ class SingleVideo extends React.Component {
     }
 
     render(){
-        const {video, currentUser, deleteVideo, fetchComment} = this.props;
-        if(!this.props.video) return null;
+        const {video, currentUser, deleteVideo, fetchComment, updateVideo} = this.props;
+        if(!video) return null;
+        if(this.yes){
+            video.viewCount += 1;
+            const formData = new FormData();
+            formData.append('video[view_count]', video.viewCount);
+            formData.append('video[id]', video.id);
+            this.yes = false;
+            updateVideo(formData);
+        } 
         // debugger
         return(
             <div className="singleVideoContainer">
@@ -62,6 +72,7 @@ class SingleVideo extends React.Component {
                     Your browser does not support the video tag.
                 </video>
                 <div className="titleTag">Title: {video.title}</div>
+                <div className="viewCount">{video.viewCount}</div>
                 <div className="descTag">Description: {video.description} </div>
                 <Link to="/"><button hidden={video.authorId.toString(10) === currentUser ? false : true} className="delete" onClick={() => deleteVideo(video.id)}>Delete</button></Link>
                 <input type="text" onChange={e => this.updateBody(e)}/>

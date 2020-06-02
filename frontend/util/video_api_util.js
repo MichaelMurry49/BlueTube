@@ -27,7 +27,9 @@ export const patchVideo = video => (
     $.ajax({
         method: 'PATCH',
         url: `api/videos/${video.id}`,
-        data: video
+        data: video,
+        contentType: false,
+        processData: false
     })
 )
 
