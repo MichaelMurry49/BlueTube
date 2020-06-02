@@ -10,7 +10,7 @@ class Api::VideosController < ApplicationController
     end
 
     def update
-        debugger
+        # debugger
         @video = Video.find_by(id: video_params[:id])
         updates = video_params
         updates.delete("id")

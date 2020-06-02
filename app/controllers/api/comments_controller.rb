@@ -1,6 +1,6 @@
 class Api::CommentsController < ApplicationController
     def index 
-        @commeents = Comment.all
+        @comments = Comment.all
         render :index
     end
 
@@ -44,6 +44,6 @@ class Api::CommentsController < ApplicationController
     def comment_params
         puts params
         # debugger
-        params.require(:comment).permit(:body, :video_id, :author_id)
+        params.require(:comment).permit(:body, :video_id, :author_id, :parent_id)
     end
 end

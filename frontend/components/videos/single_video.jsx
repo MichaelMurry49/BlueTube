@@ -13,7 +13,9 @@ class SingleVideo extends React.Component {
     }
 
     componentDidMount(){
+        debugger;
         let vid = this.props.fetchVideo(this.props.match.params.videoId)
+        let com = this.props.fetchComments(this.props.match.params.videoId)
         this.yes = true;
         
         
@@ -29,29 +31,25 @@ class SingleVideo extends React.Component {
         if(parentId !== null){
              this.setState({parentId: parentId})
         }
-        // debugger;
         let comment = this.state;
-        // debugger;
         this.props.createComment(comment);
-        // debugger;
-       
     }
 
     renderComment(comment){
-        // debugger;
+        debugger;
         return(
             <div className="comment">
                 {comment.body}
-                <button>Reply</button>
-                {comment.coments ? comment.comments.map(childId => {
+                <button>{comment.body}</button>
+                {/* {comment.coments ? comment.comments.map(childId => {
                     return renderComment(this.props.fetchComment(childId));
-                }) : ""}
+                }) : ""} */}
             </div>
         )
     }
 
     render(){
-        const {video, currentUser, deleteVideo, fetchComment, updateVideo} = this.props;
+        const {video, comments, currentUser, deleteVideo, fetchComment, updateVideo} = this.props;
         if(!video) return null;
         if(this.yes){
             video.viewCount += 1;
@@ -79,7 +77,7 @@ class SingleVideo extends React.Component {
                 <button className="createComment" onClick={() => this.createComment(null)}>Post Comment</button>
                 <div className="comments">
                     {video.comments.map(commentId => {
-                        return this.renderComment(fetchComment(commentId));
+                        return this.renderComment(comments[commentId]);
                     })}
                 </div>
                 <NavContainer/>

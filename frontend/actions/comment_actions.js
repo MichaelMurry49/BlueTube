@@ -35,8 +35,8 @@ export const clearCommentErrors = () => ({
 })
 
 // Thunk Actions
-export const fetchComments = () => dispatch => (
-    UtilCommentAPI.fetchComments()
+export const fetchComments = videoId => dispatch => (
+    UtilCommentAPI.fetchComments(videoId)
         .then(comments => dispatch(receiveComments(comments)))
 )
 
