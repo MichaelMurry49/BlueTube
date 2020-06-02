@@ -51,7 +51,7 @@ img {
     
     width: 100vw;
     height: 100vh;
-    background: lightskyblue;
+    background: rgb(245, 250, 255);
 }
 
 /* video::-webkit-media-controls-panel {
@@ -87,22 +87,23 @@ button.delete {
     /* border: black solid 1px; */
 }
 
-.singleVideoContainer input {
+.singleVideoContainer > input {
     width: 90vw;
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid #00A8E8;
     background-color: transparent;
 }
 
 .singleVideoContainer ::placeholder {
+    display: flex;
     text-align: left;
-    color: gray;
+    color: darkblue;
     font-size: 15px;
 }
 
-.singleVideoContainer input:focus {
+.singleVideoContainer > input:focus {
     width: 90vw;
     border-top: none;
     border-left: none;
@@ -112,9 +113,18 @@ button.delete {
     background-color: transparent;
 }
 
-.singleVideoContainer button {
+.singleVideoContainer > button {
+    background-color: #00A8E8; 
+    color: white;
+    justify-self: flex-end;
+    align-self: flex-end; 
+    margin-right: 5vw;
     margin-top: 10px;
-    right: 0;
+    height: 40px;
+    width: 100px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+   
 }
 
 

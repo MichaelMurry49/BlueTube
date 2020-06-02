@@ -74,7 +74,7 @@ class SingleVideo extends React.Component {
                 <div className="descTag">Description: {video.description} </div>
                 <Link to="/"><button hidden={video.authorId.toString(10) === currentUser ? false : true} className="delete" onClick={() => deleteVideo(video.id)}>Delete</button></Link>
                 <input type="text" placeHolder="Add a public comment..." value={this.state.body} onChange={e => this.updateBody(e)}/>
-                <button className="createComment" onClick={() => this.createComment(null)}>Post Comment</button>
+                <button className="createComment" onClick={() => this.createComment(null)}>COMMENT</button>
                 <div className="comments">
                     {video.comments.map(commentId => {
                         return this.renderComment(comments[commentId]);
