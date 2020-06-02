@@ -2,6 +2,8 @@ import React from "react";
 import { Link, Button, Redirect } from "react-router-dom";
 import PopupContainer from "./popup_container";
 
+{/* <PopupContainer task={"Create a new Video"} />  */}
+
 class Nav extends React.Component {
     constructor(props) {
         super(props);

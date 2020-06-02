@@ -23,8 +23,11 @@ const App = () => (
 			<Route path="/result/:search" component={VideoSearchIndexContainer}/>
 			<Route exact path="/" component={SplashContainer}/>
 		</Switch>
-		<PopupContainer task={"Create a new Video"}/>
-		{/* <PopupContainer task={"Upload a new Video"} /> */}
+		<PopupContainer task={"Upload replacement Video"} />
+		<PopupContainer task={"Create a new Video"}/> 
+		
+		
+		
 
 	</div>
 );

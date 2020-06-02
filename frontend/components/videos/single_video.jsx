@@ -64,19 +64,16 @@ class SingleVideo extends React.Component {
         } 
         // debugger
         return(
-            <div className="singleVideoContainer">
-                
-                
+            <div className="singleVideoContainer">    
                 <video className="singleVideo" controls>
                     <source src={this.props.video.uploadUrl}/>
-                    {/* <source src="movie.ogg" type="video/ogg"> */}
                     Your browser does not support the video tag.
                 </video>
                 <div className="titleTag">Title: {video.title}</div>
                 <div className="viewCount">{video.viewCount}</div>
                 <div className="descTag">Description: {video.description} </div>
                 <Link to="/"><button hidden={video.authorId.toString(10) === currentUser ? false : true} className="delete" onClick={() => deleteVideo(video.id)}>Delete</button></Link>
-                <input type="text" value={this.state.body} onChange={e => this.updateBody(e)}/>
+                <input type="text" placeHolder="Add a public comment..." value={this.state.body} onChange={e => this.updateBody(e)}/>
                 <button className="createComment" onClick={() => this.createComment(null)}>Post Comment</button>
                 <div className="comments">
                     {video.comments.map(commentId => {
