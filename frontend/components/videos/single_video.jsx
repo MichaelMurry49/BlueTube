@@ -32,11 +32,14 @@ class SingleVideo extends React.Component {
              this.setState({parentId: parentId})
         }
         let comment = this.state;
+        this.setState({ body: "" });
         this.props.createComment(comment);
+        
     }
 
     renderComment(comment){
         debugger;
+        if(!comment) return null;
         return(
             <div className="comment">
                 {comment.body}
@@ -73,7 +76,7 @@ class SingleVideo extends React.Component {
                 <div className="viewCount">{video.viewCount}</div>
                 <div className="descTag">Description: {video.description} </div>
                 <Link to="/"><button hidden={video.authorId.toString(10) === currentUser ? false : true} className="delete" onClick={() => deleteVideo(video.id)}>Delete</button></Link>
-                <input type="text" onChange={e => this.updateBody(e)}/>
+                <input type="text" value={this.state.body} onChange={e => this.updateBody(e)}/>
                 <button className="createComment" onClick={() => this.createComment(null)}>Post Comment</button>
                 <div className="comments">
                     {video.comments.map(commentId => {
