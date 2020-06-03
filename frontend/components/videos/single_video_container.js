@@ -1,14 +1,16 @@
 import { connect } from "react-redux";
 import SingleVideo from "./single_video";
-// import {fetchUsers} from '../../actions/session_actions';
+import {fetchUser} from '../../actions/user_actions';
 import { deleteVideo, fetchVideo, patchVideo } from '../../actions/video_actions';
 import {deleteComment, fetchComment, fetchComments, postComment, patchComment} from '../../actions/comment_actions';
 
 const mapStateToProps = (state, ownProps) => {
+    let video = state.entities.videos[ownProps.match.params.videoId];
+    let user = video ? state.entities.users[video.authorId] : {};
     return{
-    video: state.entities.videos[ownProps.match.params.videoId],
+    video: video,
     comments: state.entities.comments,
-    users: state.entities.users,
+    user: user,
     currentUser: state.session.currentUser,
 }}
 
@@ -21,7 +23,7 @@ const mapDispatchToProps = dispatch => ({
     fetchComments: videoId => dispatch(fetchComments(videoId)),
     createComment: comment => dispatch(postComment(comment)),
     updateComment: comment => dispatch(patchComment(comment)),
-    // fetchUsers: userId => dispatch(fetchUsers(userId)),
+    fetchUser: userId => dispatch(fetchUser(userId)),
 
 })
 

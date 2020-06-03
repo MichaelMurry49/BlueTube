@@ -48,7 +48,7 @@ class Popup extends React.Component{
         console.log("form data ",formData);
         if (this.props.task === "Create a new Video"){
             let x = this.props.postVideo(formData)
-            let y = this.props.postVideo(tempData)
+            // let y = this.props.postVideo(tempData)
             debugger;
             this.props.closePopup();
         } else {

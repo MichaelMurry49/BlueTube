@@ -8,7 +8,7 @@ class SingleVideo extends React.Component {
         this.state = {
             body: "",
             video_id: parseInt(this.props.match.params.videoId),
-            author_id: parseInt(this.props.currentUser, 10),
+            // author_id: parseInt(this.props.currentUser, 10),
         }
     }
 
@@ -16,6 +16,7 @@ class SingleVideo extends React.Component {
         // debugger;
         let vid = this.props.fetchVideo(this.props.match.params.videoId)
         let com = this.props.fetchComments(this.props.match.params.videoId)
+        // this.props.fetchUser(1)
         this.yes = true;
         
         
@@ -53,7 +54,7 @@ class SingleVideo extends React.Component {
     }
 
     render(){
-        const {video, author, comments, currentUser, deleteVideo, updateVideo} = this.props;
+        const {video, user, comments, currentUser, deleteVideo, updateVideo} = this.props;
         if(!video) return null;
         if(this.yes){
             video.viewCount += 1;
@@ -63,8 +64,7 @@ class SingleVideo extends React.Component {
             this.yes = false;
             updateVideo(formData);
         } 
-        // debugger
-        let space = " ";
+        if(video && !user) this.props.fetchUser(video.authorId);
         return(
             <div className="singleVideoContainer">    
                 <video className="singleVideo" controls>
@@ -80,7 +80,7 @@ class SingleVideo extends React.Component {
                         Likes will go here
                     </div>
                 </div>
-                <div>{this.props.users && video && this.props.users[video.authorId] ? this.props.users[video.authorId].username : ""}</div>
+                <div>{this.props.user ? this.props.user.username : ""}</div>
                 <div className="descTag">{video.description} </div>
                 <Link to="/"><button hidden={video.authorId.toString(10) === currentUser ? false : true} className="delete" onClick={() => deleteVideo(video.id)}>Delete</button></Link>
                 <input type="text" placeHolder="Add a public comment..." value={this.state.body} onChange={e => this.updateBody(e)}/>
