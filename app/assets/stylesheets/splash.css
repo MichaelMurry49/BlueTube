@@ -100,13 +100,17 @@ a.SignInSignOut {
 }
 
 .search-button {
+    display: flex;
+    justify-content: center;
     background: #00A8E8;
-    color: white;
+    color: darkblue;
     border: 1px solid black;
     /* padding-left: 5px;
     padding-right: 5px;
     height: 20px;
      */
+     size: 1px;
+     width: 50px;
      padding: 3px;
 }
 
