@@ -26,20 +26,31 @@ class Popup extends React.Component{
     }
     createVideo(){
         // debugger;
+        // this.props.closePopup();
         const formData = new FormData();
+        const tempData = new FormData();
         formData.append('video[title]', this.state.title);
         formData.append('video[description]', this.state.description);
         formData.append('video[upload]', this.state.selectedVideo);
         formData.append('video[thumbnail]', this.state.selectedThumbNail);
         formData.append('video[view_count]', 0);
         formData.append('video[author_id]', this.props.currentUser)
+        tempData.append('video[title]', this.state.title);
+        // tempData.append('video[description]', this.state.description);
+        tempData.append('video[upload]', this.state.selectedVideo);
+        tempData.append('video[thumbnail]', this.state.selectedThumbNail);
+        tempData.append('video[view_count]', 0);
+        tempData.append('video[author_id]', this.props.currentUser)
         this.setState({title: ""});
         this.setState({ description: "" });
         this.setState({ selectedVideo: "" });
         this.setState({ selectedThumbNail: "" });
         console.log("form data ",formData);
         if (this.props.task === "Create a new Video"){
-            this.props.postVideo(formData)
+            let x = this.props.postVideo(formData)
+            let y = this.props.postVideo(tempData)
+            debugger;
+            this.props.closePopup();
         } else {
             this.props.updateVideo(formData)
         }
