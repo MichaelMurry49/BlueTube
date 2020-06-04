@@ -3,13 +3,21 @@ import React from 'react';
 class Popup extends React.Component{
     constructor(props) {
         super(props);
+        this.count = 0;
+        this.vidCount = props.cUser.videos.length;
+        this.fetch = false;
         this.state = {
             selectedVideo: "",
             selectedThumbNail: "",
             title: "",
-            description: ""
+            description: "",
         }
         
+    }
+
+    closePopup(){
+        // this.props.clearVideoErrors();
+        this.props.closePopup();
     }
     updateVideo(e){
         // debugger
@@ -27,6 +35,7 @@ class Popup extends React.Component{
     createVideo(){
         // debugger;
         // this.props.closePopup();
+        // this.props.clearVideoErrors()
         const formData = new FormData();
         const tempData = new FormData();
         formData.append('video[title]', this.state.title);
@@ -35,7 +44,7 @@ class Popup extends React.Component{
         formData.append('video[thumbnail]', this.state.selectedThumbNail);
         formData.append('video[view_count]', 0);
         formData.append('video[author_id]', this.props.currentUser)
-        tempData.append('video[title]', this.state.title);
+        // tempData.append('video[title]', this.state.title);
         // tempData.append('video[description]', this.state.description);
         tempData.append('video[upload]', this.state.selectedVideo);
         tempData.append('video[thumbnail]', this.state.selectedThumbNail);
@@ -47,27 +56,44 @@ class Popup extends React.Component{
         this.setState({ selectedThumbNail: "" });
         console.log("form data ",formData);
         if (this.props.task === "Create a new Video"){
-            let x = this.props.postVideo(formData)
+            let x = this.props.postVideo(formData);
+            this.fetch = true;
             // let y = this.props.postVideo(tempData)
-            debugger;
-            this.props.closePopup();
+            // debugger;
+            // this.props.closePopup()
+            // if(!this.props.errors || this.props.errors.length === 0)  this.props.closePopup();
+            // .then( this.props.fetchUser(this.props.currentUser))
         } else {
-            this.props.updateVideo(formData)
+            this.props.updateVideo(formData).then(this.props.fetchUser(this.props.currentUser));
         }
         
         
     }
     render(){
-        const { popup, closePopup, task } = this.props;
+        const { popup, task } = this.props;
         if(!popup) return null;
+        debugger;
+        this.props.fetchUser(this.props.currentUser)
+        this.count += 1;
+        // if(false === true) this.closePopup();
+        if(this.vidCount && this.props.cUser.videos.length > this.vidCount) {
+            this.vidCount += 1;
+            this.closePopup();
+        }
+        // if(!this.props.errors || this.props.errors.length === 0)  this.props.closePopup();
+        // let errors = this.props.errors.slice(0);
+        // this.props.clearVideoErrors();
         return (
             <div className="popup">
-                <button className="exit" onClick={closePopup}>X</button>
+                <button className="exit" onClick={() => this.closePopup()}>X</button>
                 {/* <button className="upload" type="file">Upload Video</button> */}
                 <div className="uploadControls">
                     <h1>{task}</h1>
+                    <h1>{this.props.cUser.videos.length}</h1>
+                    <h1>{this.count}</h1>
                     <br/>
                     {this.props.errors.map(error => <div className="videoError">{error}</div>)}
+                    {/* {this.props.clearVideoErrors} */}
                     <label>Upload Video: </label><input className="videoUpload" type="file" onChange={e => this.updateVideo(e)} accept="video/*"/>
                     <label>Select Thumbnail: </label><input className="thumbNailUpload" type="file" onChange={e => this.updateThumbnail(e)} accept="image/*"/>
                     <label>Video Title: </label><input className="titleUpload" value={this.state.title} type="text" onChange={e => this.updateTitle(e)}/>
