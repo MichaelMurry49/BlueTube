@@ -1,13 +1,13 @@
-import { RECEIVE_USER } from '../actions/session_actions';
+import { RECEIVE_USER, RECEIVE_USERS } from '../actions/session_actions';
 
 const usersReducer = (state={}, action) => {
     Object.freeze(state);
     const newState = Object.assign({}, state);
-    // debugger;
     switch(action.type){
         case RECEIVE_USER:
-            // debugger;
             return Object.assign(newState, action.user )
+        case RECEIVE_USERS:
+            return action.users;
         default:
             return state;
     }

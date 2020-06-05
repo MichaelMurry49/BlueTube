@@ -74,7 +74,9 @@ img {
 button.delete {
     height: 50px;
     width: 150px;
-    background-color: #00A8E8;
+    border: 1px solid blue;
+    color: blue;
+    background-color: white;
     margin-bottom: 100px;
     margin-top: 20px;
 }
@@ -85,7 +87,7 @@ button.delete {
     width: 800px;
     background-color: black;
     /* max-width: 100px; */
-    margin-top: 1px;
+    margin-top: 75px;
     /* border: black solid 1px; */
 }
 
@@ -118,8 +120,9 @@ button.delete {
 }
 
 .singleVideoContainer > button {
-    background-color: #00A8E8; 
+    background-color: blue; 
     color: white;
+    border: none;
     justify-self: flex-end;
     align-self: flex-end; 
     margin-right: 5vw;
@@ -162,6 +165,8 @@ video::-webkit-media-controls-panel {
     /* padding-left: 8px; */
     padding-right: 8px;
 }
+
+
 
 .titleTag {
     font-size: 25px;

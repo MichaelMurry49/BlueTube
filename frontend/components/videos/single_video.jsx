@@ -23,6 +23,7 @@ class SingleVideo extends React.Component {
         // debugger;
         let vid = this.props.fetchVideo(this.props.match.params.videoId)
         let com = this.props.fetchComments(this.props.match.params.videoId)
+        let use = this.props.fetchUsers()
         // this.props.fetchUser(1)
         this.yes = true;
         
@@ -44,7 +45,9 @@ class SingleVideo extends React.Component {
         // this.props.video.likes.filter(l => {
         //     l[likes === ]
         // } )
-        // this.props.createLike(like);
+        // if(cUser && cUser.likes.includes)
+        debugger;
+        this.props.createLike(like);
     }
 
     createComment(parentId){
@@ -67,11 +70,12 @@ class SingleVideo extends React.Component {
     }
 
     renderComment(comment){
-        // debugger;
+        debugger;
         if(!comment) return null;
         // debugger;
         return(
             <div className="comment">
+                <div className="username">{this.props.users[comment.authorId] ? this.props.users[comment.authorId].username : ""}</div>
                 {comment.body}
                 <div className="reply">
                     <input placeHolder="Add a public reply..." value={this.arrBody[comment.id]} onChange={e => this.updateBody(e, comment.id)} />
@@ -80,14 +84,19 @@ class SingleVideo extends React.Component {
                 
                 {comment.comments ? comment.comments.map(childId => {
                     return <div className="childComment">
+                        {
+                            this.props.comments[childId]  && this.props.users ?
+                            <div className="username">{this.props.users[this.props.comments[childId].authorId] ? this.props.users[this.props.comments[childId].authorId].username : ""}</div> :
+                            ""
+                        }
                         {this.props.comments[childId] ? this.props.comments[childId].body : ""}
-                        <div className="reply">
+                        {/* <div className="reply">
                             <button>REPLY</button>
                             <form>
-                                <input placeHolder="Add a public reply..." value={this.arrBody[childId]} onChange={e => this.updateBody(e)} />
+                                <input placeHolder="Add a public reply..." value={this.arrBody[comment.id]} onChange={e => this.updateBody(e)} />
                                 <button onClick={() => this.createComment(comment.id)}>REPLY</button>
                             </form>
-                        </div>
+                        </div> */}
                     </div>
                 }) : ""}
             </div>

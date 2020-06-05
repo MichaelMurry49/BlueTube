@@ -27,14 +27,14 @@ const removeLike = likeId => {
 
 
 // Thunk Actions
-// export const fetchLikes = (likeableId, likeableType) => dispatch => (
-//     UtilLikeAPI.fetchComments(likeableId, likeableType)
-//         .then(likes => dispatch(receiveLikes(likes)))
-// )
+export const fetchLikes = () => dispatch => (
+    UtilLikeAPI.fetchLikes()
+        .then(likes => dispatch(receiveLikes(likes)))
+)
 
 export const fetchLike = likeId => dispatch => (
     UtilLikeAPI.fetchLike(likeId)
-        .then(like => dispatch(receiveLikes(like)))
+        .then(like => dispatch(receiveLike(like)))
 )
 
 export const deleteLike = likeId => dispatch => (

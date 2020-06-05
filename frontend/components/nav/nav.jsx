@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Button, Redirect } from "react-router-dom";
 import PopupContainer from "./popup_container";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faBars, faVideo } from '@fortawesome/free-solid-svg-icons';
 
 {/* <PopupContainer task={"Create a new Video"} />  */}
 
@@ -41,7 +41,7 @@ class Nav extends React.Component {
                     <Link className="search-button" to={`/result/${this.state.filter}`}><FontAwesomeIcon icon={faSearch} /></Link>
                 </div>
                 <div className="right-nav">
-                    <button className="camera-button" onClick={this.props.openPopup}><img className="nav-camera" src={window.cameraURL} alt="Camera logo" /></button>    
+                    <button className="camera-button" onClick={this.props.currentUser ? this.props.openPopup : () => { }}><FontAwesomeIcon icon={faVideo} /></button>    
                     <img className="nav-grid" src={window.gridURL} alt="Grid logo" />
                     <Link className="SignInSignOut" to={this.props.signedIn ? "/" : "/signin"}>
                         <div className="withDemo">

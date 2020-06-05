@@ -5,10 +5,10 @@ Rails.application.routes.draw do
 		resource :session
 		resources :videos do
 			resources :comments, only: [:index]
-			resources :likes, only: [:index]
+			# resources :likes, only: [:index]
 		end
 		resources :comments, only: [:create, :update, :destroy]
-		resources :likes, only: [:create, :update, :destroy]
+		resources :likes #, only: [:create, :update, :destroy, :show]
 	end
 	# resource :uploads, only: :show
 	root to: 'static_pages#root'

@@ -2,8 +2,9 @@
     height: 3000px;
 } */
 .SignInSignOut button {
-    background-color: #00A8E8;
-    color: white;
+    border: 1px solid blue;
+    color: blue;
+    background-color: white;
 }
 
 a.SignInSignOut {
@@ -54,6 +55,7 @@ a.SignInSignOut {
     margin-right: 2px;
 }
 
+
 .nav-camera {
     height: 40px;
     width: 40px;
@@ -61,14 +63,15 @@ a.SignInSignOut {
 }
 
 .camera-button {
+    font-size: 15px;
     background: transparent;
     border: none;
     cursor: pointer;
 }
 
 .nav-grid {
-    height: 30px;
-    width: 30px;
+    height: 15px;
+    width: 15px;
     margin-right: 5px;
 }
 
@@ -102,7 +105,7 @@ a.SignInSignOut {
 .search-button {
     display: flex;
     justify-content: center;
-    background: #00A8E8;
+    background: rgb(245, 250, 255);
     color: darkblue;
     border: 1px solid black;
     /* padding-left: 5px;
