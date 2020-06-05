@@ -31,6 +31,7 @@ class Nav extends React.Component {
         // const {openPopup} = this.props
         return (
             <div className="nav">
+                <PopupContainer task={"Create a new Video"} /> 
                 {/* <div><FontAwesomeIcon icon={faBars} /></div> */}
                 <div className="nav-logo-plus-title">
                     <Link className="nav-logo-plus-title" to={"/"}><img className="nav-logo" src={window.smileURL} alt="BlueTube logo"/>BlueTube</Link>

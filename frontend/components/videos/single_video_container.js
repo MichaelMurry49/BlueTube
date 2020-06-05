@@ -3,6 +3,7 @@ import SingleVideo from "./single_video";
 import {fetchUser} from '../../actions/user_actions';
 import { deleteVideo, fetchVideo, patchVideo } from '../../actions/video_actions';
 import {deleteComment, fetchComment, fetchComments, postComment, patchComment} from '../../actions/comment_actions';
+import {postLike, patchLike, fetchLike}  from '../../actions/like_actions';
 
 const mapStateToProps = (state, ownProps) => {
     let video = state.entities.videos[ownProps.match.params.videoId];
@@ -24,6 +25,10 @@ const mapDispatchToProps = dispatch => ({
     createComment: comment => dispatch(postComment(comment)),
     updateComment: comment => dispatch(patchComment(comment)),
     fetchUser: userId => dispatch(fetchUser(userId)),
+    createLike: like => dispatch(postLike(like)),
+    updateLike: like => dispatch(patchLike(like)),
+    fetchLike: likeId => dispatch(fetchLike(likeId)),
+    // fetchLikes: videoId => dispatch(fetchLikes(videoId)),
 
 })
 

@@ -24,7 +24,7 @@ const App = () => (
 			<Route exact path="/" component={SplashContainer}/>
 		</Switch>
 		{/* <PopupContainer task={"Upload replacement Video"} /> */}
-		<PopupContainer task={"Create a new Video"}/> 
+		{/* <PopupContainer task={"Create a new Video"}/>  */}
 		
 		
 		

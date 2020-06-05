@@ -4,7 +4,9 @@ class Popup extends React.Component{
     constructor(props) {
         super(props);
         this.count = 0;
-        this.vidCount = props.cUser.videos.length;
+        if(this.props.cUser) this.vidCount = props.cUser.videos.length;
+        // for(let i = 0; i< 500; i++){}
+        // this.vid2 = props.cUser.videos.length;
         this.fetch = false;
         this.state = {
             selectedVideo: "",
@@ -97,7 +99,7 @@ class Popup extends React.Component{
                     <label>Upload Video: </label><input className="videoUpload" type="file" onChange={e => this.updateVideo(e)} accept="video/*"/>
                     <label>Select Thumbnail: </label><input className="thumbNailUpload" type="file" onChange={e => this.updateThumbnail(e)} accept="image/*"/>
                     <label>Video Title: </label><input className="titleUpload" value={this.state.title} type="text" onChange={e => this.updateTitle(e)}/>
-                    <label>Description</label><textarea className="decriptionUpload" value={this.state.description} onChange={e => this.updateDescription(e)} />
+                    <label>Description:</label><textarea className="decriptionUpload" value={this.state.description} onChange={e => this.updateDescription(e)} />
                     <button className="uploadSubmit" type="submit" onClick={() => this.createVideo()}>Upload Video</button>
                 </div>
                 

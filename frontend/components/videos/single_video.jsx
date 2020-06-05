@@ -1,6 +1,8 @@
 import React from "react";
 import NavContainer from "../nav/nav_container";
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 
 class SingleVideo extends React.Component {
     constructor(props){
@@ -36,6 +38,13 @@ class SingleVideo extends React.Component {
             this.arrBody[commentId] = e.target.value;
         }
         
+    }
+
+    createLike(like){
+        // this.props.video.likes.filter(l => {
+        //     l[likes === ]
+        // } )
+        // this.props.createLike(like);
     }
 
     createComment(parentId){
@@ -112,10 +121,14 @@ class SingleVideo extends React.Component {
                 <div className="titleTag">{video.title}</div>
                 <div className="viewsAndLikes">
                     <div>
-                        {video.viewCount} views  • {Date(video.createdAt).split(" ").slice(1, 4).join(" ")}
+                        {video.viewCount} views  • {video.createdAt.slice(0,10)}
                     </div>
                     <div>
-                        Likes will go here
+                        <button onClick={this.createLike({liker_id: currentUser, likeable_id: this.videoId, likeable_type: "Video", positive_like: true})}>
+                            <FontAwesomeIcon icon={faThumbsUp} />
+                        </button> 
+                        {video.likes.filter(like => like.positiveLike)}
+                        <FontAwesomeIcon icon={faThumbsDown} />
                     </div>
                 </div>
                 <div>{this.props.user ? this.props.user.username : ""}</div>
