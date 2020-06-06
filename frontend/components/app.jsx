@@ -4,6 +4,7 @@ import CreateSessionContainer from './session/create_session_container';
 import CreateUserContainer from './session/create_user_container';
 import SplashContainer from './splash_container';
 import PopupContainer from './nav/popup_container';
+import UserContainer from './users/user_container';
 import SingleVideoContainer from './videos/single_video_container';
 // import AuthRoute from './util/route_util';
 import { AuthRoute} from '../util/route_util';
@@ -21,7 +22,9 @@ const App = () => (
 			<AuthRoute path="/signup" component={CreateUserContainer} />
 			<Route path="/watch/:videoId" component={SingleVideoContainer}/>
 			<Route path="/result/:search" component={VideoSearchIndexContainer}/>
+			<Route path="/users/:userId" component={UserContainer}/>
 			<Route exact path="/" component={SplashContainer}/>
+			
 		</Switch>
 		{/* <PopupContainer task={"Upload replacement Video"} /> */}
 		{/* <PopupContainer task={"Create a new Video"}/>  */}
