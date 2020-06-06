@@ -2,7 +2,8 @@ import React from "react";
 import { Link, Button, Redirect } from "react-router-dom";
 import PopupContainer from "./popup_container";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faBars, faVideo } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faBars, faVideo, faHome } from '@fortawesome/free-solid-svg-icons';
+import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 
 {/* <PopupContainer task={"Create a new Video"} />  */}
 
@@ -12,6 +13,9 @@ class Nav extends React.Component {
         this.state = {
             filter: "",
         }
+        this.sbwidth = 200;
+        this.sbc = "small"
+        this.sideBar = false;
     }
 
     demoFill(){
@@ -32,9 +36,11 @@ class Nav extends React.Component {
         return (
             <div className="nav">
                 <PopupContainer task={"Create a new Video"} /> 
-                {/* <div><FontAwesomeIcon icon={faBars} /></div> */}
+                
                 <div className="nav-logo-plus-title">
-                    <Link className="nav-logo-plus-title" to={"/"}><img className="nav-logo" src={window.smileURL} alt="BlueTube logo"/>BlueTube</Link>
+                    <div className={this.sbc}><Link className="sbl" to="/"><FontAwesomeIcon icon={faHome} /></Link> <a className="sbl" href="https://github.com/MichaelMurry49/BlueTube"><FontAwesomeIcon icon={faGithub} /></a> <a href="https://www.linkedin.com/in/michael-murry-b3746a1a6/" className="sbl"><FontAwesomeIcon icon={faLinkedinIn} /></a></div>
+                    <button className="bars"><FontAwesomeIcon icon={faBars} /></button><Link className="nav-logo-plus-title" to={"/"}><img className="nav-logo" src={window.smileURL} alt="BlueTube logo"/>BlueTube</Link>
+                    {/* <div className={this.sbc}><Link className="sbl" to="/"><FontAwesomeIcon icon={faHome} /></Link> <a className="sbl" href="https://github.com/MichaelMurry49/BlueTube"><FontAwesomeIcon icon={faGithub} /></a> <a href="https://www.linkedin.com/in/michael-murry-b3746a1a6/" className="sbl"><FontAwesomeIcon icon={faLinkedinIn} /></a></div> */}
                 </div>
                 <div className="nav-search-bar">
                     <input className="search-bar" value={this.state.filter} type="text" onChange={e => this.changeSearch(e)}/>

@@ -49,6 +49,37 @@ a.SignInSignOut {
     margin-left: 15px;
 }
 
+.small {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    align-items: center;
+    /* justify-content: flex-start; */
+    background: white;
+    color: blue;
+    height: 100vh;
+    width: 30px;
+    left: 0;
+    /* top: 0px; */
+    margin-top: 96px;
+
+}
+
+
+.small > .sbl  {
+    margin-top: 50px;
+    /* margin-bottom: 50px; */
+}
+
+.bars {
+    position: fixed;
+    left: 5px;
+}
+.nav-logo-plus-title > button {
+    background-color: transparent;
+    border: none;
+}
+
 .nav-logo {
     height: 40px;
     width: 40px;

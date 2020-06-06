@@ -4,13 +4,6 @@ import { Link, Redirect } from 'react-router-dom';
 class VideoCategory extends React.Component {
     constructor(props) {
         super(props);
-        // debugger;
-        // if(this.props && this.props.videos){
-        //     // debugger;
-        //     this.videos = Object.values(this.props.videos)
-        // } else {
-        //     this.videos = [];
-        // }
     }
 
     componentDidMount(){
@@ -19,8 +12,6 @@ class VideoCategory extends React.Component {
     }
 
     render() {
-        // if (!this.videos) return null;
-        // debugger
         this.videos = Object.values(this.props.videos)
         return (
             <div className="videoCategories">

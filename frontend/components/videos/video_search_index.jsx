@@ -1,6 +1,7 @@
 import React from "react";
 import VideoSearchIndexContainer from "./video_search_index_container";
 import NavContainer from "../nav/nav_container";
+import SideBarContainer from "../nav/sidebar_container";
 import { Link, Redirect } from 'react-router-dom';
 
 class VideoSearchIndex extends React.Component {
@@ -37,6 +38,7 @@ class VideoSearchIndex extends React.Component {
                     </div>
                     )
                 }) : "No Videos Found"}
+                {/* <SideBarContainer /> */}
                 <NavContainer />
             </div>
         )

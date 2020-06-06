@@ -1,5 +1,6 @@
 import React from "react";
 import NavContainer from "../nav/nav_container";
+import SideBarContainer from "../nav/sidebar_container";
 import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
@@ -152,6 +153,7 @@ class SingleVideo extends React.Component {
                         // return comments[commentId] ? comments[commentId].body : "";
                     })}
                 </div>
+                {/* <SideBarContainer/> */}
                 <NavContainer/>
                
             </div>
