@@ -49,6 +49,6 @@ export const postLike = like => dispatch => {
 }
 
 export const patchLike = like => dispatch => (
-    UtillikeAPI.patchLike(like)
+    UtilLikeAPI.patchLike(like)
         .then(like => dispatch(receiveLike(like)))
 )

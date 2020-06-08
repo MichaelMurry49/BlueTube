@@ -13,8 +13,6 @@ class Comment < ApplicationRecord
     has_many :comments,
         foreign_key: :parent_id,
         class_name: :Comment
-    has_many :votes,
-        foreign_key: :comment_id,
-        class_name: :Vote
+    has_many :likes, as: :likeable
     
 end

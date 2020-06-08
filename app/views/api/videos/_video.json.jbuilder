@@ -3,5 +3,5 @@ json.set! video.id do
     json.uploadUrl url_for(video.upload)
     json.thumbnail url_for(video.thumbnail)
     json.comments video.comments.map {|comment| comment.id}
-    json.likes video.likes.map {|like| like.id}
+    json.likes video.likes.map {|like| like.positive_like}
 end

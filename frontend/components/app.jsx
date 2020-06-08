@@ -22,7 +22,7 @@ const App = () => (
 			<AuthRoute path="/signup" component={CreateUserContainer} />
 			<Route path="/watch/:videoId" component={SingleVideoContainer}/>
 			<Route path="/result/:search" component={VideoSearchIndexContainer}/>
-			<Route path="/users/:userId" component={UserContainer}/>
+			<Route path="/channel/:userId" component={UserContainer}/>
 			<Route exact path="/" component={SplashContainer}/>
 			
 		</Switch>

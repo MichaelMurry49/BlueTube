@@ -11,17 +11,25 @@ class User extends React.Component {
     }
 
     componentDidMount(){
+        // this.props.fetchUser(this.props.userId);
         this.props.fetchUser(this.props.userId);
         this.props.fetchVideos();
     }
 
     render(){
         debugger;
+        console.log(this.props.videos)
+        if(this.props.videos) console.log(Object.values(this.props.videos).length)
+        // while(this.props.videos.length === 0){console.log("hi")}
+        if (this.props.videos && Object.values(this.props.videos).length > 0) debugger;
         return (
             <div>
                 {this.props.user ? this.props.user.username : ""}
-                {this.props.videos ? this.props.videos.map(video => {
-                    <div>{video.thumbnail}</div>
+                {this.props.videos ? Object.values(this.props.videos).filter(video => video.authorId === parseInt(this.props.userId, 10)).map(video => {
+                    return <Link to={`/watch/${video.id}`}>
+                        <img src={video.thumbnail} />
+                        <div className="videoTitle">{video.title}</div>
+                    </Link>
                 }) : ""}
             </div>
         )

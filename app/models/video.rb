@@ -7,7 +7,7 @@ class Video < ApplicationRecord
         foreign_key: :video_id,
         class_name: :Comment
     
-        has_many :likes, as: :likeable
+    has_many :likes, as: :likeable
 
     has_one_attached :upload
 

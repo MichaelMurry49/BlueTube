@@ -38,7 +38,7 @@ class Nav extends React.Component {
                 <PopupContainer task={"Create a new Video"} /> 
                 
                 <div className="nav-logo-plus-title">
-                    <div className={this.sbc}><Link className="sbl" to="/"><FontAwesomeIcon icon={faHome} /></Link> <a className="sbl" href="https://github.com/MichaelMurry49/BlueTube"><FontAwesomeIcon icon={faGithub} /></a> <a href="https://www.linkedin.com/in/michael-murry-b3746a1a6/" className="sbl"><FontAwesomeIcon icon={faLinkedinIn} /></a></div>
+                    <div className={this.sbc}><Link className="sbl" to="/"><FontAwesomeIcon icon={faHome} />Home</Link> <a className="sbl" href="https://github.com/MichaelMurry49/BlueTube"><FontAwesomeIcon icon={faGithub} />GitHub</a> <a href="https://www.linkedin.com/in/michael-murry-b3746a1a6/" className="sbl"><FontAwesomeIcon icon={faLinkedinIn} />LinkedIn</a></div>
                     <button className="bars"><FontAwesomeIcon icon={faBars} /></button><Link className="nav-logo-plus-title" to={"/"}><img className="nav-logo" src={window.smileURL} alt="BlueTube logo"/>BlueTube</Link>
                     {/* <div className={this.sbc}><Link className="sbl" to="/"><FontAwesomeIcon icon={faHome} /></Link> <a className="sbl" href="https://github.com/MichaelMurry49/BlueTube"><FontAwesomeIcon icon={faGithub} /></a> <a href="https://www.linkedin.com/in/michael-murry-b3746a1a6/" className="sbl"><FontAwesomeIcon icon={faLinkedinIn} /></a></div> */}
                 </div>

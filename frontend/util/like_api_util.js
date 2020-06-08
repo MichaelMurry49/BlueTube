@@ -1,8 +1,8 @@
 
-export const fetchLikes = videoId => (
+export const fetchLikes = () => (
     $.ajax({
         method: 'GET',
-        url: `api/videos/${videoId}/likes`,
+        url: `api/likes`,
     })
 )
 
@@ -25,7 +25,7 @@ export const postLike = like => {
 
 }
 
-export const patchComment = like => (
+export const patchLike = like => (
     $.ajax({
         method: 'PATCH',
         url: `api/likes/${like.id}`,

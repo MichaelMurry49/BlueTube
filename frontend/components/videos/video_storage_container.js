@@ -3,7 +3,7 @@ import VideoStorage from "./video_storage"
 import { deleteVideo } from '../../actions/video_actions';
 
 const mapStateToProps = state => ({
-    videos: state.entities.videos
+    // videos: state.entities.videos
 })
 
 const mapDispatchToProps = dispatch => ({

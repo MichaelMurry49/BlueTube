@@ -12,8 +12,9 @@ class SingleVideo extends React.Component {
         this.commentCount = Object.values(this.props.comments).length
         this.lastCommentCount = this.commentCount;
 
-        this.arrBody = {};
+        // this.arrBody = {};
         this.state = {
+            arrBody: {},
             body: "",
             video_id: parseInt(this.props.match.params.videoId),
             author_id: parseInt(this.props.currentUser, 10),
@@ -25,6 +26,7 @@ class SingleVideo extends React.Component {
         let vid = this.props.fetchVideo(this.props.match.params.videoId)
         let com = this.props.fetchComments(this.props.match.params.videoId)
         let use = this.props.fetchUsers()
+        let lik = this.props.fetchLikes()
         // this.props.fetchUser(1)
         this.yes = true;
         
@@ -37,18 +39,37 @@ class SingleVideo extends React.Component {
         if(commentId === null){
             this.setState({body: e.target.value})
         } else {
-            this.arrBody[commentId] = e.target.value;
+            let temp = Object.assign({}, this.state.arrBody);
+            temp[commentId] = e.target.value;
+            this.setState({arrBody: temp});
         }
         
     }
 
     createLike(like){
+        // this.props.fetchLikes();
         // this.props.video.likes.filter(l => {
         //     l[likes === ]
         // } )
         // if(cUser && cUser.likes.includes)
         debugger;
-        this.props.createLike(like);
+        // if(likes.filter())
+        let match = Object.values(this.props.likes).filter(el => parseInt(like.liker_id, 10) === el.likerId &&
+            like.likeable_id === el.likeableId && like.likeable_type === el.likeableType);
+        if(match.length > 0){
+                if(like.positive_like === match[0].positiveLike){
+                    this.props.deleteLike(match[0].id);
+                } else {
+                    like.id = match[0].id;
+                    like.liker_id = parseInt(like.liker_id, 10);
+                    this.props.updateLike(like);
+                }
+            } else {
+                 this.props.createLike(like);
+            }
+           
+        this.props.fetchLikes();
+       
     }
 
     createComment(parentId){
@@ -57,12 +78,18 @@ class SingleVideo extends React.Component {
         // this.commentCount += 1;
         this.props.fetchComments(this.props.match.params.videoId);
         if(parentId !== null){
-            let comment = {body: this.arrBody[parentId], video_id: this.state.video_id, 
+            debugger
+            let comment = {body: this.state.arrBody[parentId], video_id: this.state.video_id, 
                 author_id: this.state.author_id, parent_id: parentId}
-            this.arrBody = {};
+            // this.arrBody = {};
+            delete this.state.arrBody;
+            this.setState({ arrBody: {} });
             this.props.createComment(comment);
         } else {
+            delete this.state.arrBody;
             let comment = this.state;
+            // this.state.arrBody = {};
+            this.setState({arrBody: {}});
             this.setState({ body: "" });
             this.props.createComment(comment);
         }
@@ -79,9 +106,17 @@ class SingleVideo extends React.Component {
                 <div className="username">{this.props.users[comment.authorId] ? this.props.users[comment.authorId].username : ""}</div>
                 {comment.body}
                 <div className="reply">
-                    <input placeHolder="Add a public reply..." value={this.arrBody[comment.id]} onChange={e => this.updateBody(e, comment.id)} />
+                    <input placeHolder="Add a public reply..." value={this.state.arrBody[comment.id]} onChange={e => this.updateBody(e, comment.id)} />
                     <button onClick={() => this.createComment(comment.id)}>REPLY</button>
                 </div>
+                <button className="like" onClick={() => this.createLike({ liker_id: this.props.currentUser, likeable_id: comment.id, likeable_type: "Comment", positive_like: true })}>
+                    <FontAwesomeIcon icon={faThumbsUp} />
+                </button>
+                {comment.likes.filter(like => like).length}
+                <button className="dislike" onClick={() => this.createLike({ liker_id: this.props.currentUser, likeable_id: comment.id, likeable_type: "Comment", positive_like: false })} >
+                    <FontAwesomeIcon icon={faThumbsDown} />
+                </button>
+                {comment.likes.filter(like => !like).length}
                 
                 {comment.comments ? comment.comments.map(childId => {
                     return <div className="childComment">
@@ -90,7 +125,19 @@ class SingleVideo extends React.Component {
                             <div className="username">{this.props.users[this.props.comments[childId].authorId] ? this.props.users[this.props.comments[childId].authorId].username : ""}</div> :
                             ""
                         }
-                        {this.props.comments[childId] ? this.props.comments[childId].body : ""}
+                        {this.props.comments[childId] ? 
+                            <div>
+                                <div>{this.props.comments[childId].body}</div>
+                                <button className="like" onClick={() => this.createLike({ liker_id: this.props.currentUser, likeable_id: childId, likeable_type: "Comment", positive_like: true })}>
+                                    <FontAwesomeIcon icon={faThumbsUp} />
+                                </button>
+                                {this.props.comments[childId].likes.filter(like => like).length}
+                                <button className="dislike" onClick={() => this.createLike({ liker_id: this.props.currentUser, likeable_id: childId, likeable_type: "Comment", positive_like: false })} >
+                                    <FontAwesomeIcon icon={faThumbsDown} />
+                                </button>
+                                {this.props.comments[childId].likes.filter(like => !like).length}
+                            </div> : ""}
+                        
                         {/* <div className="reply">
                             <button>REPLY</button>
                             <form>
@@ -134,11 +181,14 @@ class SingleVideo extends React.Component {
                         {video.viewCount} views  • {video.createdAt.slice(0,10)}
                     </div>
                     <div>
-                        <button onClick={this.createLike({liker_id: currentUser, likeable_id: this.videoId, likeable_type: "Video", positive_like: true})}>
+                        <button className="like" onClick={() => this.createLike({liker_id: currentUser, likeable_id: this.props.video.id, likeable_type: "Video", positive_like: true})}>
                             <FontAwesomeIcon icon={faThumbsUp} />
                         </button> 
-                        {video.likes.filter(like => like.positiveLike)}
-                        <FontAwesomeIcon icon={faThumbsDown} />
+                        {video.likes.filter(like => like).length}
+                        <button className="dislike" onClick={() => this.createLike({liker_id: currentUser, likeable_id: this.props.video.id, likeable_type: "Video", positive_like: false})} >
+                            <FontAwesomeIcon icon={faThumbsDown} />
+                        </button>
+                        {video.likes.filter(like => !like).length}
                     </div>
                 </div>
                 <div>{this.props.user ? this.props.user.username : ""}</div>

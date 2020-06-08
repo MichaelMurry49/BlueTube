@@ -4,13 +4,13 @@ import { fetchUser } from '../../actions/user_actions';
 import { deleteVideo, fetchVideo, fetchVideos, patchVideo } from '../../actions/video_actions';
 
 const mapStateToProps = (state, ownProps) => {
-    debugger;
-    let user = state.entities.users[ownProps.match.params.userId];
-    let videos = user ? user.videos : [];
+    // debugger;
+    // let user = state.entities.users[ownProps.match.params.userId];
+    // let videos = user ? user.videos : [];
     return {
-        user: user,
+        user: state.entities.users[ownProps.match.params.userId],
         userId: ownProps.match.params.userId,
-        videos: videos,
+        videos: state.entities.videos,
         currentUser: state.session.currentUser,
     }
 }
