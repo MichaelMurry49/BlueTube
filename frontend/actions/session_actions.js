@@ -3,7 +3,7 @@ import * as UtilAPI from '../util/session_api_util';
 // export const SIGN_IN = "SIGN_IN";
 // export const SIGN_UP = "SIGN_UP";
 // export const SIGN_OUT = "SIGN_OUT";
-export const RECEIVE_USER = "RECEIVE_USER";
+export const RECEIVE_SESSION_USER = "RECEIVE_SESSION_USER";
 export const SIGN_OUT_USER = "SIGN_OUT_USER";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
@@ -11,8 +11,8 @@ export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 
 // Actions
-const receiveUser = user => ({
-    type: RECEIVE_USER,
+const receiveSessionUser = user => ({
+    type: RECEIVE_SESSION_USER,
     user
 }) 
 
@@ -31,13 +31,13 @@ export const clearErrors = () => ({
 
 export const signUp = user => dispatch => (
     UtilAPI.signUp(user)
-        .then(user => { dispatch(receiveUser(user))},
+        .then(user => { dispatch(receiveSessionUser(user))},
         error => { dispatch(receiveErrors(error.responseJSON))})
 )
 
 export const signIn = user => dispatch => (
     UtilAPI.signIn(user)
-        .then(user => dispatch(receiveUser(user)),
+        .then(user => dispatch(receiveSessionUser(user)),
         error => dispatch(receiveErrors(error.responseJSON)))
 )
 

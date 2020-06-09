@@ -10,7 +10,7 @@ const mapStateToProps = (state, ownProps) => {
     return{
     popup: state.ui.popup,
     currentUser: state.session.currentUser,
-    cUser: state.entities.users[state.session.currentUser],
+    cUser: state.entities.users[parseInt(state.session.currentUser, 10)],
     task: ownProps.task,
     errors: state.errors.videoErrors
 }};

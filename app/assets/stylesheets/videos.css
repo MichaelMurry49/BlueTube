@@ -42,9 +42,15 @@
 }
 
 
-img {
-    height: 200px;
-    width: 300px;
+.miniVidBox > a > img {
+    height: 10vw;
+    width: 18vw;
+    min-width: 240px;
+    min-height: 133px;
+    max-width: 360px;
+    max-height: 200px;
+    margin-right: 10px;
+    margin-top: 16px;
 }
 
 .videoStorage {

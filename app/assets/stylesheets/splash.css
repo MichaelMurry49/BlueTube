@@ -137,6 +137,11 @@ a.SignInSignOut {
     margin-right: 10px;
 }
 
+.nav-search-bar ::placeholder {
+    text-align: left;
+    padding-left: 10px;
+}
+
 .search-button {
     display: flex;
     justify-content: center;
@@ -149,11 +154,11 @@ a.SignInSignOut {
      */
      size: 1px;
      width: 50px;
-     padding: 3px;
+     padding: 6px;
 }
 
 .search-bar {
-    height: 20px;
+    height: 26px;
     width: 30vw;
     max-width: 575px;
     border: 1px solid black;

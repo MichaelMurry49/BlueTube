@@ -4,9 +4,7 @@ class Popup extends React.Component{
     constructor(props) {
         super(props);
         this.count = 0;
-        if(this.props.cUser) this.vidCount = props.cUser.videos.length;
-        // for(let i = 0; i< 500; i++){}
-        // this.vid2 = props.cUser.videos.length;
+        if(props.cUser) this.vidCount = props.cUser.videos.length;
         this.fetch = false;
         this.state = {
             selectedVideo: "",
