@@ -52,7 +52,7 @@ class SingleVideo extends React.Component {
         //     l[likes === ]
         // } )
         // if(cUser && cUser.likes.includes)
-        debugger;
+        // debugger;
         // if(likes.filter())
         let match = Object.values(this.props.likes).filter(el => parseInt(like.liker_id, 10) === el.likerId &&
             like.likeable_id === el.likeableId && like.likeable_type === el.likeableType);
@@ -78,7 +78,7 @@ class SingleVideo extends React.Component {
         // this.commentCount += 1;
         this.props.fetchComments(this.props.match.params.videoId);
         if(parentId !== null){
-            debugger
+            // debugger
             let comment = {body: this.state.arrBody[parentId], video_id: this.state.video_id, 
                 author_id: this.state.author_id, parent_id: parentId}
             // this.arrBody = {};
@@ -98,7 +98,7 @@ class SingleVideo extends React.Component {
     }
 
     renderComment(comment){
-        debugger;
+        // debugger;
         if(!comment) return null;
         // debugger;
         return(
@@ -153,7 +153,7 @@ class SingleVideo extends React.Component {
 
     render(){
         if (this.commentCount > this.lastCommentCount && this.commentCount === Object.values(this.props.comments).length){
-            debugger;
+            // debugger;
             this.props.fetchComments(this.props.match.params.videoId);
             this.props.fetchVideo(this.props.match.params.videoId);
             this.lastCommentCount += 1;

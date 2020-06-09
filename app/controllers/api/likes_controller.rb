@@ -11,7 +11,7 @@ class Api::LikesController < ApplicationController
     end
     
     def update
-        debugger
+        # debugger
         @like = Like.find_by(id: like_params[:id])
         if @like.update_attributes(like_params)
             render :show
@@ -21,7 +21,7 @@ class Api::LikesController < ApplicationController
     end
 
     def create
-        debugger
+        # debugger
         @like = Like.new(like_params)
 
         if @like.save
@@ -32,7 +32,7 @@ class Api::LikesController < ApplicationController
     end
 
     def destroy
-        debugger
+        # debugger
         @like = Like.find_by(id: params[:id])
         if current_user && @like.liker_id == current_user.id
             @like.destroy

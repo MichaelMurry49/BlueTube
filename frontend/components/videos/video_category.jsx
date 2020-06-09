@@ -1,4 +1,5 @@
 import React from "react";
+import MiniVidBoxContainer from './mini_vidbox_container';
 import { Link, Redirect } from 'react-router-dom';
 
 class VideoCategory extends React.Component {
@@ -8,7 +9,8 @@ class VideoCategory extends React.Component {
 
     componentDidMount(){
         // debugger
-        this.props.fetchVideos()
+        this.props.fetchVideos();
+        this.props.fetchUsers();
     }
 
     render() {
@@ -19,10 +21,14 @@ class VideoCategory extends React.Component {
                 {this.props.category} */}
                 {this.videos ? this.videos.map((video) => {
                     // debugger
-                    return (<div className="miniVidBox">
+                    return (
+                    // <MiniVidBoxContainer userId={video.authorId} video={video}/>
+                    <div className="miniVidBox">
                         <Link to={`/watch/${video.id}`}>
                             <img src={video.thumbnail}/>
                             <div className="videoTitle">{video.title}</div>
+                            <Link className="miniUser" to={`/channel/${video.authorId}`}>{this.props.users[video.authorId].username}</Link>
+                            <div className="miniViews">{video.viewCount} Views • {video.createdAt.slice(0, 10)} </div>
                         </Link>
                         <br/>
                     </div>

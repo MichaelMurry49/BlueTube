@@ -1,5 +1,6 @@
 import React from "react";
 import UserContainer from "../nav/nav_container";
+// import MiniVidBoxContainer from "../videos/mini_vidbox_container"
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
@@ -17,7 +18,7 @@ class User extends React.Component {
     }
 
     render(){
-        debugger;
+        // debugger;
         console.log(this.props.videos)
         if(this.props.videos) console.log(Object.values(this.props.videos).length)
         // while(this.props.videos.length === 0){console.log("hi")}

@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
     let video = state.entities.videos[ownProps.match.params.videoId];
     let user = video ? state.entities.users[video.authorId] : {};
     let users = state.entities.users;
-    debugger;
+    // debugger;
     return{
         video: video,
         comments: state.entities.comments,

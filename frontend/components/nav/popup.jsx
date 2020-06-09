@@ -72,7 +72,7 @@ class Popup extends React.Component{
     render(){
         const { popup, task } = this.props;
         if(!popup) return null;
-        debugger;
+        // debugger;
         this.props.fetchUser(this.props.currentUser)
         this.count += 1;
         // if(false === true) this.closePopup();

@@ -14,7 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
 			entities: {
 				users: { [window.currentUser.id]: window.currentUser }
 			},
-			session: { currentUser: window.currentUser.id}
+			// session: { currentUser: window.currentUser.id}
+			session: { currentUser: Object.keys(window.currentUser)[0] }
 		}
 		store = configureStore(preLoadedState);
 		delete window.currentUser;
@@ -45,11 +46,11 @@ document.addEventListener("DOMContentLoaded", () => {
 // 	let store;
 // 	if (window.currentUser) {
 // 		// debugger
-// 		const preLoadedState = {
-// 			entities: {
-// 				users: window.currentUser
-// 			},
-// 			session: { currentUser: Object.keys(window.currentUser)[0] }
+		// const preLoadedState = {
+		// 	entities: {
+		// 		users: window.currentUser
+		// 	},
+		// 	session: { currentUser: Object.keys(window.currentUser)[0] }
 // 		}
 // 		store = configureStore(preLoadedState);
 // 		delete window.currentUser;

@@ -7,11 +7,15 @@ import VideoStorage from "./videos/video_storage_container"
 import VideoStorageContainer from "./videos/video_storage_container"
 
 import {Link, Button} from "react-router-dom";
+import { signIn } from "../actions/session_actions.js";
 
 
 class Splash extends React.Component {
     constructor(props){
         super(props);
+    }
+    componentDidMount(){
+        // signIn(this.props.users[currentUser]);
     }
     render(){
         return (
