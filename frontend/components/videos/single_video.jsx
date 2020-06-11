@@ -1,6 +1,7 @@
 import React from "react";
 import NavContainer from "../nav/nav_container";
 import SideBarContainer from "../nav/sidebar_container";
+import CommentTreeContainer from "../comments/comment_tree_container";
 import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
@@ -10,7 +11,13 @@ class SingleVideo extends React.Component {
         super(props);
         this.addedComment = false;
         this.commentCount = Object.values(this.props.comments).length
+        this.posLikeCount = Object.values(this.props.likes).filter(like => like.positiveLike).length;
+        this.negLikeCount = Object.values(this.props.likes).length - this.positiveLikeCount;
+        this.lastPosLikeCount = this.posLikeCount;
+        this.lastNegLikeCount = this.negLikeCount;
         this.lastCommentCount = this.commentCount;
+        this.lastLikeCount = this.likeCount;
+        this.okay = false;
 
         // this.arrBody = {};
         this.state = {
@@ -54,17 +61,46 @@ class SingleVideo extends React.Component {
         // if(cUser && cUser.likes.includes)
         // debugger;
         // if(likes.filter())
+        this.okay = true;
         let match = Object.values(this.props.likes).filter(el => parseInt(like.liker_id, 10) === el.likerId &&
             like.likeable_id === el.likeableId && like.likeable_type === el.likeableType);
         if(match.length > 0){
                 if(like.positive_like === match[0].positiveLike){
+                    // debugger
+                    if(like.positive_like) {
+                        // debugger
+                        this.lastPosLikeCount = Object.values(this.props.likes).filter(like => like.positiveLike).length;
+                        this.posLikeCount = this.lastPosLikeCount - 1;
+                     } else {
+                        this.lastNegLikeCount = Object.values(this.props.likes).filter(like => !like.positiveLike).length;
+                        this.negLikeCount = this.lastNegLikeCount - 1;
+                     }
+                    //  debugger;
                     this.props.deleteLike(match[0].id);
                 } else {
                     like.id = match[0].id;
                     like.liker_id = parseInt(like.liker_id, 10);
+                    if (like.positive_like) {
+                        this.lastPosLikeCount = Object.values(this.props.likes).filter(like => like.positiveLike).length;
+                        this.posLikeCount = this.lastPosLikeCount + 1;
+                        this.lastNegLikeCount = Object.values(this.props.likes).filter(like => !like.positiveLike).length;
+                        this.negLikeCount = this.lastNegLikeCount - 1;
+                    } else {
+                        this.lastPosLikeCount = Object.values(this.props.likes).filter(like => like.positiveLike).length;
+                        this.posLikeCount = this.lastPosLikeCount - 1;
+                        this.lastNegLikeCount = Object.values(this.props.likes).filter(like => !like.positiveLike).length;
+                        this.negLikeCount = this.lastNegLikeCount + 1;
+                    }
                     this.props.updateLike(like);
                 }
             } else {
+                if (like.positive_like) {
+                    this.lastPosLikeCount = Object.values(this.props.likes).filter(like => like.positiveLike).length;
+                    this.posLikeCount = this.lastPosLikeCount + 1;
+                } else {
+                    this.lastNegLikeCount = Object.values(this.props.likes).filter(like => !like.positiveLike).length;
+                    this.negLikeCount = this.lastNegLikeCount + 1;
+                }
                  this.props.createLike(like);
             }
            
@@ -95,6 +131,10 @@ class SingleVideo extends React.Component {
         }
         
         
+    }
+
+    renderVideo(video){
+
     }
 
     renderComment(comment){
@@ -158,6 +198,20 @@ class SingleVideo extends React.Component {
             this.props.fetchVideo(this.props.match.params.videoId);
             this.lastCommentCount += 1;
         }
+        // Fetch likes and likeables if likes have been updated
+        // debugger
+        if (((this.posLikeCount !== this.lastPosLikeCount &&
+             this.posLikeCount === Object.values(this.props.likes).filter(like => like.positiveLike).length)||
+            (this.negLikeCount !== this.lastNegLikeCount &&
+             this.negLikeCount === Object.values(this.props.likes).filter(like => !like.positiveLike).length)) && this.okay){
+                this.props.fetchComments(this.props.match.params.videoId);
+                this.props.fetchLikes();
+                this.props.fetchVideo();
+                this.okay = false;
+                // this.props.fetchVideo(this.props.match.params.videoId);
+                this.lastNegLikeCount = this.negLikeCount;
+                this.lastPosLikeCount = this.posLikeCount;
+        } 
         const {video, user, comments, currentUser, deleteVideo, updateVideo} = this.props;
         if(!video) return null;
         if(this.yes){
@@ -191,9 +245,13 @@ class SingleVideo extends React.Component {
                         {video.likes.filter(like => !like).length}
                     </div>
                 </div>
-                <div>{this.props.user ? this.props.user.username : ""}</div>
+                <Link to={this.props.user ? `/channel/${this.props.user.id}` : ""}>
+                    {this.props.user ? this.props.user.username : ""}
+                </Link>
                 <div className="descTag">{video.description} </div>
                 <Link to="/"><button hidden={video.authorId.toString(10) === currentUser ? false : true} className="delete" onClick={() => deleteVideo(video.id)}>Delete</button></Link>
+                
+                {/* <CommentTreeContainer video={video}/> */}
                 <input type="text" placeHolder="Add a public comment..." value={this.state.body} onChange={e => this.updateBody(e)}/>
                 <button className="createComment" onClick={() => this.createComment(null)}>COMMENT</button>
                 <div className="comments">

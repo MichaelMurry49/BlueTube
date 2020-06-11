@@ -22,16 +22,16 @@ class VideoCategory extends React.Component {
                 {this.videos ? this.videos.map((video) => {
                     // debugger
                     return (
-                    // <MiniVidBoxContainer userId={video.authorId} video={video}/>
-                    <div className="miniVidBox">
-                        <Link to={`/watch/${video.id}`}>
-                            <img src={video.thumbnail}/>
-                            <div className="videoTitle">{video.title}</div>
-                            <Link className="miniUser" to={`/channel/${video.authorId}`}>{this.props.users[video.authorId].username}</Link>
-                            <div className="miniViews">{video.viewCount} Views • {video.createdAt.slice(0, 10)} </div>
-                        </Link>
-                        <br/>
-                    </div>
+                    <MiniVidBoxContainer userId={video.authorId} video={video}/>
+                    // <div className="miniVidBox">
+                    //     <Link to={`/watch/${video.id}`}>
+                    //         <img src={video.thumbnail}/>
+                    //         <div className="videoTitle">{video.title}</div>
+                    //         <Link className="miniUser" to={`/channel/${video.authorId}`}>{this.props.users[video.authorId].username}</Link>
+                    //         <div className="miniViews">{video.viewCount} Views • {video.createdAt.slice(0, 10)} </div>
+                    //     </Link>
+                    //     <br/>
+                    // </div>
                 )}) : ""}
             </div>
         )

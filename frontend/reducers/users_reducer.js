@@ -2,7 +2,7 @@
 import { RECEIVE_USER, RECEIVE_USERS} from '../actions/user_actions';
 
 const usersReducer = (state={}, action) => {
-    debugger
+    // debugger
     Object.freeze(state);
     const newState = Object.assign({}, state);
     switch(action.type){

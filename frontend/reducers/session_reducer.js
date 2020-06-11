@@ -2,7 +2,7 @@ import { RECEIVE_SESSION_USER, SIGN_OUT_USER } from '../actions/session_actions'
 
 const sessionReducer = (state={currentUser: null}, action ) => {
     Object.freeze(state);
-    debugger
+    // debugger
     switch(action.type){
         case RECEIVE_SESSION_USER:
             return { currentUser: Object.keys(action.user)[0] }  // { currentUser: action.user[0].id }

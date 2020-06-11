@@ -7,15 +7,9 @@ class MiniVidBox extends React.Component {
         super(props);
     }
 
-    componentDidMount() {
-        // debugger
-        this.props.fetchVideos();
-        this.props.fetchUsers();
-    }
-
     render() {
         let {video} = this.props;
-        // debugger;
+        debugger;
         return (<div className="miniVidBox">
             <Link to={`/watch/${video.id}`}>
                 <img src={video.thumbnail} />
@@ -23,7 +17,6 @@ class MiniVidBox extends React.Component {
                 <Link className="miniUser" to={`/channel/${video.authorId}`}>{this.props.users[video.authorId].username}</Link>
                 <div className="miniViews">{video.viewCount} Views • {video.createdAt.slice(0, 10)} </div>
             </Link>
-            <br />
         </div>
         )
     }

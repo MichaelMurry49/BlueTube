@@ -2,7 +2,7 @@ import { RECEIVE_USER_ERRORS, RECEIVE_USER, CLEAR_USER_ERRORS } from '../actions
 
 const userErrorsReducer = (state = [], action) => {
     Object.freeze(state);
-    debugger
+    // debugger
     switch (action.type) {
         case RECEIVE_USER_ERRORS:
             return action.errors;

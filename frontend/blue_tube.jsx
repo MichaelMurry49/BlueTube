@@ -9,10 +9,12 @@ import {signIn, signUp, signOut} from "./util/session_api_util.js"
 document.addEventListener("DOMContentLoaded", () => {
 	let store;
 	if(window.currentUser){
-		// debugger
+		
+		console.log(window.currentUser);
+		debugger
 		const preLoadedState = {
 			entities: {
-				users: { [window.currentUser.id]: window.currentUser }
+				users: window.currentUser
 			},
 			// session: { currentUser: window.currentUser.id}
 			session: { currentUser: Object.keys(window.currentUser)[0] }
