@@ -2,8 +2,9 @@ import React from "react";
 import { Link, Button, Redirect } from "react-router-dom";
 import PopupContainer from "./popup_container";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faBars, faVideo, faHome } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faBars, faVideo, faHome, faHomeIcon2x } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import SideBarContainer from "./sidebar_container";
 
 {/* <PopupContainer task={"Create a new Video"} />  */}
 
@@ -12,10 +13,27 @@ class Nav extends React.Component {
         super(props);
         this.state = {
             filter: "",
+            change: "", 
         }
         this.sbwidth = 200;
-        this.sbc = "small"
+        // this.gap = "big gap"
+        this.sbc = "small sidebar"
         this.sideBar = false;
+    }
+
+    switchSize(){
+        // debugger;
+        if(this.sbc === "small sidebar"){
+            this.sbc = "large sidebar"
+            // this.gap = "big gap"
+            this.setState({change: "big"})
+            debugger;
+        } else {
+            this.sbc = "small sidebar"
+            // this.gap = "small gap"
+            this.setState({ change: "small" })
+            debugger;
+        }
     }
 
     demoFill(){
@@ -38,8 +56,10 @@ class Nav extends React.Component {
                 <PopupContainer task={"Create a new Video"} /> 
                 
                 <div className="nav-logo-plus-title">
-                    <div className={this.sbc}><Link className="sbl" to="/"><FontAwesomeIcon icon={faHome} /><div className="text">Home</div></Link> <a className="sbl" href="https://github.com/MichaelMurry49/BlueTube"><FontAwesomeIcon icon={faGithub} /><div className="text">GitHub</div></a> <a href="https://www.linkedin.com/in/michael-murry-b3746a1a6/" className="sbl"><FontAwesomeIcon icon={faLinkedinIn} /><div className="text">LinkedIn</div></a></div>
-                    <button className="bars"><FontAwesomeIcon icon={faBars} /></button><Link className="nav-logo-plus-title" to={"/"}><img className="nav-logo" src={window.smileURL} alt="BlueTube logo"/>BlueTube</Link>
+                    {/* <SideBarContainer/> */}
+                    {/* <div className={this.gap}></div> */}
+                    <div className={this.sbc}><Link className="sbl" to="/"><FontAwesomeIcon icon={faHome} size="6x" /><div className="text">Home</div></Link> <a className="sbl" href="https://github.com/MichaelMurry49/BlueTube"><FontAwesomeIcon icon={faGithub} /><div className="text">GitHub</div></a> <a href="https://www.linkedin.com/in/michael-murry-b3746a1a6/" className="sbl"><FontAwesomeIcon icon={faLinkedinIn} /><div className="text">LinkedIn</div></a></div>
+                    <button className="bars" onClick={() => this.switchSize()}><FontAwesomeIcon icon={faBars} /></button><Link className="nav-logo-plus-title" to={"/"}><img className="nav-logo" src={window.smileURL} alt="BlueTube logo"/>BlueTube</Link>
                     {/* <div className={this.sbc}><Link className="sbl" to="/"><FontAwesomeIcon icon={faHome} /></Link> <a className="sbl" href="https://github.com/MichaelMurry49/BlueTube"><FontAwesomeIcon icon={faGithub} /></a> <a href="https://www.linkedin.com/in/michael-murry-b3746a1a6/" className="sbl"><FontAwesomeIcon icon={faLinkedinIn} /></a></div> */}
                 </div>
                 <div className="nav-search-bar">

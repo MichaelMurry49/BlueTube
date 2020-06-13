@@ -72,19 +72,18 @@ class CommentTree extends React.Component {
             <div className="comment">
                 <div className="username">{this.props.users[comment.authorId] ? this.props.users[comment.authorId].username : ""}</div>
                 {comment.body}
-                <div className="reply">
-                    <input placeHolder="Add a public reply..." value={this.state.arrBody[comment.id]} onChange={e => this.updateBody(e, comment.id)} />
-                    <button onClick={() => this.createComment(comment.id)}>REPLY</button>
-                </div>
                 <button className="like" onClick={() => this.createLike({ liker_id: this.props.currentUser, likeable_id: comment.id, likeable_type: "Comment", positive_like: true })}>
                     <FontAwesomeIcon icon={faThumbsUp} />
                 </button>
                 {comment.likes.filter(like => like).length}
-                <button className="dislike" onClick={() => this.createLike({ liker_id: this.props.currentUser, likeable_id: comment.id, likeable_type: "Comment", positive_like: false })} >
+                <button className="like" onClick={() => this.createLike({ liker_id: this.props.currentUser, likeable_id: comment.id, likeable_type: "Comment", positive_like: false })} >
                     <FontAwesomeIcon icon={faThumbsDown} />
                 </button>
                 {comment.likes.filter(like => !like).length}
-
+                <div className="reply">
+                    <input placeHolder="Add a public reply..." value={this.state.arrBody[comment.id]} onChange={e => this.updateBody(e, comment.id)} />
+                    <button className="createComment" onClick={() => this.createComment(comment.id)}>REPLY</button>
+                </div>
                 {comment.comments ? comment.comments.map(childId => {
                     return <div className="childComment">
                         {

@@ -6,3 +6,52 @@
 .comment {
     margin-top: 20px;
 }
+
+input.chatText {
+    width: 100%;
+    min-width: 500px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #00A8E8;
+    background-color: transparent;
+}
+
+input.chatText::placeholder {
+    display: flex;
+    text-align: left;
+    text-justify: center;
+    color: darkblue;
+    font-size: 10px;
+    margin-bottom: 1px;
+}
+
+input.chatText:focus {
+    /* width: 90vw; */
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    /* box-shadow: none; */
+    border-bottom: 2px solid black;
+    background-color: transparent;
+}
+
+button.createComment {
+    background-color: blue; 
+    color: white;
+    border: none;
+    justify-self: flex-end;
+    align-self: flex-end; 
+    margin-right: 5px;
+    margin-top: 10px;
+    height: 40px;
+    width: 100px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+   
+}
+
+.reply {
+    display: flex;
+    flex-direction: column;
+}

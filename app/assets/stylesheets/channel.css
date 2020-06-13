@@ -1,0 +1,27 @@
+.userProfile {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    text-align: center;
+    font-size: 40px;
+    /* margin-left: 100px; */
+    
+}
+
+
+
+.userVideos {
+    border-top: 1px black solid;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 15px;
+    margin-left: 250px;
+}
+
+.l {
+    margin-left: 250px;
+}
+
+.s {
+    margin-left: 70px;
+}

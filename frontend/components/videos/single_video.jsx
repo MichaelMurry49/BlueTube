@@ -44,10 +44,12 @@ class SingleVideo extends React.Component {
 
     updateBody(e, commentId=null){
         if(commentId === null){
+            this.setState({ arrBody: [] });
             this.setState({body: e.target.value})
         } else {
             let temp = Object.assign({}, this.state.arrBody);
             temp[commentId] = e.target.value;
+            this.setState({body: ""});
             this.setState({arrBody: temp});
         }
         
@@ -119,13 +121,15 @@ class SingleVideo extends React.Component {
                 author_id: this.state.author_id, parent_id: parentId}
             // this.arrBody = {};
             delete this.state.arrBody;
-            this.setState({ arrBody: {} });
+            this.setState({ arrBody: [] });
+            this.setState({body: ""})
             this.props.createComment(comment);
         } else {
             delete this.state.arrBody;
             let comment = this.state;
             // this.state.arrBody = {};
-            this.setState({arrBody: {}});
+            // this.deleteState()
+            this.setState({arrBody: []});
             this.setState({ body: "" });
             this.props.createComment(comment);
         }
@@ -140,24 +144,24 @@ class SingleVideo extends React.Component {
     renderComment(comment){
         // debugger;
         if(!comment) return null;
-        // debugger;
+        debugger;
         return(
             <div className="comment">
                 <div className="username">{this.props.users[comment.authorId] ? this.props.users[comment.authorId].username : ""}</div>
-                {comment.body}
-                <div className="reply">
-                    <input placeHolder="Add a public reply..." value={this.state.arrBody[comment.id]} onChange={e => this.updateBody(e, comment.id)} />
-                    <button onClick={() => this.createComment(comment.id)}>REPLY</button>
-                </div>
+                <div>{comment.body}</div>
                 <button className="like" onClick={() => this.createLike({ liker_id: this.props.currentUser, likeable_id: comment.id, likeable_type: "Comment", positive_like: true })}>
                     <FontAwesomeIcon icon={faThumbsUp} />
                 </button>
                 {comment.likes.filter(like => like).length}
-                <button className="dislike" onClick={() => this.createLike({ liker_id: this.props.currentUser, likeable_id: comment.id, likeable_type: "Comment", positive_like: false })} >
+                <button className="like" onClick={() => this.createLike({ liker_id: this.props.currentUser, likeable_id: comment.id, likeable_type: "Comment", positive_like: false })} >
                     <FontAwesomeIcon icon={faThumbsDown} />
                 </button>
                 {comment.likes.filter(like => !like).length}
-                
+                <div className="reply">
+                    <input className="chatText" placeHolder="Add a public reply..." value={this.state.arrBody[comment.id]} onChange={e => this.updateBody(e, comment.id)} />
+                    <button className="createComment" onClick={() => this.createComment(comment.id)}>REPLY</button>
+                </div>
+
                 {comment.comments ? comment.comments.map(childId => {
                     return <div className="childComment">
                         {
@@ -172,7 +176,7 @@ class SingleVideo extends React.Component {
                                     <FontAwesomeIcon icon={faThumbsUp} />
                                 </button>
                                 {this.props.comments[childId].likes.filter(like => like).length}
-                                <button className="dislike" onClick={() => this.createLike({ liker_id: this.props.currentUser, likeable_id: childId, likeable_type: "Comment", positive_like: false })} >
+                                <button className="like" onClick={() => this.createLike({ liker_id: this.props.currentUser, likeable_id: childId, likeable_type: "Comment", positive_like: false })} >
                                     <FontAwesomeIcon icon={faThumbsDown} />
                                 </button>
                                 {this.props.comments[childId].likes.filter(like => !like).length}
@@ -239,7 +243,7 @@ class SingleVideo extends React.Component {
                             <FontAwesomeIcon icon={faThumbsUp} />
                         </button> 
                         {video.likes.filter(like => like).length}
-                        <button className="dislike" onClick={() => this.createLike({liker_id: currentUser, likeable_id: this.props.video.id, likeable_type: "Video", positive_like: false})} >
+                        <button className="like" onClick={() => this.createLike({liker_id: currentUser, likeable_id: this.props.video.id, likeable_type: "Video", positive_like: false})} >
                             <FontAwesomeIcon icon={faThumbsDown} />
                         </button>
                         {video.likes.filter(like => !like).length}
@@ -252,7 +256,7 @@ class SingleVideo extends React.Component {
                 <Link to="/"><button hidden={video.authorId.toString(10) === currentUser ? false : true} className="delete" onClick={() => deleteVideo(video.id)}>Delete</button></Link>
                 
                 {/* <CommentTreeContainer video={video}/> */}
-                <input type="text" placeHolder="Add a public comment..." value={this.state.body} onChange={e => this.updateBody(e)}/>
+                <input className="chatText" type="text" placeHolder="Add a public comment..." value={this.state.body} onChange={e => this.updateBody(e)}/>
                 <button className="createComment" onClick={() => this.createComment(null)}>COMMENT</button>
                 <div className="comments">
                     {video.comments.map(commentId => {
