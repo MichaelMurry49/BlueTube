@@ -18,6 +18,7 @@ class SingleVideo extends React.Component {
         this.lastCommentCount = this.commentCount;
         this.lastLikeCount = this.likeCount;
         this.okay = false;
+        this.vidLikeCount = 0;
 
         // this.arrBody = {};
         this.state = {
@@ -105,8 +106,9 @@ class SingleVideo extends React.Component {
                 }
                  this.props.createLike(like);
             }
-           
+        if (like.likeableType === "Video") this.vidLikeCount = this.props.likes.filter(like => like.likeableType === "Video").length;
         this.props.fetchLikes();
+        // this.props.fetchVideo();
        
     }
 
@@ -203,19 +205,23 @@ class SingleVideo extends React.Component {
             this.lastCommentCount += 1;
         }
         // Fetch likes and likeables if likes have been updated
-        // debugger
+        debugger
         if (((this.posLikeCount !== this.lastPosLikeCount &&
              this.posLikeCount === Object.values(this.props.likes).filter(like => like.positiveLike).length)||
             (this.negLikeCount !== this.lastNegLikeCount &&
              this.negLikeCount === Object.values(this.props.likes).filter(like => !like.positiveLike).length)) && this.okay){
                 this.props.fetchComments(this.props.match.params.videoId);
-                this.props.fetchLikes();
-                this.props.fetchVideo();
+                // this.props.fetchLikes();
+                this.vidLikeCount = this.props.video.likes.length;
+                // this.props.fetchVideo();
                 this.okay = false;
                 // this.props.fetchVideo(this.props.match.params.videoId);
                 this.lastNegLikeCount = this.negLikeCount;
                 this.lastPosLikeCount = this.posLikeCount;
-        } 
+        } else if(video && this.okay === false && this.props.likes.filter(like => like.likeableType === "Video").length > this.vidLikeCount){
+            this.props.fetchVideo();
+            this.vidLikeCount = this.props.likes.filter(like => like.likeableType === "Video").length
+        }
         const {video, user, comments, currentUser, deleteVideo, updateVideo} = this.props;
         if(!video) return null;
         if(this.yes){
