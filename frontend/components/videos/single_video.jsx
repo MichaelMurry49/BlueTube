@@ -218,10 +218,11 @@ class SingleVideo extends React.Component {
                 // this.props.fetchVideo(this.props.match.params.videoId);
                 this.lastNegLikeCount = this.negLikeCount;
                 this.lastPosLikeCount = this.posLikeCount;
-        } else if(video && this.okay === false && this.props.likes.filter(like => like.likeableType === "Video").length > this.vidLikeCount){
-            this.props.fetchVideo();
-            this.vidLikeCount = this.props.likes.filter(like => like.likeableType === "Video").length
-        }
+        } 
+        // else if(video && this.okay === false && this.props.likes.filter(like => like.likeableType === "Video").length > this.vidLikeCount){
+        //     this.props.fetchVideo();
+        //     this.vidLikeCount = this.props.likes.filter(like => like.likeableType === "Video").length
+        // }
         const {video, user, comments, currentUser, deleteVideo, updateVideo} = this.props;
         if(!video) return null;
         if(this.yes){

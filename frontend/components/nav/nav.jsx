@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Button, Redirect } from "react-router-dom";
 import PopupContainer from "./popup_container";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faBars, faVideo, faHome, faHomeIcon2x } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faBars, faVideo, faHome, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import SideBarContainer from "./sidebar_container";
 
