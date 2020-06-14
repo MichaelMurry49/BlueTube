@@ -2,6 +2,7 @@ class Api::UsersController < ApplicationController
     def create
         # debugger
         @user = User.new(user_params)
+        # @user.picture ||= "https://blue-tube-dev.s3-us-west-1.amazonaws.com/smile.jpg";
         if @user.save
             sign_in!(@user)
             render :show
@@ -22,6 +23,6 @@ class Api::UsersController < ApplicationController
 
     private 
     def user_params
-        params.require(:user).permit(:username, :email, :password)
+        params.require(:user).permit(:username, :email, :password, :picture)
     end
 end

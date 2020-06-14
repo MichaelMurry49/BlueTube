@@ -73,8 +73,8 @@ class Popup extends React.Component{
         const { popup, task } = this.props;
         if(!popup) return null;
         // debugger;
-        this.props.fetchUser(this.props.currentUser)
-        this.count += 1;
+        // this.props.fetchUser(this.props.currentUser)
+        // this.count += 1;
         // if(false === true) this.closePopup();
         if(this.vidCount && this.props.cUser.videos.length > this.vidCount) {
             this.vidCount += 1;

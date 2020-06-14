@@ -4,7 +4,7 @@ import SideBarContainer from "../nav/sidebar_container";
 import CommentTreeContainer from "../comments/comment_tree_container";
 import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp, faThumbsDown, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 class SingleVideo extends React.Component {
     constructor(props){

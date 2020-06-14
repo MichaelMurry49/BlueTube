@@ -1,10 +1,16 @@
 import React from "react";
 import { Link, Redirect } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 
 class MiniVidBox extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount(){
+        this.props.fetchUsers();
     }
 
     getTime(createdAt){
@@ -108,9 +114,16 @@ class MiniVidBox extends React.Component {
         return (<div className="miniVidBox">
             <Link to={`/watch/${video.id}`}>
                 <img src={video.thumbnail} />
-                <div className="videoTitle">{video.title}</div>
-                <Link className="miniUser" to={`/channel/${video.authorId}`}>{this.props.users[video.authorId].username}</Link>
-                <div className="miniViews">{video.viewCount} Views • {this.getTime(video.createdAt)} </div>
+                <div className ="side">
+                    <div>
+                        <Link className="profilePic" to={`/channel/${video.authorId}`}><FontAwesomeIcon size={32} icon={faUserCircle} /></Link>
+                    </div>
+                    <div>
+                        <div className="videoTitle">{video.title}</div>
+                        <Link className="miniUser" to={`/channel/${video.authorId}`}>{this.props.users[video.authorId].username}</Link>
+                        <div className="miniViews">{video.viewCount} Views • {this.getTime(video.createdAt)} </div>
+                    </div>
+                </div>
             </Link>
         </div>
         )

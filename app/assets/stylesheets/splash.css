@@ -148,12 +148,13 @@ a.sbl > .text {
 
 
 
-.bars {
+button.bars {
     position: fixed;
     left: 0px;
     /* margin-left: 10px; */
     padding-left: 10px;
     font-size: 20px;
+    border-bottom: 1px solid lightgray;
 }
 .nav-logo-plus-title > button {
     background-color: white;
@@ -245,3 +246,6 @@ a.sbl > .text {
     border-right: none;
 }
 
+.profilePic {
+    font-size: 32px;
+}

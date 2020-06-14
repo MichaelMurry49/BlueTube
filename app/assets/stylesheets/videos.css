@@ -210,3 +210,7 @@ video::-webkit-media-controls-panel {
     padding-bottom: 8px;
     /* margin-top: 8px; */
 }
+
+.side {
+    display: flex;
+}

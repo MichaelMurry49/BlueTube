@@ -49,7 +49,7 @@ class Nav extends React.Component {
         this.setState({filter: e.currentTarget.value})
     }
     render() {
-        // debugger;
+        debugger;
         // const {openPopup} = this.props
         return (
             <div className="nav">
