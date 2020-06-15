@@ -114,11 +114,14 @@ a.sbl > .text {
 .sidebar > .sbl:hover {
     background-color: rgb(245, 245, 245);
 }
-
+gi
 .large > .sbl > div {
     display: flex;
+    /* color: red; */
     width: 100%;
     font-size: 15px;
+    justify-content: flex-start;
+    margin-left: 50px;
     /* padding-left: 20px; */
 }
 
