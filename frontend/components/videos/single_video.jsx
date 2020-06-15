@@ -198,6 +198,7 @@ class SingleVideo extends React.Component {
     }
 
     render(){
+        debugger;
         if (this.commentCount > this.lastCommentCount && this.commentCount === Object.values(this.props.comments).length){
             // debugger;
             this.props.fetchComments(this.props.match.params.videoId);
@@ -205,7 +206,7 @@ class SingleVideo extends React.Component {
             this.lastCommentCount += 1;
         }
         // Fetch likes and likeables if likes have been updated
-        debugger
+        // debugger
         if (((this.posLikeCount !== this.lastPosLikeCount &&
              this.posLikeCount === Object.values(this.props.likes).filter(like => like.positiveLike).length)||
             (this.negLikeCount !== this.lastNegLikeCount &&
@@ -223,7 +224,7 @@ class SingleVideo extends React.Component {
         //     this.props.fetchVideo();
         //     this.vidLikeCount = this.props.likes.filter(like => like.likeableType === "Video").length
         // }
-        const {video, user, comments, currentUser, deleteVideo, updateVideo} = this.props;
+        const {video, user, comments, currentUser, deleteVideo, updateVideo, likes} = this.props;
         if(!video) return null;
         if(this.yes){
             video.viewCount += 1;
@@ -249,11 +250,19 @@ class SingleVideo extends React.Component {
                         <button className="like" onClick={() => this.createLike({liker_id: currentUser, likeable_id: this.props.video.id, likeable_type: "Video", positive_like: true})}>
                             <FontAwesomeIcon icon={faThumbsUp} />
                         </button> 
-                        {video.likes.filter(like => like).length}
+                        {Object.values(likes).filter(like => {
+                            return (like.likeableId === video.id &&
+                                like.likeableType === "Video" &&
+                                like.positiveLike === true)
+                        }).length}
                         <button className="like" onClick={() => this.createLike({liker_id: currentUser, likeable_id: this.props.video.id, likeable_type: "Video", positive_like: false})} >
                             <FontAwesomeIcon icon={faThumbsDown} />
                         </button>
-                        {video.likes.filter(like => !like).length}
+                        {Object.values(likes).filter(like => {
+                            return (like.likeableId === video.id &&
+                            like.likeableType === "Video" &&
+                            like.positiveLike === false)
+                        }).length}
                     </div>
                 </div>
                 <Link to={this.props.user ? `/channel/${this.props.user.id}` : ""}>

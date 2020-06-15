@@ -27,12 +27,12 @@ class Nav extends React.Component {
             this.sbc = "large sidebar"
             // this.gap = "big gap"
             this.setState({change: "big"})
-            debugger;
+            // debugger;
         } else {
             this.sbc = "small sidebar"
             // this.gap = "small gap"
             this.setState({ change: "small" })
-            debugger;
+            // debugger;
         }
     }
 
@@ -49,7 +49,7 @@ class Nav extends React.Component {
         this.setState({filter: e.currentTarget.value})
     }
     render() {
-        debugger;
+        // debugger;
         // const {openPopup} = this.props
         return (
             <div className="nav">

@@ -31,7 +31,7 @@ class VideoSearchIndex extends React.Component {
                 {this.props.category} */}
                 {this.videos ? this.videos.map((video) => {
                     // debugger
-                    return <MiniVidBoxContainer video={video}/>;
+                    return <MiniVidBoxContainer userId={video.authorId} video={video}/>;
                 }) : "No Videos Found"}
                 {/* <SideBarContainer /> */}
                 <NavContainer />

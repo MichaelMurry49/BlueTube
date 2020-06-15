@@ -5,7 +5,6 @@ class Popup extends React.Component{
         super(props);
         this.count = 0;
         if(props.cUser) this.vidCount = props.cUser.videos.length;
-        this.fetch = false;
         this.state = {
             selectedVideo: "",
             selectedThumbNail: "",
@@ -33,36 +32,21 @@ class Popup extends React.Component{
         this.setState({ description: e.target.value });
     }
     createVideo(){
-        // debugger;
-        // this.props.closePopup();
-        // this.props.clearVideoErrors()
+        this.vidCount = this.props.cUser.videos.length;
         const formData = new FormData();
-        const tempData = new FormData();
+        debugger
         formData.append('video[title]', this.state.title);
         formData.append('video[description]', this.state.description);
         formData.append('video[upload]', this.state.selectedVideo);
         formData.append('video[thumbnail]', this.state.selectedThumbNail);
         formData.append('video[view_count]', 0);
         formData.append('video[author_id]', this.props.currentUser)
-        // tempData.append('video[title]', this.state.title);
-        // tempData.append('video[description]', this.state.description);
-        tempData.append('video[upload]', this.state.selectedVideo);
-        tempData.append('video[thumbnail]', this.state.selectedThumbNail);
-        tempData.append('video[view_count]', 0);
-        tempData.append('video[author_id]', this.props.currentUser)
         this.setState({title: ""});
         this.setState({ description: "" });
         this.setState({ selectedVideo: "" });
         this.setState({ selectedThumbNail: "" });
-        console.log("form data ",formData);
         if (this.props.task === "Create a new Video"){
-            let x = this.props.postVideo(formData);
-            this.fetch = true;
-            // let y = this.props.postVideo(tempData)
-            // debugger;
-            // this.props.closePopup()
-            // if(!this.props.errors || this.props.errors.length === 0)  this.props.closePopup();
-            // .then( this.props.fetchUser(this.props.currentUser))
+            this.props.postVideo(formData).then(() => this.closePopup());
         } else {
             this.props.updateVideo(formData).then(this.props.fetchUser(this.props.currentUser));
         }
@@ -73,13 +57,14 @@ class Popup extends React.Component{
         const { popup, task } = this.props;
         if(!popup) return null;
         // debugger;
-        this.props.fetchUser(this.props.currentUser)
-        // this.count += 1;
+        // this.props.fetchUser(this.props.currentUser)
+        this.count += 1;
         // if(false === true) this.closePopup();
-        if(this.vidCount && this.props.cUser.videos.length > this.vidCount) {
-            this.vidCount += 1;
-            this.closePopup();
-        }
+        // if(this.vidCount && this.props.cUser.videos.length > this.vidCount) {
+        //     debugger;
+        //     this.vidCount += 1;
+        //     this.closePopup();
+        // }
         // if(!this.props.errors || this.props.errors.length === 0)  this.props.closePopup();
         // let errors = this.props.errors.slice(0);
         // this.props.clearVideoErrors();
@@ -90,7 +75,7 @@ class Popup extends React.Component{
                 <div className="uploadControls">
                     <h1>{task}</h1>
                     {/* <h1>{this.props.cUser.videos.length}</h1> */}
-                    {/* <h1>{this.count}</h1> */}
+                    <h1>{this.count}</h1>
                     <br/>
                     {this.props.errors.map(error => <div className="videoError">{error}</div>)}
                     {/* {this.props.clearVideoErrors} */}

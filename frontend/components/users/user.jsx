@@ -26,7 +26,7 @@ class User extends React.Component {
         // if (this.props.videos && Object.values(this.props.videos).length > 0) debugger;
         // debugger; { 1: { id: 1 user } } { 1: { id: 1 user } }
         let {currentUser} = this.props;
-        debugger;
+        // debugger;
         return (
             <div>
                 <NavContainer/>
