@@ -82,7 +82,7 @@ class SessionForm extends React.Component {
                     {/* Confirm Password input */}
                     <label>
                         <input className="session"
-                            type={formType === "Sign in" ? "hidden" : "text"}
+                            type={formType === "Sign in" ? "hidden" : "password"}
                             onChange={this.update("confirm")} value={this.state.confirm}
                             placeholder="Confirm password" />
                     </label>
