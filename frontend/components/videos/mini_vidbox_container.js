@@ -7,6 +7,7 @@ const mapStateToProps = (state) => {
     // debugger;
     return {
         users: state.entities.users,
+        // currentUser: state.session.currentUser,
         // userId: this.props.userId,
 
     }

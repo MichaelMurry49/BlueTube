@@ -113,22 +113,26 @@ class MiniVidBox extends React.Component {
     }
 
     render() {
-        let {video} = this.props;
+        let {video, currentUser} = this.props;
         debugger;
         return (<div className="miniVidBox">
-            <Link to={`/watch/${video.id}`}>
-                <img src={video.thumbnail} />
-                <div className ="side">
-                    <div>
-                        <Link className="profilePic" to={`/channel/${video.authorId}`}><FontAwesomeIcon size={32} icon={faUserCircle} /></Link>
+            {/* <div> */}
+                <Link to={`/watch/${video.id}`}>
+                    <img src={video.thumbnail} />
+                    <div className ="side">
+                        <div>
+                            <Link className="profilePic" to={`/channel/${video.authorId}`}><FontAwesomeIcon size={32} icon={faUserCircle} /></Link>
+                        </div>
+                        <div>
+                            <div className="videoTitle">{video.title}</div>
+                            <Link className="miniUser" to={`/channel/${video.authorId}`}>{this.props.users[this.props.userId] ? this.props.users[this.props.userId].username : ""}</Link>
+                            <div className="miniViews">{video.viewCount} Views • {this.getTime(video.createdAt)} </div>
+                        </div>
                     </div>
-                    <div>
-                        <div className="videoTitle">{video.title}</div>
-                        <Link className="miniUser" to={`/channel/${video.authorId}`}>{this.props.users[this.props.userId] ? this.props.users[this.props.userId].username : ""}</Link>
-                        <div className="miniViews">{video.viewCount} Views • {this.getTime(video.createdAt)} </div>
-                    </div>
-                </div>
-            </Link>
+                </Link>
+                {/* <Link to="/"><button hidden={video.authorId.toString(10) === currentUser ? false : true} className="delete" onClick={() => deleteVideo(video.id)}>Delete</button></Link> */}
+            {/* </div> */}
+            
         </div>
         )
     }

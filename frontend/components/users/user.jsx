@@ -25,6 +25,8 @@ class User extends React.Component {
         // while(this.props.videos.length === 0){console.log("hi")}
         // if (this.props.videos && Object.values(this.props.videos).length > 0) debugger;
         // debugger; { 1: { id: 1 user } } { 1: { id: 1 user } }
+        let {currentUser} = this.props;
+        debugger;
         return (
             <div>
                 <NavContainer/>
@@ -33,7 +35,14 @@ class User extends React.Component {
                     <div className="userVideos">
                         {/* {this.props.users ? Object.values(this.props.users)[0]:""} */}
                         {this.props.videos ? Object.values(this.props.videos).filter(video => video.authorId === parseInt(this.props.userId, 10)).map(video => {
-                            return <MiniVidBoxContainer userId={video.authorId} video={video} />
+                            return (
+                                <div>
+                                    <MiniVidBoxContainer userId={video.authorId} video={video} />
+                                    <Link to="/"><button hidden={video.authorId.toString(10) === currentUser ? false : true} className="delete" onClick={() => deleteVideo(video.id)}>Delete</button></Link>
+                                </div>
+                            )
+                            
+
                             // <Link to={`/watch/${video.id}`}>
                             //     <img src={video.thumbnail} />
                             //     <div className="videoTitle">{video.title}</div>
