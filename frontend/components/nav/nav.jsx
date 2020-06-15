@@ -72,7 +72,7 @@ class Nav extends React.Component {
                     <Link className="SignInSignOut" to={this.props.signedIn ? "/" : "/signin"}>
                         <div className="withDemo">
                             <button onClick={this.props.signedIn ? this.props.signOut : () => this.noFill() }
-                                className="SignInSignOut">{this.props.signedIn ? "Sign Out" : "Sign In"}
+                                className="SignInSignOut">{this.props.currentUser ? `${this.props.currentUser.username}` : "Sign In"}
                             </button>
                             <button hidden={!this.props.signedIn ? "" : "hidden"}
                                 onClick={this.demoFill()}>

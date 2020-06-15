@@ -25,8 +25,17 @@ class SessionForm extends React.Component {
 
     handleSubmit(e){
         e.preventDefault();
-        this.props.action(this.state);
-        this.setState({password: "", username: ""})
+        if(this.state.password !== this.state.confirm){
+            this.setState({errors: "Passwords must match"});
+            this.state.errors = "Passwords must match";
+        } else {
+            
+            delete this.state.errors;
+            this.props.action(this.state);
+            this.setState({errors: ""});
+            this.setState({password: "", username: ""})
+        }
+        
         
         // this.confirm = ""
     }
@@ -52,7 +61,7 @@ class SessionForm extends React.Component {
                     <p>to continue to BlueTube</p>
                     <br/>
                     {/* Session errors */}
-                    <p>{this.props.errors.map(error => <div>{error}<br/></div>)}</p>
+                    <p>{this.props.errors.concat(this.state.errors).map(error => <div>{error}<br/></div>)}</p>
                     {/* Username input */}
                     <label>
                         <input className="session" type="text" value={this.state.username}
@@ -71,12 +80,12 @@ class SessionForm extends React.Component {
                             onChange={this.update("password")} placeholder="Enter your password"/>
                     </label>
                     {/* Confirm Password input */}
-                    {/* <label> */}
-                        {/* {formType === "Sign in" ? "" : "Email: " <input className="session" */}
-                            {/* // type={formType === "Sign in" ? "hidden" : "text"}
-                            // onChange={this.update("confirm")} value={this.state.confirm}
-                            // placeholder="Confirm password" /> */}
-                    {/* // </label> */}
+                    <label>
+                        <input className="session"
+                            type={formType === "Sign in" ? "hidden" : "text"}
+                            onChange={this.update("confirm")} value={this.state.confirm}
+                            placeholder="Confirm password" />
+                    </label>
                     {/* Submit buttons and toggle link */}
                     <div className="session-buttons">
                     <Link className="toggle" onClick={this.props.clearErrors} to={formType === "Sign in" ? "/signup" : "/signin"}>
