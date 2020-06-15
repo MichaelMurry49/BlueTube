@@ -33,7 +33,7 @@ class User extends React.Component {
                     <div className="userVideos">
                         {/* {this.props.users ? Object.values(this.props.users)[0]:""} */}
                         {this.props.videos ? Object.values(this.props.videos).filter(video => video.authorId === parseInt(this.props.userId, 10)).map(video => {
-                            return <MiniVidBoxContainer video={video} />
+                            return <MiniVidBoxContainer userId={video.authorId} video={video} />
                             // <Link to={`/watch/${video.id}`}>
                             //     <img src={video.thumbnail} />
                             //     <div className="videoTitle">{video.title}</div>
