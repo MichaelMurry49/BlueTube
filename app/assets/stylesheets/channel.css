@@ -15,11 +15,11 @@
     display: flex;
     flex-wrap: wrap;
     font-size: 15px;
-    margin-left: 250px;
+    /* margin-left: 250px; */
 }
 
 .l {
-    margin-left: 250px;
+    /* margin-left: 250px; */
 }
 
 .s {
