@@ -103,7 +103,7 @@ class MiniVidBox extends React.Component {
             if (hour === 1) {
                 minute += 60;
             } else {
-                let label = hours === 2 ? "hour" : "hours";
+                let label = hourgi === 2 ? "hour" : "hours";
                 return minute + 60 >= 30 ? ` ${hour - 1} ${label} ago ` : ` ${hour} hours ago `;
             }
         }
