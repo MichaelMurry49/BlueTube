@@ -108,7 +108,7 @@ class MiniVidBox extends React.Component {
             }
         }
 
-        return munute === 1 ? "1 minute ago" : ` ${minute} minutes ago `;
+        return minute === 1 ? "1 minute ago" : ` ${minute} minutes ago `;
 
     }
 
