@@ -157,18 +157,7 @@ a.sbl > .text {
     font-size: 20px;
     border-bottom: 1px solid lightgray;
 } */
-.nav-logo-plus-title > button {
-    position: fixed;
-    left: 0px;
-    /* background-color: blue; */
-    padding-right: 22.5px;
-    padding-left: 20px;
-    padding-top: 16.5px;
-    padding-bottom: 16.5px;
-    font-size: 20px;
-    border: none;
-    background-color: white;
-}
+
 
 .nav-logo-plus-title > button:hover {
     background-color: rgb(245, 245, 245);
@@ -235,6 +224,7 @@ a.sbl > .text {
 .search-button {
     display: flex;
     justify-content: center;
+    align-items: center;
     background: rgb(240, 245, 255);
     color: darkblue;
     border: 1px solid black;
@@ -244,7 +234,8 @@ a.sbl > .text {
      */
      size: 1px;
      width: 50px;
-     padding: 6px;
+     height: 28px;
+     /* padding: 6px; */
 }
 
 .search-button:hover {
@@ -262,4 +253,19 @@ a.sbl > .text {
 
 .profilePic {
     font-size: 32px;
+}
+
+.nav-logo-plus-title > button {
+    position: fixed;
+    left: 0px;
+    /* background-color: blue; */
+    /* padding-right: 22.5px; */
+    /* padding-left: 20px; */
+    width: 60px;
+    height: 56px;
+    /* padding-top: 16.5px;
+    padding-bottom: 16.5px; */
+    font-size: 20px;
+    border: none;
+    background-color: white;
 }
