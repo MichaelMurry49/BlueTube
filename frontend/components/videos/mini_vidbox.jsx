@@ -26,7 +26,7 @@ class MiniVidBox extends React.Component {
         debugger;
         // Check for years and if rounding is needed
         if(year > 0 && month < 6 && month >= 0){
-            return ` ${year} years ago `;
+            return year === 1 ? "1 year ago" : ` ${year} years ago `;
         }
         
         if(year > 0 && month >= 6){
@@ -37,13 +37,14 @@ class MiniVidBox extends React.Component {
             if(year === 1) {
                 month = month + 12;
             } else {
-                return month + 12 >= 6 ? ` ${year - 1} years ago ` : ` ${year} years ago `;
+                let label = year === 2 ? "year" : "years";
+                return month + 12 >= 6 ? ` ${year - 1} ${label} ago ` : ` ${year} years ago `;
             }
         }
 
         // Check for months
         if(month > 0 && day < 15 && day >= 0){
-            return ` ${month} months ago `;
+            return month === 1 ? "1 month ago" : ` ${month} months ago `;
         }
 
         if (month > 0 && day >= 15) {
@@ -66,13 +67,14 @@ class MiniVidBox extends React.Component {
                     day += 28
                 }
             } else {
-                return day + 30 >= 14 ? ` ${month - 1} months ago ` : ` ${month} months ago `;
+                let label = month === 2 ? "month" : "months";
+                return day + 30 >= 14 ? ` ${month - 1} ${label} ago ` : ` ${month} months ago `;
             }
         }
 
         // check for days
         if (day > 0 && hour < 12 && hour >= 0) {
-            return ` ${day} days ago `;
+            return day === 1 ? "1 day ago" : ` ${day} days ago `;
         }
 
         if (day > 0 && hour >= 12) {
@@ -83,13 +85,14 @@ class MiniVidBox extends React.Component {
             if (day === 1) {
                 hour += 24;
             } else {
-                return hour + 24 >= 12 ? ` ${day - 1} days ago ` : ` ${day} days ago`;
+                let label = day === 2 ? "day" : "days"; 
+                return hour + 24 >= 12 ? ` ${day - 1} ${label} ago ` : ` ${day} days ago`;
             }
         }
 
         // check for hours
         if (hour > 0 && minute < 30 && minute >= 0) {
-            return ` ${hour} hours ago `;
+            return hour === 1 ? "1 hour ago" : ` ${hour} hours ago `;
         }
 
         if (hour > 0 && minute >= 30) {
@@ -100,11 +103,12 @@ class MiniVidBox extends React.Component {
             if (hour === 1) {
                 minute += 60;
             } else {
-                return minute + 60 >= 30 ? ` ${hour - 1} hours ago ` : ` ${hour} hours ago `;
+                let label = hours === 2 ? "hour" : "hours";
+                return minute + 60 >= 30 ? ` ${hour - 1} ${label} ago ` : ` ${hour} hours ago `;
             }
         }
 
-        return ` ${minute} minutes ago `;
+        return munute === 1 ? "1 minute ago" : ` ${minute} minutes ago `;
 
     }
 
