@@ -38,7 +38,7 @@ class User extends React.Component {
                             return (
                                 <div>
                                     <MiniVidBoxContainer userId={video.authorId} video={video} />
-                                    <Link to="/"><button hidden={video.authorId.toString(10) === currentUser ? false : true} className="delete" onClick={() => deleteVideo(video.id)}>Delete</button></Link>
+                                    <Link to="/"><button hidden={video.authorId.toString(10) === currentUser ? false : true} className="delete" onClick={() => this.props.deleteVideo(video.id)}>Delete</button></Link>
                                 </div>
                             )
                             

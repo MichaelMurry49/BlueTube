@@ -73,7 +73,7 @@ class Popup extends React.Component{
         const { popup, task } = this.props;
         if(!popup) return null;
         // debugger;
-        // this.props.fetchUser(this.props.currentUser)
+        this.props.fetchUser(this.props.currentUser)
         // this.count += 1;
         // if(false === true) this.closePopup();
         if(this.vidCount && this.props.cUser.videos.length > this.vidCount) {
@@ -89,8 +89,8 @@ class Popup extends React.Component{
                 {/* <button className="upload" type="file">Upload Video</button> */}
                 <div className="uploadControls">
                     <h1>{task}</h1>
-                    <h1>{this.props.cUser.videos.length}</h1>
-                    <h1>{this.count}</h1>
+                    {/* <h1>{this.props.cUser.videos.length}</h1> */}
+                    {/* <h1>{this.count}</h1> */}
                     <br/>
                     {this.props.errors.map(error => <div className="videoError">{error}</div>)}
                     {/* {this.props.clearVideoErrors} */}
