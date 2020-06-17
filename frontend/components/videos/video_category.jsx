@@ -22,7 +22,7 @@ class VideoCategory extends React.Component {
                 {this.videos ? this.videos.map((video) => {
                     // debugger
                     return (
-                    <MiniVidBoxContainer userId={video.authorId} video={video}/>
+                    <div><MiniVidBoxContainer userId={video.authorId} video={video}/></div>
                     // <div className="miniVidBox">
                     //     <Link to={`/watch/${video.id}`}>
                     //         <img src={video.thumbnail}/>

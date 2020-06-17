@@ -53,7 +53,7 @@ class Nav extends React.Component {
         // const {openPopup} = this.props
         return (
             <div className="nav">
-                <PopupContainer task={"Create a new Video"} /> 
+                <PopupContainer task={"Upload videos"} /> 
                 
                 <div className="nav-logo-plus-title">
                     {/* <SideBarContainer/> */}
@@ -72,11 +72,11 @@ class Nav extends React.Component {
                     <Link className="SignInSignOut" to={this.props.signedIn ? "/" : "/signin"}>
                         <div className="withDemo">
                             <button onClick={this.props.signedIn ? this.props.signOut : () => this.noFill() }
-                                className="SignInSignOut">{this.props.currentUser ? `${this.props.currentUser.username}` : "Sign In"}
+                                className="SignInSignOut">{this.props.currentUser ? `${this.props.currentUser.username}` : "SIGN IN"}
                             </button>
                             <button hidden={!this.props.signedIn ? "" : "hidden"}
                                 onClick={this.demoFill()}>
-                                Demo
+                                DEMO
                             </button>
                         </div>
                     </Link>

@@ -6,31 +6,90 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 75vh;
+    height: 90vh;
+    min-height: 450px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 82;
     /* margin-left: 50%;
     margin-right: 50%;
     margin-bottom: 20px;
     margin-top: 80px; */
     width: 960px;
     max-width: 100vw;
-    background-color: darkblue;
-    background-image: image-url("photo-1539721972319-f0e80a00d424");
-    color: white;
+    background-color: white;
+    color: black;
     font-family: Arial, Helvetica, sans-serif;
+    // border: 1px solid black;
+    margin-left: 10px;
+    // border-radius: 10px;
+}
+
+.fill {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: white;
+    z-index: 81;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.screenWrap {
+    position: fixed;
+    overflow-y: scroll;
+    height: 100vh;
+    width: 100vw;
+    // top: 0;
+    left: -700;
+    background: black;
+    opacity: 0.6;
+    z-index: 80;
+    padding: 100px;
+    // scroll-behavior: unset
+    
+}
+
+.popupHeader {
+    position: fixed;
+    height: 64px;
+    border-bottom: 1px solid lightgrey;
+    background-color: white;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+    z-index: 83;
+    justify-self: flex-start;
+    align-self: flex-start;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.popupHeader > h1 {
+    margin-left: 25px;
+    font-size: 20px;
+    // align-self: center;
 }
 
 .exit{
-    position: fixed;
-    height: 25px;
-    width: 25px;
-    top: 0%;
-    left: 100%;
-    transform: translate(-90%, -5%);
+    // position: fixed;
+    // height: 25px;
+    // width: 25px;
+    // top: 0%;
+    // left: 100%;
+    // transform: translate(-90%, -5%);
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    margin-right: 25px;
 }
+
 
 .upload{
     position: fixed;
@@ -67,6 +126,8 @@
 .uploadControls{
     display: flex;
     flex-direction: column;
+    // background-color: black;
+    z-index: 91;
     /* justify-content: space-around; */
     /* align-items: space-around; */
 }

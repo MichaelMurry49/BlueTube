@@ -45,7 +45,7 @@ class Popup extends React.Component{
         this.setState({ description: "" });
         this.setState({ selectedVideo: "" });
         this.setState({ selectedThumbNail: "" });
-        if (this.props.task === "Create a new Video"){
+        if (this.props.task === "Upload videos"){
             this.props.postVideo(formData).then(() => this.closePopup());
         } else {
             this.props.updateVideo(formData).then(this.props.fetchUser(this.props.currentUser));
@@ -58,7 +58,7 @@ class Popup extends React.Component{
         if(!popup) return null;
         // debugger;
         // this.props.fetchUser(this.props.currentUser)
-        this.count += 1;
+        // this.count += 1;
         // if(false === true) this.closePopup();
         // if(this.vidCount && this.props.cUser.videos.length > this.vidCount) {
         //     debugger;
@@ -70,13 +70,19 @@ class Popup extends React.Component{
         // this.props.clearVideoErrors();
         return (
             <div className="popup">
-                <button className="exit" onClick={() => this.closePopup()}>X</button>
+                <div className="screenWrap"></div>
+                <div className="fill"></div>
+                <div className="popupHeader">
+                    <h1>{task}</h1>
+                    <button className="exit" onClick={() => this.closePopup()}>X</button>
+                </div>
+                
                 {/* <button className="upload" type="file">Upload Video</button> */}
                 <div className="uploadControls">
-                    <h1>{task}</h1>
+                    
                     {/* <h1>{this.props.cUser.videos.length}</h1> */}
-                    <h1>{this.count}</h1>
-                    <br/>
+                    {/* <h1>{this.count}</h1>
+                    <br/> */}
                     {this.props.errors.map(error => <div className="videoError">{error}</div>)}
                     {/* {this.props.clearVideoErrors} */}
                     <label>Upload Video: </label><input className="videoUpload" type="file" onChange={e => this.updateVideo(e)} accept="video/*"/>

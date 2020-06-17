@@ -125,8 +125,12 @@ class MiniVidBox extends React.Component {
                         </div>
                         <div>
                             <div className="videoTitle">{video.title}</div>
-                            <Link className="miniUser" to={`/channel/${video.authorId}`}>{this.props.users[this.props.userId] ? this.props.users[this.props.userId].username : ""}</Link>
-                            <div className="miniViews">{video.viewCount} Views • {this.getTime(video.createdAt)} </div>
+                            <div>
+                                <Link className="miniUser" to={`/channel/${video.authorId}`}>{this.props.users[this.props.userId] ? this.props.users[this.props.userId].username : ""}</Link>
+                                <div className="miniViews">{video.viewCount} Views • {this.getTime(video.createdAt)} </div>
+                            </div>
+                            
+                            <div className="miniDesc">{video.description.slice(0,150)}</div>
                         </div>
                     </div>
                 </Link>
