@@ -249,8 +249,23 @@ video::-webkit-media-controls-panel {
     margin-right: 3px;
     width: 210px;
 }
+
+.userVideos > div > .miniVidBox > * > .side > div:nth-of-type(2) {
+    width: 100%;
+    /* background-color: black; */
+}
+/* .userVideos > div > .miniVidBox > * > .side > div {
+    width: 1000px;
+    /* height: 100px; */
+    /* display:flex; */
+    /* align-items: flex-start; */
+    /* justify-self: start;
+    background-color: pink; */
+    /* margin-right: 120px; */
+/* } */
 .userVideos > div > .miniVidBox > * > .side > div > .profilePic {
     visibility: hidden;
+    width: 0px;
     position: fixed;
 }
 
