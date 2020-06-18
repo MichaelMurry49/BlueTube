@@ -4,7 +4,7 @@ import MiniVidBoxContainer from "../videos/mini_vidbox_container";
 import NavContainer from "../nav/nav_container";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 class User extends React.Component {
     constructor(props){
@@ -19,18 +19,13 @@ class User extends React.Component {
     }
 
     render(){
-        // debugger;
-        // console.log(this.props.videos)
-        // if(this.props.videos) console.log(Object.values(this.props.videos).length)
-        // while(this.props.videos.length === 0){console.log("hi")}
-        // if (this.props.videos && Object.values(this.props.videos).length > 0) debugger;
-        // debugger; { 1: { id: 1 user } } { 1: { id: 1 user } }
         let {currentUser} = this.props;
         // debugger;
         return (
             <div>
                 <NavContainer/>
                 <div className="userProfile">
+                    <FontAwesomeIcon icon={faUserCircle} />
                     {Object.keys(this.props.users).includes(this.props.userId) ? this.props.users[this.props.userId].username : ""}
                     <div className="userVideos">
                         {/* {this.props.users ? Object.values(this.props.users)[0]:""} */}
@@ -41,12 +36,6 @@ class User extends React.Component {
                                     <Link to="/"><button hidden={video.authorId.toString(10) === currentUser ? false : true} className="delete" onClick={() => this.props.deleteVideo(video.id)}>Delete</button></Link>
                                 </div>
                             )
-                            
-
-                            // <Link to={`/watch/${video.id}`}>
-                            //     <img src={video.thumbnail} />
-                            //     <div className="videoTitle">{video.title}</div>
-                            // </Link>
                         }) : ""}
                     </div>
                     
