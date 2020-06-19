@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Button, Redirect } from "react-router-dom";
 import PopupContainer from "./popup_container";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faBars, faVideo, faHome, faUserCircle, faSignOut } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faBars, faVideo, faHome, faUserCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import SideBarContainer from "./sidebar_container";
 
@@ -94,16 +94,12 @@ class Nav extends React.Component {
                             </div>
                         </div>
                         <div>
-                            <FontAwesomeIcon icon={faUserCircle} />
-                            <button>
-                                <Link to={this.props.currentUser ? `/channel/${this.props.currentUser.id}` : ""}>
-                                    Your channel
-                                </Link>
-                            </button>
+                            <Link to={this.props.currentUser ? `/channel/${this.props.currentUser.id}` : ""}>
+                                <FontAwesomeIcon icon={faUserCircle} /> <div>Your channel</div>
+                            </Link>
                         </div>
                         <div>
-                            <FontAwesomeIcon icon={faSignOut} />
-                            <button onClick={() => this.logOut()}>Sign out</button>
+                            <button onClick={() => this.logOut()}><FontAwesomeIcon icon={faSignOutAlt} /><div>Sign out</div></button>
                         </div>
                     </div>
                     <button className="bars" onClick={() => this.switchSize()}><FontAwesomeIcon icon={faBars} /></button><Link className="nav-logo-plus-title" to={"/"}><img className="nav-logo" src={window.smileURL} alt="BlueTube logo"/>BlueTube</Link>
@@ -119,7 +115,7 @@ class Nav extends React.Component {
                     <Link className="SignInSignOut" to={this.props.signedIn ? "/" : "/signin"}>
                         <div className="withDemo">
                             <button onClick={this.props.signedIn ? () => this.toggleLogOut() : () => this.noFill() }
-                                className={this.props.signedIn ? "LogOut" : "SignInSignOut"}>{this.props.currentUser ? `${this.props.currentUser.username}` : "SIGN IN"}
+                                className={this.props.signedIn ? "LogOut" : "SignInSignOut"}>{this.props.currentUser ? `${this.props.currentUser.username[0]}` : "SIGN IN"}
                             </button>
                             <button hidden={!this.props.signedIn ? "" : "hidden"}
                                 onClick={this.demoFill()}>

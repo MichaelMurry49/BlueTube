@@ -192,6 +192,7 @@ a.sbl > .text {
     height: 15px;
     width: 15px;
     margin-right: 5px;
+    visibility: hidden;
 }
 
 .withDemo{
@@ -279,9 +280,13 @@ a.sbl > .text {
     background-color: white;
 }
 
-.logOut {
+button.LogOut {
     border-radius: 500px;
     background-color: blue;
+    color: white;
+    font-size: 18px;
+    height: 32px;
+    width: 32px;
 }
 
 .sign-out-toggle {
@@ -289,10 +294,13 @@ a.sbl > .text {
     /* flex-direction: column; */
     background: white;
     width: 300px;
-    height: 713px;
+    height: 145px;
     position: fixed;
     top: 56px;
     right: 0px;
+    border: 1px solid lightgray;
+    border-top: none;
+    margin-right: 15px;
     /* visibility: hidden; */
 }
 
@@ -305,7 +313,34 @@ a.sbl > .text {
 .sign-out-toggle > div > button {
     background: none;
     border: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    font-size: 18px;
     margin-left: 5px;
+    height: 40px;
+}
+
+.sign-out-toggle > div > a {
+    /* background: none;
+    border: none;
+    margin-left: 5px; */
+    font-size: 18px;
+    width: 100%;
+    display: flex;
+    margin-left: 10px;
+    align-items: center;
+    /* margin-bottom: 10px; */
+    height: 40px;
+}
+
+.sign-out-toggle > div > button > *{
+    margin-right: 10px;
+}
+
+.sign-out-toggle > div > a > *{
+    margin-right: 10px;
 }
 
 .sign-out-toggle > div:nth-of-type(1) {
@@ -321,5 +356,5 @@ a.sbl > .text {
 }
 
 .sign-out-toggle > div:nth-of-type(1):hover {
-    background-color: none;
+    background-color: transparent;
 }
