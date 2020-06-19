@@ -201,7 +201,7 @@ class SingleVideo extends React.Component {
                     <NavContainer/>
                 
                 </div>
-                <div className="sideVids"><SideVideosContainer/></div>
+                <div className="sideVids"><SideVideosContainer video={video}/></div>
                 
             </div>
         )
