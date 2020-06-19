@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Button, Redirect } from "react-router-dom";
 import PopupContainer from "./popup_container";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faBars, faVideo, faHome, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faBars, faVideo, faHome, faUserCircle, faSignOut } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import SideBarContainer from "./sidebar_container";
 
@@ -18,6 +18,7 @@ class Nav extends React.Component {
         this.sbwidth = 200;
         // this.gap = "big gap"
         this.sbc = "small sidebar"
+        this.hidden = true;
         this.sideBar = false;
     }
 
@@ -34,6 +35,17 @@ class Nav extends React.Component {
             this.setState({ change: "small" })
             // debugger;
         }
+    }
+
+    toggleLogOut(){
+        this.hidden = !this.hidden;
+        this.setState({change: this.hidden});
+    }
+
+    logOut(){
+        this.toggleLogOut();
+        this.props.signOut();
+        
     }
 
     demoFill(){
@@ -58,7 +70,42 @@ class Nav extends React.Component {
                 <div className="nav-logo-plus-title">
                     {/* <SideBarContainer/> */}
                     {/* <div className={this.gap}></div> */}
-                    <div className={this.sbc}><Link className="sbl" to="/"><FontAwesomeIcon icon={faHome} size="6x" /><div className="text">Home</div></Link> <a className="sbl" href="https://github.com/MichaelMurry49/BlueTube"><FontAwesomeIcon icon={faGithub} /><div className="text">GitHub</div></a> <a href="https://www.linkedin.com/in/michael-murry-b3746a1a6/" className="sbl"><FontAwesomeIcon icon={faLinkedinIn} /><div className="text">LinkedIn</div></a></div>
+                    <div className={this.sbc}>
+                        <Link className="sbl" to="/">
+                            <FontAwesomeIcon icon={faHome} size="6x" />
+                            <div className="text">Home</div>
+                        </Link> 
+                        <a className="sbl" href="https://github.com/MichaelMurry49/BlueTube">
+                            <FontAwesomeIcon icon={faGithub} />
+                            <div className="text">GitHub</div>
+                        </a> 
+                        <a href="https://www.linkedin.com/in/michael-murry-b3746a1a6/" className="sbl">
+                            <FontAwesomeIcon icon={faLinkedinIn} />
+                            <div className="text">LinkedIn</div>
+                        </a>
+                    </div>
+                    <div className="sign-out-toggle" hidden={this.hidden}>
+                        <div>
+                            <div>
+                                {this.props.currentUser ? this.props.currentUser.username : ""}
+                            </div>
+                            <div>
+                                {this.props.currentUser ? this.props.currentUser.email : ""}
+                            </div>
+                        </div>
+                        <div>
+                            <FontAwesomeIcon icon={faUserCircle} />
+                            <button>
+                                <Link to={this.props.currentUser ? `/channel/${this.props.currentUser.id}` : ""}>
+                                    Your channel
+                                </Link>
+                            </button>
+                        </div>
+                        <div>
+                            <FontAwesomeIcon icon={faSignOut} />
+                            <button onClick={() => this.logOut()}>Sign out</button>
+                        </div>
+                    </div>
                     <button className="bars" onClick={() => this.switchSize()}><FontAwesomeIcon icon={faBars} /></button><Link className="nav-logo-plus-title" to={"/"}><img className="nav-logo" src={window.smileURL} alt="BlueTube logo"/>BlueTube</Link>
                     {/* <div className={this.sbc}><Link className="sbl" to="/"><FontAwesomeIcon icon={faHome} /></Link> <a className="sbl" href="https://github.com/MichaelMurry49/BlueTube"><FontAwesomeIcon icon={faGithub} /></a> <a href="https://www.linkedin.com/in/michael-murry-b3746a1a6/" className="sbl"><FontAwesomeIcon icon={faLinkedinIn} /></a></div> */}
                 </div>
@@ -71,8 +118,8 @@ class Nav extends React.Component {
                     <img className="nav-grid" src={window.gridURL} alt="Grid logo" />
                     <Link className="SignInSignOut" to={this.props.signedIn ? "/" : "/signin"}>
                         <div className="withDemo">
-                            <button onClick={this.props.signedIn ? this.props.signOut : () => this.noFill() }
-                                className="SignInSignOut">{this.props.currentUser ? `${this.props.currentUser.username}` : "SIGN IN"}
+                            <button onClick={this.props.signedIn ? () => this.toggleLogOut() : () => this.noFill() }
+                                className={this.props.signedIn ? "LogOut" : "SignInSignOut"}>{this.props.currentUser ? `${this.props.currentUser.username}` : "SIGN IN"}
                             </button>
                             <button hidden={!this.props.signedIn ? "" : "hidden"}
                                 onClick={this.demoFill()}>

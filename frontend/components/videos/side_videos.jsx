@@ -1,13 +1,29 @@
 import React from "react";
-import MiniVidBoxContainer from './mini_vidbox_container';
+import SideVideosContainer from './side_videos_container';
 import { Link, Redirect } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 class SideVideos extends React.Component {
+
+    componentDidMount(){
+        this.props.fetchVideos();
+    }
+    randomVideos(videos, n){
+        let randVids = Object.values(videos).slice(0);
+        let sideVids = [];
+        for(let i = 0; i < videos.length && i < n; i++){
+            let rand = Math.floor(Math.random() * randVids.length);
+            sideVids.push(randVids[rand]);
+            randVids = randVids.slice(0, rand).concat(randVids.slice(rand+1));
+        }
+        return sideVids;
+
+    }
     render(){
-        <div>
-            {this.props.videos.map(video => {
+        debugger;
+        return <div>
+            {this.props.videos ? this.randomVideos(this.props.videos, 5).map(video => {
                 return(
                     <div className="under" >
                         <div>
@@ -20,7 +36,7 @@ class SideVideos extends React.Component {
                         </div>
                     </div>
                 )
-            })}
+            }): null}
         </div>
     }
 }

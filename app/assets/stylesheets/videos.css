@@ -321,3 +321,14 @@ video::-webkit-media-controls-panel {
     align-items: flex-end;
     /* margin-left: 10px; */
 }
+
+.sideVids {
+    /* background-color: black; */
+    height: 100vh;
+    width: 402px;
+    margin-left: 2px;
+}
+
+.singleVideoPage {
+    display: flex;
+}

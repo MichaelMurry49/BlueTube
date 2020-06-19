@@ -65,7 +65,7 @@ class CommentTree extends React.Component {
     }
 
     renderComment(comment) {
-        debugger;
+        // debugger;
         if (!comment) return null;
         // debugger;
         return (

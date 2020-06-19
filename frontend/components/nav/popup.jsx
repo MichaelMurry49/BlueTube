@@ -34,7 +34,7 @@ class Popup extends React.Component{
     createVideo(){
         this.vidCount = this.props.cUser.videos.length;
         const formData = new FormData();
-        debugger
+        // debugger
         formData.append('video[title]', this.state.title);
         formData.append('video[description]', this.state.description);
         formData.append('video[upload]', this.state.selectedVideo);

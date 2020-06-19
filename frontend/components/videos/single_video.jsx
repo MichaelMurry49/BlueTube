@@ -1,6 +1,7 @@
 import React from "react";
 import NavContainer from "../nav/nav_container";
 import SideBarContainer from "../nav/sidebar_container";
+import SideVideosContainer from "../videos/side_videos_container";
 import CommentTreeContainer from "../comments/comment_tree_container";
 import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -28,7 +29,7 @@ class SingleVideo extends React.Component {
     }
 
     updateBody(e, commentId=null){
-        debugger;
+        // debugger;
         if(commentId === null){
             this.setState({ arrBody: {} });
             this.setState({body: e.target.value})
@@ -80,7 +81,7 @@ class SingleVideo extends React.Component {
     renderComment(comment){
         // debugger;
         if(!comment) return null;
-        debugger;
+        // debugger;
         return(
             <div className="comment">
                 <div className="username">{this.props.users[comment.authorId] ? this.props.users[comment.authorId].username : ""}</div>
@@ -152,52 +153,56 @@ class SingleVideo extends React.Component {
         } 
         if(video && !user) this.props.fetchUser(video.authorId);
         return(
-            <div className="singleVideoContainer">    
-                <video className="singleVideo" controls>
-                    <source src={this.props.video.uploadUrl}/>
-                    Your browser does not support the video tag.
-                </video>
-                <div className="titleTag">{video.title}</div>
-                <div className="viewsAndLikes">
-                    <div>
-                        {video.viewCount} views  • {video.createdAt.slice(0,10)}
-                    </div>
-                    <div>
-                        <button className="like" onClick={() => this.createLike({liker_id: currentUser, likeable_id: this.props.video.id, likeable_type: "Video", positive_like: true})}>
-                            <FontAwesomeIcon icon={faThumbsUp} />
-                        </button> 
-                        {Object.values(likes).filter(like => {
-                            return (like.likeableId === video.id &&
+            <div className="singleVideoPage">
+                <div className="singleVideoContainer">    
+                    <video className="singleVideo" controls>
+                        <source src={this.props.video.uploadUrl}/>
+                        Your browser does not support the video tag.
+                    </video>
+                    <div className="titleTag">{video.title}</div>
+                    <div className="viewsAndLikes">
+                        <div>
+                            {video.viewCount} views  • {video.createdAt.slice(0,10)}
+                        </div>
+                        <div>
+                            <button className="like" onClick={() => this.createLike({liker_id: currentUser, likeable_id: this.props.video.id, likeable_type: "Video", positive_like: true})}>
+                                <FontAwesomeIcon icon={faThumbsUp} />
+                            </button> 
+                            {Object.values(likes).filter(like => {
+                                return (like.likeableId === video.id &&
+                                    like.likeableType === "Video" &&
+                                    like.positiveLike === true)
+                            }).length}
+                            <button className="like" onClick={() => this.createLike({liker_id: currentUser, likeable_id: this.props.video.id, likeable_type: "Video", positive_like: false})} >
+                                <FontAwesomeIcon icon={faThumbsDown} />
+                            </button>
+                            {Object.values(likes).filter(like => {
+                                return (like.likeableId === video.id &&
                                 like.likeableType === "Video" &&
-                                like.positiveLike === true)
-                        }).length}
-                        <button className="like" onClick={() => this.createLike({liker_id: currentUser, likeable_id: this.props.video.id, likeable_type: "Video", positive_like: false})} >
-                            <FontAwesomeIcon icon={faThumbsDown} />
-                        </button>
-                        {Object.values(likes).filter(like => {
-                            return (like.likeableId === video.id &&
-                            like.likeableType === "Video" &&
-                            like.positiveLike === false)
-                        }).length}
+                                like.positiveLike === false)
+                            }).length}
+                        </div>
                     </div>
-                </div>
-                <Link to={this.props.user ? `/channel/${this.props.user.id}` : ""}>
-                    {this.props.user ? this.props.user.username : ""}
-                </Link>
-                <div className="descTag">{video.description} </div>
-                <Link to="/"><button hidden={video.authorId.toString(10) === currentUser ? false : true} className="delete" onClick={() => deleteVideo(video.id)}>Delete</button></Link>
+                    <Link to={this.props.user ? `/channel/${this.props.user.id}` : ""}>
+                        {this.props.user ? this.props.user.username : ""}
+                    </Link>
+                    <div className="descTag">{video.description} </div>
+                    <Link to="/"><button hidden={video.authorId.toString(10) === currentUser ? false : true} className="delete" onClick={() => deleteVideo(video.id)}>Delete</button></Link>
+                    
+                    {/* <CommentTreeContainer video={video}/> */}
+                    <input className="chatText" type="text" placeHolder="Add a public comment..." value={this.state.body} onChange={e => this.updateBody(e)}/>
+                    <button className="createComment" onClick={() => this.createComment(null)}>COMMENT</button>
+                    <div className="comments">
+                        {video.comments.map(commentId => {
+                            if(!comments[commentId]) return "";
+                            return comments[commentId].parentId === null ? this.renderComment(comments[commentId]) : "";
+                        })}
+                    </div>
+                    <NavContainer/>
                 
-                {/* <CommentTreeContainer video={video}/> */}
-                <input className="chatText" type="text" placeHolder="Add a public comment..." value={this.state.body} onChange={e => this.updateBody(e)}/>
-                <button className="createComment" onClick={() => this.createComment(null)}>COMMENT</button>
-                <div className="comments">
-                    {video.comments.map(commentId => {
-                        if(!comments[commentId]) return "";
-                        return comments[commentId].parentId === null ? this.renderComment(comments[commentId]) : "";
-                    })}
                 </div>
-                <NavContainer/>
-               
+                <div className="sideVids"><SideVideosContainer/></div>
+                
             </div>
         )
     }
