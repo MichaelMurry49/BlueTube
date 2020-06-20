@@ -61,7 +61,7 @@ class Nav extends React.Component {
         this.setState({filter: e.currentTarget.value})
     }
     render() {
-        // debugger;
+        debugger;
         // const {openPopup} = this.props
         return (
             <div className="nav">
@@ -112,7 +112,7 @@ class Nav extends React.Component {
                 <div className="right-nav">
                     <button className="camera-button" onClick={this.props.currentUser ? this.props.openPopup : () => { }}><FontAwesomeIcon icon={faVideo} /></button>    
                     <img className="nav-grid" src={window.gridURL} alt="Grid logo" />
-                    <Link className="SignInSignOut" to={this.props.signedIn ? "/" : "/signin"}>
+                    <Link className="SignInSignOut" to={!this.props.signedIn ? "/signin" : false}>
                         <div className="withDemo">
                             <button onClick={this.props.signedIn ? () => this.toggleLogOut() : () => this.noFill() }
                                 className={this.props.signedIn ? "LogOut" : "SignInSignOut"}>{this.props.currentUser ? `${this.props.currentUser.username[0]}` : "SIGN IN"}
