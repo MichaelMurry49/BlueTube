@@ -84,7 +84,7 @@ class SingleVideo extends React.Component {
         // debugger;
         return(
             <div className="comment">
-                <div className="username">{this.props.users[comment.authorId] ? this.props.users[comment.authorId].username : ""}</div>
+                <Link to={`/channel/${comment.authorId}`} className="username">{this.props.users[comment.authorId] ? this.props.users[comment.authorId].username : ""}</Link>
                 <div>{comment.body}</div>
                 <button className="like" onClick={() => this.createLike({ liker_id: this.props.currentUser, likeable_id: comment.id, likeable_type: "Comment", positive_like: true })}>
                     <FontAwesomeIcon icon={faThumbsUp} />
@@ -111,7 +111,7 @@ class SingleVideo extends React.Component {
                     return <div className="childComment">
                         {
                             this.props.comments[childId]  && this.props.users ?
-                            <div className="username">{this.props.users[this.props.comments[childId].authorId] ? this.props.users[this.props.comments[childId].authorId].username : ""}</div> :
+                                <Link to={`/channel/${this.props.comments[childId].authorId}`} className="username">{this.props.users[this.props.comments[childId].authorId] ? this.props.users[this.props.comments[childId].authorId].username : ""}</Link> :
                             ""
                         }
                         {this.props.comments[childId] ? 
