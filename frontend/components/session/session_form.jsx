@@ -28,16 +28,15 @@ class SessionForm extends React.Component {
         if(this.state.password !== this.state.confirm && this.props.formType !== "Sign in"){
             this.setState({errors: "Passwords must match"});
             this.state.errors = "Passwords must match";
+            this.setState({ password: "", username: "", confirm: "", email: "" })
         } else {
             
             delete this.state.errors;
             this.props.action(this.state);
             this.setState({errors: ""});
-            this.setState({password: "", username: ""})
+            this.setState({password: "", username: "", confirm: "", email: ""})
         }
         
-        
-        // this.confirm = ""
     }
 
     setUser(){
