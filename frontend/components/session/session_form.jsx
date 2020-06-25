@@ -1,27 +1,19 @@
 import React from "react";
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class SessionForm extends React.Component {
     constructor(props){
         super(props);
-        // debugger
-        // alert(this.props)
         this.state = this.props.user;
         this.state.confirm = "";
-        // alert(this.state.values)
         this.demo = false;
-        // this.state.clearErrors = this.props.clearErrors;
-        
         window.fillOut = { username: "", password: "" }
-        // this.props.clearErrors();
-        // if() <Redirect to="/"/>
         this.setUser = this.setUser.bind(this)
     }
 
     update(field){
         return e => this.setState({ [field]: e.currentTarget.value })
     }
-
 
     handleSubmit(e){
         e.preventDefault();
@@ -41,7 +33,6 @@ class SessionForm extends React.Component {
 
     setUser(){
         this.state.setState({username: "Demo", password: "password"})
-        // alert("hello");
     }
 
     render(){
@@ -68,7 +59,7 @@ class SessionForm extends React.Component {
                     </label>
                     {/* Email input */}
                     <label>
-                        {/* {formType === "Sign in" ? "" : "Email: "*/} <input className="session"
+                       <input className="session"
                             type={formType === "Sign in" ? "hidden" : "text" }
                             onChange={this.update("email")} value={this.state.email}
                             placeholder="Enter your email"/>
@@ -87,13 +78,11 @@ class SessionForm extends React.Component {
                     </label>
                     {/* Submit buttons and toggle link */}
                     <div className="session-buttons">
-                    <Link className="toggle" onClick={this.props.clearErrors} to={formType === "Sign in" ? "/signup" : "/signin"}>
-                            {formType === "Sign in" ? "Create account" : "Sign in instead"}</Link>
-                        {/* <button type="submit" className="demo" onClick={() => this.setUser()}>Demo</button> */}
-                    {/* <Link className="demo" onClick={this.setUser} to={"/"}>
-                        {formType === "Sign in" ? "Create account" : "Sign in instead"}</Link> */}
-                    <button type="submit" className="next">Next</button>
-                       
+                        <Link className="toggle" onClick={this.props.clearErrors} 
+                        to={formType === "Sign in" ? "/signup" : "/signin"}>
+                                {formType === "Sign in" ? "Create account" : "Sign in instead"}
+                        </Link>
+                        <button type="submit" className="next">Next</button> 
                     </div>
                 </form>
             </section>

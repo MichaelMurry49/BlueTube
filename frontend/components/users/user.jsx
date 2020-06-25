@@ -9,18 +9,15 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 class User extends React.Component {
     constructor(props){
         super(props);
-
     }
 
     componentDidMount(){
-        // this.props.fetchUser(this.props.userId);
         this.props.fetchUsers();
         this.props.fetchVideos();
     }
 
     render(){
         let {currentUser} = this.props;
-        // debugger;
         return (
             <div>
                 <NavContainer/>
@@ -28,12 +25,17 @@ class User extends React.Component {
                     <FontAwesomeIcon icon={faUserCircle} />
                     {Object.keys(this.props.users).includes(this.props.userId) ? this.props.users[this.props.userId].username : ""}
                     <div className="userVideos">
-                        {/* {this.props.users ? Object.values(this.props.users)[0]:""} */}
                         {this.props.videos ? Object.values(this.props.videos).filter(video => video.authorId === parseInt(this.props.userId, 10)).map(video => {
                             return (
                                 <div>
                                     <MiniVidBoxContainer userId={video.authorId} video={video} />
-                                    <Link to="/"><button hidden={video.authorId.toString(10) === currentUser ? false : true} className="delete" onClick={() => this.props.deleteVideo(video.id)}>Delete</button></Link>
+                                    <Link to="/">
+                                        <button hidden={video.authorId.toString(10)
+                                        === currentUser ? false : true} className="delete"
+                                        onClick={() => this.props.deleteVideo(video.id)}>
+                                            Delete
+                                        </button>
+                                    </Link>
                                 </div>
                             )
                         }) : ""}

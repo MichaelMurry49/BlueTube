@@ -8,7 +8,6 @@ const mapStateToProps = (state) => {
     // debugger;
     return {
         users: state.entities.users,
-        // userId: this.props.userId,
         likes: state.entities.likes,
         comments: state.entities.comments,
     }

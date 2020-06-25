@@ -9,13 +9,12 @@ const mapStateToProps = (state) => {
     return {
     user: window.fillOut,
     errors: state.errors.sessionErrors,
-    formType: "Sign in"/*,
-    textAlign: "center" */
+    formType: "Sign in"
 }}
 
 const mapDispatchToProps = dispatch => ({
     action: user => dispatch(signIn(user)),
-    clearErrors: () => dispatch(clearErrors()) //dispatch(clearErrors())
+    clearErrors: () => dispatch(clearErrors()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SessionForm)

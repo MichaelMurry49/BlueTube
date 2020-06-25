@@ -1,12 +1,9 @@
 import React from "react";
-import { Link, Button, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PopupContainer from "./popup_container";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBars, faVideo, faHome, faUserCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
-import SideBarContainer from "./sidebar_container";
-
-{/* <PopupContainer task={"Create a new Video"} />  */}
 
 class Nav extends React.Component {
     constructor(props) {
@@ -15,25 +12,19 @@ class Nav extends React.Component {
             filter: "",
             change: "", 
         }
-        this.sbwidth = 200;
-        // this.gap = "big gap"
         this.sbc = "small sidebar"
         this.hidden = true;
         this.sideBar = false;
+        this.task = "Upload Video"
     }
 
     switchSize(){
-        // debugger;
         if(this.sbc === "small sidebar"){
             this.sbc = "large sidebar"
-            // this.gap = "big gap"
             this.setState({change: "big"})
-            // debugger;
         } else {
             this.sbc = "small sidebar"
-            // this.gap = "small gap"
             this.setState({ change: "small" })
-            // debugger;
         }
     }
 
@@ -46,6 +37,12 @@ class Nav extends React.Component {
         this.toggleLogOut();
         this.props.signOut();
         
+    }
+
+    openPopup(popup){
+        this.task = "Upload Videos";
+        this.props.openPopup(popup);
+         
     }
 
     demoFill(){
@@ -61,15 +58,10 @@ class Nav extends React.Component {
         this.setState({filter: e.currentTarget.value})
     }
     render() {
-        debugger;
-        // const {openPopup} = this.props
         return (
             <div className="nav">
-                <PopupContainer task={"Upload videos"} /> 
-                
+                <PopupContainer task={this.task} />
                 <div className="nav-logo-plus-title">
-                    {/* <SideBarContainer/> */}
-                    {/* <div className={this.gap}></div> */}
                     <div className={this.sbc}>
                         <Link className="sbl" to="/">
                             <FontAwesomeIcon icon={faHome} size="6x" />
@@ -103,14 +95,13 @@ class Nav extends React.Component {
                         </div>
                     </div>
                     <button className="bars" onClick={() => this.switchSize()}><FontAwesomeIcon icon={faBars} /></button><Link className="nav-logo-plus-title" to={"/"}><img className="nav-logo" src={window.smileURL} alt="BlueTube logo"/>BlueTube</Link>
-                    {/* <div className={this.sbc}><Link className="sbl" to="/"><FontAwesomeIcon icon={faHome} /></Link> <a className="sbl" href="https://github.com/MichaelMurry49/BlueTube"><FontAwesomeIcon icon={faGithub} /></a> <a href="https://www.linkedin.com/in/michael-murry-b3746a1a6/" className="sbl"><FontAwesomeIcon icon={faLinkedinIn} /></a></div> */}
                 </div>
                 <div className="nav-search-bar">
                     <input placeHolder="Search" className="search-bar" value={this.state.filter} type="text" onChange={e => this.changeSearch(e)}/>
                     <Link className="search-button" to={`/result/${this.state.filter}`}><FontAwesomeIcon icon={faSearch} /></Link>
                 </div>
                 <div className="right-nav">
-                    <button className="camera-button" onClick={this.props.currentUser ? this.props.openPopup : () => { }}><FontAwesomeIcon icon={faVideo} /></button>    
+                    <button className="camera-button" onClick={this.props.currentUser ? (popup) => this.openPopup(popup) : () => { }}><FontAwesomeIcon icon={faVideo} /></button>    
                     <img className="nav-grid" src={window.gridURL} alt="Grid logo" />
                     <Link className="SignInSignOut" to={!this.props.signedIn ? "/signin" : false}>
                         <div className="withDemo">

@@ -48,7 +48,7 @@ class Popup extends React.Component{
         if (this.props.task === "Upload videos"){
             this.props.postVideo(formData).then(() => this.closePopup());
         } else {
-            this.props.updateVideo(formData).then(this.props.fetchUser(this.props.currentUser));
+            this.props.updateVideo(formData).then(() => this.closePopup());
         }
         
         
@@ -56,18 +56,6 @@ class Popup extends React.Component{
     render(){
         const { popup, task } = this.props;
         if(!popup) return null;
-        // debugger;
-        // this.props.fetchUser(this.props.currentUser)
-        // this.count += 1;
-        // if(false === true) this.closePopup();
-        // if(this.vidCount && this.props.cUser.videos.length > this.vidCount) {
-        //     debugger;
-        //     this.vidCount += 1;
-        //     this.closePopup();
-        // }
-        // if(!this.props.errors || this.props.errors.length === 0)  this.props.closePopup();
-        // let errors = this.props.errors.slice(0);
-        // this.props.clearVideoErrors();
         return (
             <div className="popup">
                 <div className="screenWrap"></div>

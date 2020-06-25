@@ -1,12 +1,9 @@
 import { connect } from "react-redux";
 import User from "./user";
-import { fetchUser, fetchUsers } from '../../actions/user_actions';
-import { deleteVideo, fetchVideo, fetchVideos, patchVideo } from '../../actions/video_actions';
+import { fetchUsers } from '../../actions/user_actions';
+import { deleteVideo, fetchVideos, patchVideo } from '../../actions/video_actions';
 
 const mapStateToProps = (state, ownProps) => {
-    // debugger;
-    // let user = state.entities.users[ownProps.match.params.userId];
-    // let videos = user ? user.videos : [];
     return {
         users: state.entities.users,
         userId: ownProps.match.params.userId,
@@ -17,10 +14,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
     deleteVideo: videoId => dispatch(deleteVideo(videoId)),
-    fetchVideo: videoId => dispatch(fetchVideo(videoId)),
     fetchVideos: () => dispatch(fetchVideos()),
     updateVideo: video => dispatch(patchVideo(video)),
-    fetchUser: userId => dispatch(fetchUser(userId)),
     fetchUsers: () => dispatch(fetchUsers()),
 })
 

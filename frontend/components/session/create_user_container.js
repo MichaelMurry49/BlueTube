@@ -6,11 +6,9 @@ const mapStateToProps = state => ({
     user: {username: "", email: "", password: ""},
     errors: state.errors.sessionErrors,
     formType: "Create Your Bloogle Account",
-    // signedIn:
 }) 
 
 const mapDispatchToProps = dispatch => {
-    // debugger;
     return {
     action: user => dispatch(signUp(user)),
     clearErrors: () => dispatch(clearErrors())
