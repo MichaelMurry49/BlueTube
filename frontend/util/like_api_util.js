@@ -13,10 +13,7 @@ export const fetchLike = likeId => (
     })
 )
 
-
-
 export const postLike = like => {
-    // debugger;
     return $.ajax({
         method: 'POST',
         url: `api/likes`,

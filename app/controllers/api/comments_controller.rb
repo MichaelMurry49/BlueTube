@@ -15,16 +15,13 @@ class Api::CommentsController < ApplicationController
             render :show
         else
             render json: @comment.errors.full_messages, status: 422
-            # render json: ["Invalid video arguments"], status: 422
         end
     end
 
     def create
-        # debugger
         puts "The params: #{params}"
         @comment = Comment.new(comment_params)
 
-        # @video[view_count] = 0
         if @comment.save
             render :show
         else
@@ -40,10 +37,10 @@ class Api::CommentsController < ApplicationController
             render json: @comment.errors.full_messages, status: 401
         end
     end
+    
     private
     def comment_params
         puts params
-        # debugger
         params.require(:comment).permit(:body, :video_id, :author_id, :parent_id)
     end
 end

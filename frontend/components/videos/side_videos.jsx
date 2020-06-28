@@ -2,7 +2,6 @@ import React from "react";
 import MiniVidBoxContainer from './mini_vidbox_container';
 
 class SideVideos extends React.Component {
-
     componentDidMount(){
         this.props.fetchVideos();
     }

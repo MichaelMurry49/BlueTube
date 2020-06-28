@@ -82,7 +82,7 @@ class Comments extends React.Component {
     }
 
     render(){
-        const { video, user, comments, currentUser, deleteVideo, updateVideo, likes } = this.props;
+        const { video, comments } = this.props;
         return(
             <div class="commentBox">
                 <div class="main-reply">

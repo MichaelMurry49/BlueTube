@@ -6,14 +6,12 @@ export const REMOVE_COMMENT = "REMOVE_COMMENT";
 export const RECEIVE_COMMENT_ERRORS = "RECEIVE_COMMENT_ERRORS";
 export const CLEAR_COMMENT_ERRORS = "RECEIVE_COMMENT_ERRORS";
 
-// Actions
 const receiveComments = comments => ({
     type: RECEIVE_COMMENTS,
     comments
 })
 
 const receiveComment = comment => {
-    // debugger;
     return {
     type: RECEIVE_COMMENT,
     comment
@@ -34,7 +32,7 @@ export const clearCommentErrors = () => ({
     type: CLEAR_COMMENT_ERRORS
 })
 
-// Thunk Actions
+// Thunk actions
 export const fetchComments = videoId => dispatch => (
     UtilCommentAPI.fetchComments(videoId)
         .then(comments => dispatch(receiveComments(comments)))
@@ -52,14 +50,11 @@ export const deleteComment = commentId => dispatch => (
 )
 
 export const postComment = comment => dispatch => {
-    // debugger
     return UtilCommentAPI.postComment(comment)
         .then(comment => {
-            // debugger;
             return dispatch(receiveComment(comment))
         },
         errors => {
-            // debugger;
             return dispatch(receiveCommentErrors(errors.responseJSON))
         })
     }

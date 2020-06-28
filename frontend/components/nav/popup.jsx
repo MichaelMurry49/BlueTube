@@ -34,7 +34,6 @@ class Popup extends React.Component{
     createVideo(){
         this.vidCount = this.props.cUser.videos.length;
         const formData = new FormData();
-        // debugger
         formData.append('video[title]', this.state.title);
         formData.append('video[description]', this.state.description);
         formData.append('video[upload]', this.state.selectedVideo);
@@ -65,26 +64,17 @@ class Popup extends React.Component{
                     <button className="exit" onClick={() => this.closePopup()}>X</button>
                 </div>
                 
-                {/* <button className="upload" type="file">Upload Video</button> */}
                 <div className="uploadControls">
-                    
-                    {/* <h1>{this.props.cUser.videos.length}</h1> */}
-                    {/* <h1>{this.count}</h1>
-                    <br/> */}
                     {this.props.errors.map(error => <div className="videoError">{error}</div>)}
-                    {/* {this.props.clearVideoErrors} */}
                     <label>Upload Video: </label><input className="videoUpload" type="file" onChange={e => this.updateVideo(e)} accept="video/*"/>
                     <label>Select Thumbnail: </label><input className="thumbNailUpload" type="file" onChange={e => this.updateThumbnail(e)} accept="image/*"/>
                     <label>Video Title: </label><input className="titleUpload" value={this.state.title} type="text" onChange={e => this.updateTitle(e)}/>
                     <label>Description:</label><textarea className="decriptionUpload" value={this.state.description} onChange={e => this.updateDescription(e)} />
                     <button className="uploadSubmit" type="submit" onClick={() => this.createVideo()}>Upload Video</button>
                 </div>
-                
-
             </div>
         )
-    }
-    
+    }   
 }
 
 export default Popup;

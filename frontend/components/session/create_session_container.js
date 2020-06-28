@@ -3,9 +3,7 @@ import { signIn, clearErrors } from '../../actions/session_actions';
 import SessionForm from './session_form';
 
 if(!window.fillOut) window.fillOut = {username: "", password: ""}
-const mapStateToProps = (state) => {
-    // debugger;
-    
+const mapStateToProps = (state) => {    
     return {
     user: window.fillOut,
     errors: state.errors.sessionErrors,

@@ -21,7 +21,6 @@ class User < ApplicationRecord
         foreign_key: :voter_id,
         class_name: :Voter
 
-    # SPIRE
     def self.find_by_user_credentials(username, password)
         username = User.find_by(username: username)
         if(username)

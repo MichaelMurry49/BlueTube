@@ -1,8 +1,6 @@
 class Api::UsersController < ApplicationController
     def create
-        # debugger
         @user = User.new(user_params)
-        # @user.picture ||= "https://blue-tube-dev.s3-us-west-1.amazonaws.com/smile.jpg";
         if @user.save
             sign_in!(@user)
             render :show

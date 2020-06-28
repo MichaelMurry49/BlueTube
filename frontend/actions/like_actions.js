@@ -24,8 +24,6 @@ const removeLike = likeId => {
     }
 }
 
-
-
 // Thunk Actions
 export const fetchLikes = () => dispatch => (
     UtilLikeAPI.fetchLikes()

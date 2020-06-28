@@ -23,8 +23,6 @@ class MiniVidBox extends React.Component {
         let hour = now.getHours() - createdAt.getHours();
         let minute = now.getMinutes() - createdAt.getMinutes();
         
-        // debugger;
-        // Check for years and if rounding is needed
         if(year > 0 && month < 6 && month >= 0){
             return year === 1 ? "1 year ago" : ` ${year} years ago `;
         }
@@ -114,9 +112,7 @@ class MiniVidBox extends React.Component {
 
     render() {
         let {video, currentUser} = this.props;
-        // debugger;
         return (<div className="miniVidBox">
-            {/* <div> */}
                 <Link to={`/watch/${video.id}`}>
                     <img src={video.thumbnail} />
                     <div className ="side">
@@ -134,9 +130,6 @@ class MiniVidBox extends React.Component {
                         </div>
                     </div>
                 </Link>
-                {/* <Link to="/"><button hidden={video.authorId.toString(10) === currentUser ? false : true} className="delete" onClick={() => deleteVideo(video.id)}>Delete</button></Link> */}
-            {/* </div> */}
-            
         </div>
         )
     }

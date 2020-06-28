@@ -1,7 +1,6 @@
 import { RECEIVE_COMMENT_ERRORS, RECEIVE_COMMENT, CLEAR_COMMENT_ERRORS } from '../actions/comment_actions';
 
 const commentErrorsReducer = (state = [], action) => {
-    // debugger
     Object.freeze(state);
     switch (action.type) {
         case RECEIVE_COMMENT_ERRORS:

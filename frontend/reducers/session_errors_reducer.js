@@ -9,7 +9,6 @@ const sessionErrorsReducer = (state=[], action) => {
             return [];
         default:
             return state;
-
     }
 }
 

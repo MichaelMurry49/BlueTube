@@ -6,7 +6,6 @@ import { fetchUser } from '../../actions/user_actions';
 
 
 const mapStateToProps = (state, ownProps) => {
-    // if(ownProps)
     return{
     popup: state.ui.popup,
     currentUser: state.session.currentUser,
