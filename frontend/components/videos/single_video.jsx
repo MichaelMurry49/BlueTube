@@ -19,21 +19,19 @@ class SingleVideo extends React.Component {
 
     componentDidMount(){
         this.props.fetchVideo(this.props.match.params.videoId)
-        this.props.fetchComments(this.props.match.params.videoId)
         this.props.fetchUsers()
-        // this.props.fetchLikes()
-        this.yes = true;
+        this.updateViewCount = true;
     }
 
     render(){
         const {video, user, comments, currentUser, deleteVideo, updateVideo, likes} = this.props;
         if(!video) return null;
-        if(this.yes){
+        if(this.updateViewCount){
             video.viewCount += 1;
             const formData = new FormData();
             formData.append('video[view_count]', video.viewCount);
             formData.append('video[id]', video.id);
-            this.yes = false;
+            this.updateViewCount = false;
             updateVideo(formData);
         } 
         if(video && !user) this.props.fetchUser(video.authorId);
