@@ -10,22 +10,17 @@ class Api::VideosController < ApplicationController
     end
 
     def update
-        # debugger
         @video = Video.find_by(id: video_params[:id])
         updates = video_params
         updates.delete("id")
         if @video.update_attributes(updates)
-            # debugger
             render :show
         else
-            # debugger
             render json: @video.errors.full_messages, status: 422
-            # render json: ["Invalid video arguments"], status: 422
         end
     end
 
     def create
-        # debuggerc
         if params[:video][:thumbnail] == "" && params[:video][:upload] == ""
             render json: ["Video and Thumbnail files are required"], status: 422
             return nil
@@ -38,8 +33,6 @@ class Api::VideosController < ApplicationController
         end
         @video = Video.new(video_params)
 
-        # debugger
-        # @video[view_count] = 0
         if @video.save
             render :show
         else

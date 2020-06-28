@@ -5,3 +5,7 @@ button.like{
     margin-top: 5px;
     color: darkgray;
 }
+
+button.blue {
+    color: blue;
+}
