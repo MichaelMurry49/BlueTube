@@ -36,6 +36,16 @@ input.chatText:focus {
     background-color: transparent;
 }
 
+/* .commentBox {
+    display: flex;
+    height: 50px;
+} */
+
+.main-reply {
+    display: flex;
+    flex-direction: column;
+}
+
 button.createComment {
     background-color: blue; 
     color: white;

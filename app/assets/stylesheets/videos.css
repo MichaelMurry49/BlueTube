@@ -129,6 +129,9 @@ button.delete {
     /* border: black solid 1px; */
 }
 
+/* .singleVideoContainer > div:nth-of-type(5) {
+    display: flex;
+} */
 
 .singleVideo:focus {
     outline: 0;

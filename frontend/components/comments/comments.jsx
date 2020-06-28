@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
-import LikeContainer from "../likes/like_container";
+import LikesContainer from "../likes/like_container";
 
 
 class Comments extends React.Component {
@@ -17,8 +15,7 @@ class Comments extends React.Component {
     }
 
     componentDidMount(){
-        this.props.fetchComments(this.state.videoId)
-        this.props.fetchLikes()
+        this.props.fetchComments(this.state.videoId);
     }
 
     updateBody(e, commentId = null) {
@@ -31,6 +28,7 @@ class Comments extends React.Component {
             this.setState({ body: "" });
             this.setState({ arrBody: temp });
         }
+
     }
 
     createComment(parentId) {
@@ -41,14 +39,16 @@ class Comments extends React.Component {
             }
             this.setState({ arrBody: {} });
             this.setState({ body: "" })
-            this.props.createComment(comment).then(() => this.props.fetchComments(this.props.match.params.videoId)).then(() => this.props.fetchVideo(this.props.match.params.videoId));
+            this.props.createComment(comment).then(() => this.props.fetchComments(this.props.videoId)).then(() => this.props.fetchVideo(this.props.videoId));
         } else {
             delete this.state.arrBody;
             let comment = this.state;
             this.setState({ arrBody: {} });
             this.setState({ body: "" });
-            this.props.createComment(comment).then(() => this.props.fetchComments(this.props.match.params.videoId)).then(() => this.props.fetchVideo(this.props.match.params.videoId));
+            this.props.createComment(comment).then(() => this.props.fetchComments(this.props.videoId)).then(() => this.props.fetchVideo(this.props.videoId));
         }
+
+
     }
 
     renderComment(comment) {
@@ -57,22 +57,7 @@ class Comments extends React.Component {
             <div className="comment">
                 <Link to={`/channel/${comment.authorId}`} className="username">{this.props.users[comment.authorId] ? this.props.users[comment.authorId].username : ""}</Link>
                 <div>{comment.body}</div>
-                <button className="like" onClick={() => this.createLike({ liker_id: this.props.currentUser, likeable_id: comment.id, likeable_type: "Comment", positive_like: true })}>
-                    <FontAwesomeIcon icon={faThumbsUp} />
-                </button>
-                {Object.values(this.props.likes).filter(like => {
-                    return (like.likeableId === comment.id &&
-                        like.likeableType === "Comment" &&
-                        like.positiveLike === true)
-                }).length}
-                <button className="like" onClick={() => this.createLike({ liker_id: this.props.currentUser, likeable_id: comment.id, likeable_type: "Comment", positive_like: false })} >
-                    <FontAwesomeIcon icon={faThumbsDown} />
-                </button>
-                {Object.values(this.props.likes).filter(like => {
-                    return (like.likeableId === comment.id &&
-                        like.likeableType === "Comment" &&
-                        like.positiveLike === false)
-                }).length}
+                <LikesContainer likeable="Comment" likeableId={comment.id} currentUser={this.props.currentUser} />
                 <div className="reply">
                     <input className="chatText" placeHolder="Add a public reply..." value={this.state.arrBody[comment.id] ? this.state.arrBody[comment.id] : ""} onChange={e => this.updateBody(e, comment.id)} />
                     <button className="createComment" onClick={() => this.createComment(comment.id)}>REPLY</button>
@@ -88,22 +73,7 @@ class Comments extends React.Component {
                         {this.props.comments[childId] ?
                             <div>
                                 <div>{this.props.comments[childId].body}</div>
-                                <button className="like" onClick={() => this.createLike({ liker_id: this.props.currentUser, likeable_id: childId, likeable_type: "Comment", positive_like: true })}>
-                                    <FontAwesomeIcon icon={faThumbsUp} />
-                                </button>
-                                {Object.values(this.props.likes).filter(like => {
-                                    return (like.likeableId === childId &&
-                                        like.likeableType === "Comment" &&
-                                        like.positiveLike === true)
-                                }).length}
-                                <button className="like" onClick={() => this.createLike({ liker_id: this.props.currentUser, likeable_id: childId, likeable_type: "Comment", positive_like: false })} >
-                                    <FontAwesomeIcon icon={faThumbsDown} />
-                                </button>
-                                {Object.values(this.props.likes).filter(like => {
-                                    return (like.likeableId === childId &&
-                                        like.likeableType === "Comment" &&
-                                        like.positiveLike === false)
-                                }).length}
+                                <LikesContainer likeable="Comment" likeableId={childId} currentUser={this.props.currentUser} />
                             </div> : ""}
                     </div>
                 }) : ""}
@@ -111,29 +81,15 @@ class Comments extends React.Component {
         )
     }
 
-    createLike(like) {
-        this.okay = true;
-        let match = Object.values(this.props.likes).filter(el => parseInt(like.liker_id, 10) === el.likerId &&
-            like.likeable_id === el.likeableId && like.likeable_type === el.likeableType);
-        if (match.length > 0) {
-            if (like.positive_like === match[0].positiveLike) {
-                this.props.deleteLike(match[0].id);
-            } else {
-                like.id = match[0].id;
-                like.liker_id = parseInt(like.liker_id, 10);
-                this.props.updateLike(like);
-            }
-        } else {
-            this.props.createLike(like);
-        }
-    }
-
     render(){
         const { video, user, comments, currentUser, deleteVideo, updateVideo, likes } = this.props;
         return(
-            <div>
-                <input className="chatText" type="text" placeHolder="Add a public comment..." value={this.state.body} onChange={e => this.updateBody(e)} />
-                <button className="createComment" onClick={() => this.createComment(null)}>COMMENT</button>
+            <div class="commentBox">
+                <div class="main-reply">
+                    <input className="chatText" type="text" placeHolder="Add a public comment..." value={this.state.body} onChange={e => this.updateBody(e)} />
+                    <button className="createComment" onClick={() => this.createComment(null)}>COMMENT</button>
+                </div>
+                
                 <div className="comments">
                     {video.comments.map(commentId => {
                         if (!comments[commentId]) return "";
@@ -145,5 +101,4 @@ class Comments extends React.Component {
     }
 
 }
-
 export default Comments;
