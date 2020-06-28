@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import LikesContainer from "../likes/like_container";
+import Time from "../time";
 
 
 class Comments extends React.Component {
@@ -55,7 +56,7 @@ class Comments extends React.Component {
         if (!comment) return null;
         return (
             <div className="comment">
-                <Link to={`/channel/${comment.authorId}`} className="username">{this.props.users[comment.authorId] ? this.props.users[comment.authorId].username : ""}</Link>
+                <Link to={`/channel/${comment.authorId}`} className="username">{this.props.users[comment.authorId] ? this.props.users[comment.authorId].username : ""}</Link> <Time start={comment.createdAt}/>
                 <div>{comment.body}</div>
                 <LikesContainer likeable="Comment" likeableId={comment.id} currentUser={this.props.currentUser} />
                 <div className="reply">
@@ -70,6 +71,7 @@ class Comments extends React.Component {
                                 <Link to={`/channel/${this.props.comments[childId].authorId}`} className="username">{this.props.users[this.props.comments[childId].authorId] ? this.props.users[this.props.comments[childId].authorId].username : ""}</Link> :
                                 ""
                         }
+                        <Time start={this.props.comments[childId].createdAt} />
                         {this.props.comments[childId] ?
                             <div>
                                 <div>{this.props.comments[childId].body}</div>
