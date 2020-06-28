@@ -4,7 +4,6 @@ import { deleteVideo, fetchVideos } from '../../actions/video_actions';
 import { fetchUsers } from '../../actions/user_actions'
 
 const mapStateToProps = (state, ownProps) => {
-    // debugger;
     return {
     videos: state.entities.videos,
     users: state.entities.users,

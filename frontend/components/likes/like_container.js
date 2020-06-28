@@ -4,12 +4,14 @@ import Like from "./like";
 import { fetchComments } from '../../util/comment_api_util';
 
 
-const mapStateToProps = (state) => {
-    // debugger;
+const mapStateToProps = (state, ownProps) => {
     return {
         users: state.entities.users,
         likes: state.entities.likes,
         comments: state.entities.comments,
+        likeable: ownProps.likeable,
+        likeableId: ownProps.likeableId,
+        currentUser: ownProps.currentUser,
     }
 }
 

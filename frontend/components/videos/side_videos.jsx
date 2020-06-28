@@ -12,7 +12,7 @@ class SideVideos extends React.Component {
     }
 
     randomVideos(videos, n){
-        debugger;
+        // debugger;
         let randVids = Object.values(videos).slice(0);
         let sideVids = [];
         for(let i = 0; i < Object.values(videos).length && i < n; i++){
@@ -24,7 +24,7 @@ class SideVideos extends React.Component {
 
     }
     render(){
-        debugger;
+        // debugger;
         let {video} = this.props;
         return <div>
             <div>Up Next</div>
