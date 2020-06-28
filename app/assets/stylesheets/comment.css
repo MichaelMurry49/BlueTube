@@ -3,8 +3,16 @@
     margin-top: 20px;
 }
 
+.childComment > span {
+    color: rgb(90,90,90);
+}
+
 .comment {
     margin-top: 20px;
+}
+
+.comment > span {
+    color: rgb(90,90,90);
 }
 
 input.chatText {
