@@ -21,9 +21,13 @@ class User extends React.Component {
         return (
             <div>
                 <NavContainer/>
+                <img className="user-splash-image" src={window.showPageDefault} alt="user splash image" />
                 <div className="userProfile">
-                    <FontAwesomeIcon icon={faUserCircle} />
-                    {Object.keys(this.props.users).includes(this.props.userId) ? this.props.users[this.props.userId].username : ""}
+                    <div className="username">
+                        <FontAwesomeIcon icon={faUserCircle} />
+                        {Object.keys(this.props.users).includes(this.props.userId) ? this.props.users[this.props.userId].username : ""}
+                    </div>
+                    
                     <div className="userVideos">
                         {this.props.videos ? Object.values(this.props.videos).filter(video => video.authorId === parseInt(this.props.userId, 10)).map(video => {
                             return (
