@@ -44,7 +44,8 @@ class Popup extends React.Component{
         this.setState({ description: "" });
         this.setState({ selectedVideo: "" });
         this.setState({ selectedThumbNail: "" });
-        if (this.props.task === "Upload videos"){
+        debugger;
+        if (this.props.task === "Upload Video"){
             this.props.postVideo(formData).then(() => this.closePopup());
         } else {
             this.props.updateVideo(formData).then(() => this.closePopup());
