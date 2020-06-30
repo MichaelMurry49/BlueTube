@@ -1,6 +1,8 @@
 .userProfile {
     display: flex;
-    width: 100vw;
+    /* width: -webkit-calc(100% - 60px);
+    width:    -moz-calc(100% - 60px);
+    width:         calc(100% - 60px); */
     flex-direction: column;
     /* margin-top: 56px; */
     margin-left: 150px;
@@ -34,9 +36,9 @@
     display: flex;
     flex-wrap: wrap;
     font-size: 15px;
-    background: rgb(245, 245, 245);
+    background: rgb(240, 240, 255);
     width: 100%;
-    margin-left: -90px;
+    margin-left: -60px;
     padding-top: 50px;
     padding-left: 60px;
     /* padding-left: 1000px; */
