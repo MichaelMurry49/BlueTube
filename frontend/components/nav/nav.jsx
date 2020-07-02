@@ -101,7 +101,7 @@ class Nav extends React.Component {
                     <Link className="search-button" to={`/result/${this.state.filter}`}><FontAwesomeIcon icon={faSearch} /></Link>
                 </div>
                 <div className="right-nav">
-                    <Link className="camera-button" to={`/channel/${this.props.currentUser.id}/studio/create`}><FontAwesomeIcon icon={faVideo} /></Link>    
+                    <Link className="camera-button" to={`/channel/${this.props.currentUser ? this.props.currentUser.id : 0}/studio/create`}><FontAwesomeIcon icon={faVideo} /></Link>    
                     <img className="nav-grid" src={window.gridURL} alt="Grid logo" />
                     <Link className="SignInSignOut" to={!this.props.signedIn ? "/signin" : false}>
                         <div className="withDemo">
