@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBars, faVideo, faHome, faUserCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 
-class Nav extends React.Component {
+class StudioNav extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -39,9 +39,9 @@ class Nav extends React.Component {
 
     }
 
-    openPopup(popup) {
+    openPopup() {
         this.task = "Upload Videos";
-        this.props.openPopup(popup);
+        this.props.openPopup();
 
     }
 
@@ -94,14 +94,14 @@ class Nav extends React.Component {
                             <button onClick={() => this.logOut()}><FontAwesomeIcon icon={faSignOutAlt} /><div>Sign out</div></button>
                         </div>
                     </div>
-                    <button className="bars" onClick={() => this.switchSize()}><FontAwesomeIcon icon={faBars} /></button><Link className="nav-logo-plus-title" to={"/"}><img className="nav-logo" src={window.smileURL} alt="BlueTube logo" />BlueTube</Link>
+                    <button className="bars" onClick={() => this.switchSize()}><FontAwesomeIcon icon={faBars} /></button><Link className="nav-logo-plus-title" to={`/channel/${this.props.currentUser.id}/studio`}><img className="nav-logo" src={window.smileURL} alt="BlueTube logo" />Studio</Link>
                 </div>
                 <div className="nav-search-bar">
                     <input placeHolder="Search" className="search-bar" value={this.state.filter} type="text" onChange={e => this.changeSearch(e)} />
                     <Link className="search-button" to={`/result/${this.state.filter}`}><FontAwesomeIcon icon={faSearch} /></Link>
                 </div>
                 <div className="right-nav">
-                    <Link className="camera-button" to={`/channel/${this.props.currentUser.id}/studio/create`}><FontAwesomeIcon icon={faVideo} /></Link>
+                    <button className="camera-button" onClick={() => this.openPopup()}><FontAwesomeIcon icon={faVideo} />CREATE</button>
                     <img className="nav-grid" src={window.gridURL} alt="Grid logo" />
                     <Link className="SignInSignOut" to={!this.props.signedIn ? "/signin" : false}>
                         <div className="withDemo">
@@ -120,4 +120,4 @@ class Nav extends React.Component {
     }
 }
 
-export default Nav;
+export default StudioNav;

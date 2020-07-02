@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { signOut } from "../../actions/session_actions";
-// import { openPopup } from "../../actions/popup_actions";
+import { openPopup } from "../../actions/popup_actions";
 // import Nav from "./nav";
 import StudioNav from "./studio_nav";
 
@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => {
     return {
         signOut: () => dispatch(signOut()),
         postVideo: video => dispatch(postVideo(video)),
-        // openPopup: popup => dispatch(openPopup(popup)),
+        openPopup: popup => dispatch(openPopup(popup)),
     }
 }
 

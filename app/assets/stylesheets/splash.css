@@ -131,6 +131,18 @@ a.sbl > .text {
     /* width: 240px; */
 }
 
+button.camera-button {
+    border: solid black 1px;
+    width: 110px;
+    height: 38px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+button.camera-button > svg {
+    color: red;
+}
 .small {
     width: 60px;
     /* padding-left: 20px; */
