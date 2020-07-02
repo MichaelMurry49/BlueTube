@@ -10,7 +10,7 @@ class Nav extends React.Component {
         super(props);
         this.state = {
             filter: "",
-            change: "", 
+            change: "",
         }
         this.sbc = "small sidebar"
         this.hidden = true;
@@ -18,44 +18,44 @@ class Nav extends React.Component {
         this.task = "Upload Video"
     }
 
-    switchSize(){
-        if(this.sbc === "small sidebar"){
+    switchSize() {
+        if (this.sbc === "small sidebar") {
             this.sbc = "large sidebar"
-            this.setState({change: "big"})
+            this.setState({ change: "big" })
         } else {
             this.sbc = "small sidebar"
             this.setState({ change: "small" })
         }
     }
 
-    toggleLogOut(){
+    toggleLogOut() {
         this.hidden = !this.hidden;
-        this.setState({change: this.hidden});
+        this.setState({ change: this.hidden });
     }
 
-    logOut(){
+    logOut() {
         this.toggleLogOut();
         this.props.signOut();
-        
+
     }
 
-    openPopup(popup){
+    openPopup(popup) {
         this.task = "Upload Videos";
         this.props.openPopup(popup);
-         
+
     }
 
-    demoFill(){
-        window.fillOut = {username: "Demo", password: "password"}
+    demoFill() {
+        window.fillOut = { username: "Demo", password: "password" }
     }
-    noFill(){
+    noFill() {
         window.fillOut = { username: "", password: "" }
     }
-    handleFile(e){
-        this.setState({videoURL: e.currentTarget.files[0]});
+    handleFile(e) {
+        this.setState({ videoURL: e.currentTarget.files[0] });
     }
-    changeSearch(e){
-        this.setState({filter: e.currentTarget.value})
+    changeSearch(e) {
+        this.setState({ filter: e.currentTarget.value })
     }
     render() {
         return (
@@ -66,11 +66,11 @@ class Nav extends React.Component {
                         <Link className="sbl" to="/">
                             <FontAwesomeIcon icon={faHome} size="6x" />
                             <div className="text">Home</div>
-                        </Link> 
+                        </Link>
                         <a className="sbl" href="https://github.com/MichaelMurry49/BlueTube">
                             <FontAwesomeIcon icon={faGithub} />
                             <div className="text">GitHub</div>
-                        </a> 
+                        </a>
                         <a href="https://www.linkedin.com/in/michael-murry-b3746a1a6/" className="sbl">
                             <FontAwesomeIcon icon={faLinkedinIn} />
                             <div className="text">LinkedIn</div>
@@ -94,18 +94,18 @@ class Nav extends React.Component {
                             <button onClick={() => this.logOut()}><FontAwesomeIcon icon={faSignOutAlt} /><div>Sign out</div></button>
                         </div>
                     </div>
-                    <button className="bars" onClick={() => this.switchSize()}><FontAwesomeIcon icon={faBars} /></button><Link className="nav-logo-plus-title" to={"/"}><img className="nav-logo" src={window.smileURL} alt="BlueTube logo"/>BlueTube</Link>
+                    <button className="bars" onClick={() => this.switchSize()}><FontAwesomeIcon icon={faBars} /></button><Link className="nav-logo-plus-title" to={"/"}><img className="nav-logo" src={window.smileURL} alt="BlueTube logo" />BlueTube</Link>
                 </div>
                 <div className="nav-search-bar">
-                    <input placeHolder="Search" className="search-bar" value={this.state.filter} type="text" onChange={e => this.changeSearch(e)}/>
+                    <input placeHolder="Search" className="search-bar" value={this.state.filter} type="text" onChange={e => this.changeSearch(e)} />
                     <Link className="search-button" to={`/result/${this.state.filter}`}><FontAwesomeIcon icon={faSearch} /></Link>
                 </div>
                 <div className="right-nav">
-                    <Link className="camera-button" to={`/channel/${this.props.currentUser.id}/studio/create`}><FontAwesomeIcon icon={faVideo} /></Link>    
+                    <Link className="camera-button" to={`/channel/${this.props.currentUser.id}/studio/create`}><FontAwesomeIcon icon={faVideo} /></Link>
                     <img className="nav-grid" src={window.gridURL} alt="Grid logo" />
                     <Link className="SignInSignOut" to={!this.props.signedIn ? "/signin" : false}>
                         <div className="withDemo">
-                            <button onClick={this.props.signedIn ? () => this.toggleLogOut() : () => this.noFill() }
+                            <button onClick={this.props.signedIn ? () => this.toggleLogOut() : () => this.noFill()}
                                 className={this.props.signedIn ? "LogOut" : "SignInSignOut"}>{this.props.currentUser ? `${this.props.currentUser.username[0]}` : "SIGN IN"}
                             </button>
                             <button hidden={!this.props.signedIn ? "" : "hidden"}

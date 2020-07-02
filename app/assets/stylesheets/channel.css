@@ -1,10 +1,9 @@
 .userProfile {
     display: flex;
-    /* width: -webkit-calc(100% - 60px);
-    width:    -moz-calc(100% - 60px);
-    width:         calc(100% - 60px); */
     flex-direction: column;
+    /* height: 100vh; */
     /* margin-top: 56px; */
+    height: 100%;
     margin-left: 150px;
     /* text-align: center; */
     font-size: 40px;
@@ -12,7 +11,7 @@
     
 }
 
-.username {
+.userProfile > .username {
     display: flex;
     height: 100px;
     align-items: center;
@@ -20,6 +19,10 @@
     /* background-color: orange; */
     /* padding-left: 1000px; */
     /* padding-left: 150px; */
+}
+
+.username > img {
+    font-size: 80px;
 }
 
 .user-splash-image {
@@ -38,9 +41,10 @@
     font-size: 15px;
     background: rgb(240, 240, 255);
     width: 100%;
-    margin-left: -60px;
+    height: 100%;
+    margin-left: -150px;
     padding-top: 50px;
-    padding-left: 60px;
+    padding-left: 150px;
     /* padding-left: 1000px; */
     /* justify-content: flex-start; */
     /* margin-left: 250px; */
