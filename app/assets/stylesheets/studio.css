@@ -1,0 +1,30 @@
+a.channel-button {
+    border-radius: 500px;
+    background-color: blue;
+    color: white;
+    font-size: 18px;
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.large {
+    align-items: center;
+}
+
+.large > a.channel-button {
+    height: 112px;
+    width: 112px;
+    font-size: 75px;
+    justify-self: center;
+}
+
+.studioBar {
+    margin-top: 56px;
+    /* margin-left: 60px; */
+    display: flex;
+    flex-direction: column;
+}

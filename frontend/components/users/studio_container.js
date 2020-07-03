@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
         users: state.entities.users,
         userId: ownProps.match.params.userId,
         videos: state.entities.videos,
-        currentUser: state.session.currentUser,
+        currentUser: state.entities.users[state.session.currentUser],
         popup: state.ui.popup,
     }
 }

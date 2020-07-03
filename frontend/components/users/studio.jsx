@@ -22,7 +22,7 @@ class Studio extends React.Component {
         this.props.fetchUsers();
         this.props.fetchVideos();
         debugger;
-        if(this.props.currentUser !== this.props.match.params.userId){
+        if(`${this.props.currentUser.id}` !== this.props.match.params.userId){
             this.setState(
             {
                 redirect: "/",
@@ -64,22 +64,13 @@ class Studio extends React.Component {
                 {/* <NavContainer /> */}
                 <StudioNavContainer />
                 <PopupContainer task={this.state.task} />
-                <img className="user-splash-image" src={window.showPageDefault} alt="user splash image" />
-                <div className="userProfile">
-                    <div className="username">
-                        <FontAwesomeIcon icon={faUserCircle} />
-                        {Object.keys(this.props.users).includes(this.props.userId) ? this.props.users[this.props.userId].username : ""}
-                    </div>
-
-                    <div className="userVideos">
-                        {this.props.videos ? Object.values(this.props.videos).filter(video => video.authorId === parseInt(this.props.userId, 10)).map(video => {
-                            return (
-                                <div>
-                                    <MiniVidBoxContainer userId={video.authorId} video={video} />
-                                </div>
-                            )
-                        }) : ""}
-                    </div>
+                <div className="studioBar">
+                    <Link className="channel-button">
+                        {currentUser.username[0]}
+                    </Link>
+                </div>
+                <div className="studioBody">
+                    
                 </div>
             </div>
         )

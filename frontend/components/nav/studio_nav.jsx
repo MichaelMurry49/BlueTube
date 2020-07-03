@@ -58,11 +58,21 @@ class StudioNav extends React.Component {
         this.setState({ filter: e.currentTarget.value })
     }
     render() {
+        debugger;
         return (
             <div className="nav">
                 {/* <PopupContainer task={this.task} /> */}
                 <div className="nav-logo-plus-title">
                     <div className={this.sbc}>
+                        <Link className="channel-button" to={`/channel/${this.props.currentUser.id}`}>
+                            {this.props.currentUser.username[0]}
+                        </Link>
+                        <div hidden={this.sbc === "large sidebar" ? false : true}>
+                            Your Channel
+                        </div>
+                        <div hidden={this.sbc === "large sidebar" ? false : true}>
+                            {this.props.currentUser.username}
+                        </div>
                         <Link className="sbl" to="/">
                             <FontAwesomeIcon icon={faHome} size="6x" />
                             <div className="text">Home</div>
