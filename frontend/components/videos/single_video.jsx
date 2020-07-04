@@ -48,7 +48,7 @@ class SingleVideo extends React.Component {
                             {video.viewCount} views  • {video.createdAt.slice(0,10)}
                         </div>
                         <div>
-                            <LikesContainer likeable="Video" likeableId={video.id} currentUser={this.props.currentUser}/>
+                            <LikesContainer likeable="Video" likeableId={video.id} currentUser={this.props.currentUser} obj={this.props.video}/>
                         </div>
                     </div>
                     <Link to={this.props.user ? `/channel/${this.props.user.id}` : ""}>

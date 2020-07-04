@@ -11,6 +11,7 @@ class Like extends React.Component {
 
     componentDidMount(){
         this.props.fetchLikes();
+        // this.props.obj.likes.forEach(likerId)
     }
 
     createLike(like) {

@@ -15,6 +15,16 @@ a.channel-button {
     align-items: center;
 }
 
+.large > div {
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.large > div:first-of-type {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
 .large > a.channel-button {
     height: 112px;
     width: 112px;
@@ -24,7 +34,31 @@ a.channel-button {
 
 .studioBar {
     margin-top: 56px;
-    /* margin-left: 60px; */
     display: flex;
     flex-direction: column;
+}
+
+.channel-videos {
+    margin-top: 56px;
+    margin-left: 60px;
+}
+
+.channel-header {
+    padding-left: 32px;
+    padding-top: 25px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.upload-header {
+    padding-left: 32px;
+    height: 63px;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 15px;
+}
+
+.video-grid {
+    width: 100vw;
+    border-top: solid darkgray 1px;
 }

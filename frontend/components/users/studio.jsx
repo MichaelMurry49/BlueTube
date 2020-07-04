@@ -15,7 +15,6 @@ class Studio extends React.Component {
             redirect: null,
             task: "Upload Video", 
         };
-        // this.props.openPopup()
     }
 
     componentDidMount() {
@@ -27,7 +26,6 @@ class Studio extends React.Component {
             {
                 redirect: "/",
             })
-            // this.props.openPopup;
         } else 
         {
             if (this.props.location.pathname.split("/")[4])
@@ -64,13 +62,23 @@ class Studio extends React.Component {
                 {/* <NavContainer /> */}
                 <StudioNavContainer />
                 <PopupContainer task={this.state.task} />
-                <div className="studioBar">
-                    <Link className="channel-button">
-                        {currentUser.username[0]}
-                    </Link>
-                </div>
-                <div className="studioBody">
-                    
+                <div className="channel-videos">
+                    <div className="channel-header">Channel videos</div>
+                    <div className="upload-header">Uploads</div>
+                    <div className="video-grid">
+                        <div className="filter">
+
+                        </div>
+                        <div className="grid-header">
+
+                        </div>
+                        <div className="grid-cells">
+
+                        </div>
+                        <div className="grid-footer">
+
+                        </div>
+                    </div>
                 </div>
             </div>
         )
