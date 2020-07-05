@@ -13,7 +13,10 @@ class Studio extends React.Component {
         this.state = 
         { 
             redirect: null,
-            task: "Upload Video", 
+            task: "Upload Video",
+            order: "",
+            filter: "",
+            rows: 30, 
         };
     }
 
@@ -51,6 +54,15 @@ class Studio extends React.Component {
         this.props.openPopup();
     }
 
+    updateFilter(e){
+        this.setState({filter: e.target.value})
+    }
+
+    orderBy(value){
+        if(value === this.state.filter) value += " asc"
+        this.setState({order: value})
+    }
+
     render() {
         let { currentUser } = this.props;
         if (this.state.redirect) {
@@ -67,16 +79,32 @@ class Studio extends React.Component {
                     <div className="upload-header">Uploads</div>
                     <div className="video-grid">
                         <div className="filter">
-
+                            <input type="text" placeHolder="filter" onChange={(e) => this.updateFilter(e)}/>
                         </div>
                         <div className="grid-header">
-
+                            <div>
+                                <input id="all-video" type="checkbox"/>
+                                Video
+                            </div>
+                            <div>
+                                <span onClick={() => this.orderBy("date")}>Date</span>
+                                <span onClick={() => this.orderBy("views")}>Views</span>
+                                <span onClick={() => this.orderBy("comments")}>Comments</span>
+                                <span onClick={() => this.orderBy("likes")}>Like(vs. dislikes)</span>
+                            </div>
                         </div>
                         <div className="grid-cells">
-
+                            { this.props.videos ? Object.values(this.props.videos).map(video => {
+                                return (<div>
+                                    <input id="video" type="checkbox" />
+                                    <img src={video.thumbnail} />
+                                </div>)
+                            }) : ""}
                         </div>
                         <div className="grid-footer">
-
+                            <span>Rows per page: </span>
+                            <span>{this.state.rows}</span>
+                            <span>{/* will contain button */}</span>
                         </div>
                     </div>
                 </div>

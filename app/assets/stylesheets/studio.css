@@ -62,3 +62,67 @@ a.channel-button {
     width: 100vw;
     border-top: solid darkgray 1px;
 }
+
+.grid-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 47px;
+    border-bottom: solid darkgray 1px;
+}
+
+.grid-header > div {
+    margin-left: 32px;
+    margin-right: 32px;
+}
+
+.grid-header > div:last-of-type {
+    margin-right: 100px;
+    display: flex;
+    justify-content: space-around;
+    width: 80vw;
+}
+
+.filter {
+    width: 100vw;
+    border-bottom: solid darkgray 1px;
+
+}
+
+.filter > input {
+    border: none;
+    height: 48px;
+    background-color: transparent;
+}
+
+.grid-footer {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    border-bottom: solid darkgray 1px;
+
+}
+
+.grid-footer > span {
+    margin-left: 32px;
+}
+
+.grid-cells {
+    padding-left: 32px;
+    /* height: 83px; */
+}
+
+.grid-cells > div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    height: 83px;
+    border-bottom: solid darkgray 1px;
+    
+}
+
+.grid-cells > div > img {
+    height: 68px;
+    width: 120px;
+    background-color: black;
+}
