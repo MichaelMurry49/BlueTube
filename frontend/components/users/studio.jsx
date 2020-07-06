@@ -16,8 +16,10 @@ class Studio extends React.Component {
             task: "Upload Video",
             order: "",
             filter: "",
-            rows: 30, 
+            rows: 30,
+            page: 0,
         };
+        this.selectedIds = {};
     }
 
     componentDidMount() {
@@ -49,6 +51,25 @@ class Studio extends React.Component {
         }
     }
 
+    updateIds(videoId){
+        if(this.selectedIds[videoId]){
+            delete this.selectedIds[videoId];
+        } else {
+            this.selectedIds[videoId] = true;
+        }
+    }
+
+    editVideos(){
+        debugger;
+    }
+
+    deleteVideos(){
+        for(let i = 0; i < Object.keys(this.selectedIds).length; i++){
+            this.props.deleteVideo(Object.keys(this.selectedIds)[i])
+        }
+        $('#video').val('').trigger("change");
+    }
+
     update(){
         this.setState({ task: "Update Video", });
         this.props.openPopup();
@@ -77,36 +98,47 @@ class Studio extends React.Component {
                 <div className="channel-videos">
                     <div className="channel-header">Channel videos</div>
                     <div className="upload-header">Uploads</div>
-                    <div className="video-grid">
-                        <div className="filter">
+                    <table className="video-grid">
+                        <tr className="filter">
                             <input type="text" placeHolder="filter" onChange={(e) => this.updateFilter(e)}/>
-                        </div>
-                        <div className="grid-header">
-                            <div>
+                        </tr>
+                        <tr className="grid-header">
+                            <td>
                                 <input id="all-video" type="checkbox"/>
                                 Video
-                            </div>
-                            <div>
-                                <span onClick={() => this.orderBy("date")}>Date</span>
-                                <span onClick={() => this.orderBy("views")}>Views</span>
-                                <span onClick={() => this.orderBy("comments")}>Comments</span>
-                                <span onClick={() => this.orderBy("likes")}>Like(vs. dislikes)</span>
-                            </div>
-                        </div>
+                            </td>
+                            <td>
+                                <td onClick={() => this.orderBy("date")}>Date</td>
+                                <td onClick={() => this.orderBy("views")}>Views</td>
+                                <td onClick={() => this.orderBy("comments")}>Comments</td>
+                                <td onClick={() => this.orderBy("likes")}>Likes/Dislikes</td>
+                            </td>
+                        </tr>
+                        <tr>
+                            {/* <button onClick={e => this.editVideos()}>Edit</button> */}
+                            <button onClick={e => this.deleteVideos()}>Delete</button>
+                        </tr>
                         <div className="grid-cells">
-                            { this.props.videos ? Object.values(this.props.videos).map(video => {
-                                return (<div>
-                                    <input id="video" type="checkbox" />
+                            { Object.values(this.props.videos)?.map(video => {
+                                return (<tr>
+                                    <input id="video" type="checkbox" onChange={() => this.updateIds(video.id)} />
                                     <img src={video.thumbnail} />
-                                </div>)
-                            }) : ""}
+                                    {" | " + video.title}
+                                    <div>
+                                        <span>{video.createdAt.slice(0,10)}</span>
+                                        <span>{video.viewCount}</span>
+                                        <span>{video.comments.length}</span>
+                                        <span>{`${video.likes.filter(like => like).length} / ${video.likes.filter(like => !like).length}`}</span>
+                                    </div>
+                                </tr>)
+                            })}
                         </div>
                         <div className="grid-footer">
                             <span>Rows per page: </span>
                             <span>{this.state.rows}</span>
                             <span>{/* will contain button */}</span>
                         </div>
-                    </div>
+                    </table>
                 </div>
             </div>
         )

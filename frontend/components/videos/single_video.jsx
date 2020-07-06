@@ -55,7 +55,7 @@ class SingleVideo extends React.Component {
                         {this.props.user ? this.props.user.username : ""}
                     </Link>
                     <div className="descTag">{video.description} </div>
-                    <Link to="/"><button hidden={video.authorId.toString(10) === currentUser ? false : true} className="delete" onClick={() => deleteVideo(video.id)}>Delete</button></Link>
+                    {/* <Link to="/"><button hidden={video.authorId.toString(10) === currentUser ? false : true} className="delete" onClick={() => deleteVideo(video.id)}>Delete</button></Link> */}
                     <CommentsContainer videoId={video.id} currentUser={currentUser} video={video} likes={likes}/>
                     <NavContainer/>
                 </div>

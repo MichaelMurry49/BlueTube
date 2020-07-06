@@ -34,11 +34,11 @@ class User extends React.Component {
                                 <div>
                                     <MiniVidBoxContainer userId={video.authorId} video={video} />
                                     <Link to="/">
-                                        <button hidden={video.authorId.toString(10)
+                                        {/* <button hidden={video.authorId.toString(10)
                                         === currentUser ? false : true} className="delete"
                                         onClick={() => this.props.deleteVideo(video.id)}>
                                             Delete
-                                        </button>
+                                        </button> */}
                                     </Link>
                                 </div>
                             )

@@ -71,12 +71,12 @@ a.channel-button {
     border-bottom: solid darkgray 1px;
 }
 
-.grid-header > div {
+.grid-header > td {
     margin-left: 32px;
     margin-right: 32px;
 }
 
-.grid-header > div:last-of-type {
+.grid-header > td:last-of-type {
     margin-right: 100px;
     display: flex;
     justify-content: space-around;
@@ -93,6 +93,19 @@ a.channel-button {
     border: none;
     height: 48px;
     background-color: transparent;
+    width: 100%;
+    text-align: left;
+}
+
+.filter > input {
+    text-align: flex-end;
+    color: blue;
+    text-indent: 32px;
+}
+
+.filter > input::placeholder {
+    text-align: left;
+    /* padding-left: 32px; */
 }
 
 .grid-footer {
@@ -112,7 +125,7 @@ a.channel-button {
     /* height: 83px; */
 }
 
-.grid-cells > div {
+.grid-cells > tr {
     display: flex;
     align-items: center;
     margin-bottom: 5px;
@@ -121,8 +134,23 @@ a.channel-button {
     
 }
 
-.grid-cells > div > img {
+.grid-cells > tr > img {
     height: 68px;
     width: 120px;
     background-color: black;
+}
+
+.grid-cells > tr > div {
+    margin-left: 10px;
+    margin-right: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 80vw;
+}
+
+.grid-cells > tr > div {
+    position: sticky;
+    left: 50;
+
 }
