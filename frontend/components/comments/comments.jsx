@@ -9,6 +9,7 @@ class Comments extends React.Component {
         super(props);
         this.state = {
             arrBody: {},
+            arrHidden: {},
             body: "",
             video_id: props.videoId,
             author_id: parseInt(props.currentUser, 10),

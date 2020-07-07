@@ -2,6 +2,7 @@ import React from "react";
 import NavContainer from "../nav/nav_container";
 import SideVideosContainer from "../videos/side_videos_container";
 import LikesContainer from "../likes/like_container";
+import PopupContainer from "../nav/popup_container";
 import CommentsContainer from "../comments/comments_container";
 import {Link} from "react-router-dom";
 
@@ -37,6 +38,7 @@ class SingleVideo extends React.Component {
         if(video && !user) this.props.fetchUser(video.authorId);
         return(
             <div className="singleVideoPage">
+                <PopupContainer task={"Update Video"} videoId={video.id}/>
                 <div className="singleVideoContainer">    
                     <video className="singleVideo" controls>
                         <source src={this.props.video.uploadUrl}/>
@@ -51,11 +53,15 @@ class SingleVideo extends React.Component {
                             <LikesContainer likeable="Video" likeableId={video.id} currentUser={this.props.currentUser} obj={this.props.video}/>
                         </div>
                     </div>
-                    <Link to={this.props.user ? `/channel/${this.props.user.id}` : ""}>
-                        {this.props.user ? this.props.user.username : ""}
-                    </Link>
-                    <div className="descTag">{video.description} </div>
-                    {/* <Link to="/"><button hidden={video.authorId.toString(10) === currentUser ? false : true} className="delete" onClick={() => deleteVideo(video.id)}>Delete</button></Link> */}
+                    <div className="temp">
+                        <span>
+                            <Link to={this.props.user ? `/channel/${this.props.user.id}` : ""}>
+                                {this.props.user ? this.props.user.username : ""}
+                            </Link>
+                            <div className="descTag">{video.description} </div>
+                        </span>
+                        <button hidden={video.authorId.toString(10) === currentUser ? false : true} className="updateVideo" onClick={this.props.openPopup}>Edit</button>
+                    </div>
                     <CommentsContainer videoId={video.id} currentUser={currentUser} video={video} likes={likes}/>
                     <NavContainer/>
                 </div>

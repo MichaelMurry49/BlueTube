@@ -34,11 +34,15 @@ class Popup extends React.Component{
     createVideo(){
         this.vidCount = this.props.cUser.videos.length;
         const formData = new FormData();
-        formData.append('video[title]', this.state.title);
-        formData.append('video[description]', this.state.description);
-        formData.append('video[upload]', this.state.selectedVideo);
-        formData.append('video[thumbnail]', this.state.selectedThumbNail);
-        formData.append('video[view_count]', 0);
+        let title = this.state.title;
+        let description = this.state.description;
+        let upload = this.state.selectedVideo;
+        let thumbnail = this.state.selectedThumbNail;
+        let authorId = this.props.currentUser;
+        // formData.append('video[title]', this.state.title);
+        // formData.append('video[description]', this.state.description);
+        // formData.append('video[upload]', this.state.selectedVideo);
+        // formData.append('video[thumbnail]', this.state.selectedThumbNail);
         formData.append('video[author_id]', this.props.currentUser)
         this.setState({title: ""});
         this.setState({ description: "" });
@@ -46,8 +50,18 @@ class Popup extends React.Component{
         this.setState({ selectedThumbNail: "" });
         debugger;
         if (this.props.task === "Upload Video"){
+            formData.append('video[view_count]', 0);
+            formData.append('video[title]', title);
+            formData.append('video[description]', description);
+            formData.append('video[upload]', upload);
+            formData.append('video[thumbnail]', thumbnail);
             this.props.postVideo(formData).then(() => this.closePopup());
         } else {
+            if(title) formData.append('video[title]', title);
+            if(description) formData.append('video[description]', description);
+            if(upload) formData.append('video[upload]', upload);
+            if(thumbnail) formData.append('video[thumbnail]', thumbnail);
+            formData.append('video[id]', this.props.videoId)
             this.props.updateVideo(formData).then(() => this.closePopup());
         }
         

@@ -324,3 +324,22 @@ video::-webkit-media-controls-panel {
 .singleVideoPage {
     display: flex;
 }
+
+.updateVideo{
+    height: 36px;
+    width: 104px;
+    background-color: blue;
+    color: white;
+    margin-right: 100px;
+    /* padding-right: 100px; */
+    /* align-self: flex-end;
+    justify-self: flex-start; */
+
+}
+
+.temp {
+    display: flex;
+    justify-content: space-between;
+    /* width: 800px; */
+    /* flex-direction: column; */
+}
