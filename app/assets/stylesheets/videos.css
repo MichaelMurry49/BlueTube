@@ -117,12 +117,10 @@ video::-webkit-media-controls-panel {
 .descTag {
     font-size: 20;
     font-family: Arial, Helvetica, sans-serif;
-    /* background: white; */
     width: 784px;
     min-height: 100px;
     box-shadow: #00A8E8;
     padding-top: 8px;
-    /* padding-left: 8px; */
     padding-right: 8px;
 }
 
@@ -133,19 +131,13 @@ video::-webkit-media-controls-panel {
     font-family: Arial, Helvetica, sans-serif;
     width: 784px;
     height: 35px;
-    /* text-align: start; */
-    /* text-align: justify; */
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
-    /* justify-content: flex-end; */
     color: black;
-    /* background-color: white; */
     padding-right: 8px;
-    /* padding-left: 8px; */
     padding-top: 8px;
     padding-bottom: 8px;
-    /* margin-top: 8px; */
 }
 
 .under {
@@ -163,7 +155,6 @@ video::-webkit-media-controls-panel {
 }
 
 .videoSearch > .miniVidBox > a > img {
-    /* width: 2460; */
     background-color: black;
     height: 137;
 }
@@ -195,12 +186,9 @@ video::-webkit-media-controls-panel {
     visibility: visible;
     margin-top: 8px;
     color: gray;
-    /* position: relative; */
 }
 
 .videoSearch > .miniVidBox > * {
-    /* background-color: blue; */
-    /* justify-self: flex-end; */
     display: flex;
     flex-direction: row;
 }
@@ -217,17 +205,8 @@ video::-webkit-media-controls-panel {
 
 .userVideos > div > .miniVidBox > * > .side > div:nth-of-type(2) {
     width: 100%;
-    /* background-color: black; */
 }
-/* .userVideos > div > .miniVidBox > * > .side > div {
-    width: 1000px;
-    /* height: 100px; */
-    /* display:flex; */
-    /* align-items: flex-start; */
-    /* justify-self: start;
-    background-color: pink; */
-    /* margin-right: 120px; */
-/* } */
+
 .userVideos > div > .miniVidBox > * > .side > div > .profilePic {
     visibility: hidden;
     width: 0px;
@@ -254,7 +233,6 @@ video::-webkit-media-controls-panel {
     margin-left: 0px;
     padding-left: 0px;
     width: 100%;
-    /* background-color: black; */
     justify-content: flex-start;
     margin-left: 5px;
 }
@@ -282,7 +260,6 @@ video::-webkit-media-controls-panel {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    /* margin-left: 10px; */
 }
 
 .sidepanel {
@@ -303,8 +280,6 @@ video::-webkit-media-controls-panel {
 }
 
 .sideVids {
-    /* background-color: black; */
-    /* height: 100vh; */
     width: 402px;
     margin-left: 2px;
     margin-top: 60px;
@@ -330,16 +305,22 @@ video::-webkit-media-controls-panel {
     width: 104px;
     background-color: blue;
     color: white;
-    margin-right: 100px;
-    /* padding-right: 100px; */
-    /* align-self: flex-end;
-    justify-self: flex-start; */
+    /* margin-right: 100px; */
 
 }
 
 .temp {
     display: flex;
     justify-content: space-between;
-    /* width: 800px; */
-    /* flex-direction: column; */
+    width: 800px;
+}
+
+.temp > span {
+    width: 600px;
+    margin-top: 5px;
+}
+
+.temp > button {
+    border: none;
+    margin-top: 10px;
 }

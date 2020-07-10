@@ -11,6 +11,17 @@ class Like extends React.Component {
 
     componentDidMount(){
         this.props.fetchLikes();
+        debugger;
+        let uLike = Object.values(this.props.likes).filter(like => {
+            debugger;
+            return (like.likeableId === this.props.likeableId &&
+                like.likeableType === this.props.likeable &&
+                like.likerId === this.props.currentUser)
+        })
+        if(uLike.length > 0){
+            uLike[0].positiveLike ? this.likeClass = "blue" : this.dislikeClass = "blue"
+        }
+        
         // this.props.obj.likes.forEach(likerId)
     }
 
@@ -41,6 +52,7 @@ class Like extends React.Component {
 
     render(){
         let {likeable, likeableId, likes} = this.props;
+        debugger;
         return(
             <div>
                 <button className={"like " + this.likeClass} onClick={() => this.createLike({ liker_id: this.props.currentUser, likeable_id: likeableId, likeable_type: likeable, positive_like: true })}>

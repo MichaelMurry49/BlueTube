@@ -5,7 +5,7 @@ import Like from "./like";
 const mapStateToProps = (state, ownProps) => {
     return {
         users: state.entities.users,
-        likes: state.entities.likes,
+        // likes: state.entities.likes,
         comments: state.entities.comments,
         likeable: ownProps.likeable,
         likeableId: ownProps.likeableId,

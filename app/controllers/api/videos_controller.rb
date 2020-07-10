@@ -12,9 +12,9 @@ class Api::VideosController < ApplicationController
     def update
         @video = Video.find_by(id: video_params[:id])
         updates = video_params
-        debugger
+        # debugger
         updates.delete("id")
-        debugger
+        # debugger
         if @video.update(updates)
             render :show
         else

@@ -59,7 +59,7 @@ class Comments extends React.Component {
             <div className="comment">
                 <Link to={`/channel/${comment.authorId}`} className="username">{this.props.users[comment.authorId] ? this.props.users[comment.authorId].username : ""}</Link> <Time start={comment.createdAt}/>
                 <div>{comment.body}</div>
-                <LikesContainer likeable="Comment" likeableId={comment.id} currentUser={this.props.currentUser} />
+                <LikesContainer likes={this.props.likes} likeable="Comment" likeableId={comment.id} currentUser={this.props.currentUser} />
                 <div className="reply">
                     <input className="chatText" placeHolder="Add a public reply..." value={this.state.arrBody[comment.id] ? this.state.arrBody[comment.id] : ""} onChange={e => this.updateBody(e, comment.id)} />
                     <button className="createComment" onClick={() => this.createComment(comment.id)}>REPLY</button>
@@ -76,7 +76,7 @@ class Comments extends React.Component {
                         {this.props.comments[childId] ?
                             <div>
                                 <div>{this.props.comments[childId].body}</div>
-                                <LikesContainer likeable="Comment" likeableId={childId} currentUser={this.props.currentUser} />
+                                <LikesContainer likes={this.props.likes} likeable="Comment" likeableId={childId} currentUser={this.props.currentUser} />
                             </div> : ""}
                     </div>
                 }) : ""}
