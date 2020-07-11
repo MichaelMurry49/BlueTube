@@ -8,8 +8,10 @@ class SideVideos extends React.Component {
 
     randomVideos(videos, n){
         let randVids = Object.values(videos).slice(0);
+        let index = randVids.indexOf(this.props.video);
+        randVids = randVids.slice(0,index).concat(randVids.slice(index+1))
         let sideVids = [];
-        for(let i = 0; i < Object.values(videos).length && i < n; i++){
+        for(let i = 0; i < Object.values(videos).length-1 && i < n; i++){
             let rand = Math.floor(Math.random() * randVids.length);
             sideVids.push(randVids[rand]);
             randVids = randVids.slice(0, rand).concat(randVids.slice(rand+1));
