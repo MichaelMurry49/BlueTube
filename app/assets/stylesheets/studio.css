@@ -154,3 +154,29 @@ a.channel-button {
     left: 50;
 
 }
+
+.studioVidTitle {
+    /* justify-self: start;
+    align-self: start; */
+    margin-left: 10px;
+}
+
+.deleteRow {
+    width: 100vw;
+    border-bottom: solid gray 1px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.deleteRow > button {
+    height: 36px;
+    width: 104px;
+    /* align-self: center;
+    justify-self: center; */
+    /* margin-left: 50px; */
+    background-color: blue;
+    color: white;
+    /* margin-right: 100px; */
+}

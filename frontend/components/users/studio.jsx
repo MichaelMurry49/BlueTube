@@ -90,15 +90,16 @@ class Studio extends React.Component {
                                 <td onClick={() => this.orderBy("likes")}>Likes/Dislikes</td>
                             </td>
                         </tr>
-                        <tr>
+                        <tr className="deleteRow">
                             <button onClick={e => this.deleteVideos()}>Delete</button>
                         </tr>
                         <div className="grid-cells">
                             { Object.values(this.props.videos)?.map(video => {
                                 return (<tr>
                                     <input id="video" type="checkbox" onChange={() => this.updateIds(video.id)} />
-                                    <img onClick={() => this.update(video.id)} src={video.thumbnail} />
-                                    {" | " + video.title}
+                                        <img onClick={() => this.update(video.id)} src={video.thumbnail} />
+                                        <span className="studioVidTitle">{video.title}</span>
+                                    
                                     <div>
                                         <span>{video.createdAt.slice(0,10)}</span>
                                         <span>{video.viewCount}</span>
