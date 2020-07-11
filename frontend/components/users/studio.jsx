@@ -67,8 +67,8 @@ class Studio extends React.Component {
                 {/* <NavContainer /> */}
                 <StudioNavContainer />
                 { this.videoId !== -1 ?
-                    <PopupContainer task={"Update Videos"} videoId={this.videoId} /> :
-                    <PopupContainer task={"Upload Videos"} videoId={this.videoId} />
+                    <PopupContainer task={"Update Video"} videoId={this.videoId} /> :
+                    <PopupContainer task={"Upload Video"} videoId={this.videoId} />
                 }
                 {this.videoId = -1}
                 <div className="channel-videos">
