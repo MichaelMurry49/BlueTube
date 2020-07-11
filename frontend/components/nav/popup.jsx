@@ -11,11 +11,13 @@ class Popup extends React.Component{
             title: "",
             description: "",
         }
+        this.videoId = this.props.videoId;
         
     }
 
     closePopup(){
         // this.props.clearVideoErrors();
+        this.videoId = -1;
         this.props.closePopup();
     }
     updateVideo(e){
