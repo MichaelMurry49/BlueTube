@@ -121,11 +121,15 @@ class Comments extends React.Component {
             <div className="comment">
                 <Link to={`/channel/${comment.authorId}`} className="username">{this.props.users[comment.authorId] ? this.props.users[comment.authorId].username : ""}</Link> <Time start={comment.createdAt}/>
                 <div>{comment.body}</div>
-                <LikesContainer likes={this.props.likes} likeable="Comment" likeableId={comment.id} currentUser={this.props.currentUser} />
+                <div className="likeReply">
+                    <LikesContainer likes={this.props.likes} likeable="Comment" likeableId={comment.id} currentUser={this.props.currentUser} />
+                    <span onClick={() => this.unHide(comment.id)}>REPLY</span>
+                </div>
+                
                 
             
                 <div className="reply">
-                    <input className="chatText" onSelect={() => this.unHide(comment.id)} placeHolder="Add a public reply..." value={this.state.arrBody[comment.id] ? this.state.arrBody[comment.id] : ""} onChange={e => this.updateBody(e, comment.id)} />
+                    <input hidden={this.state.arrHidden[comment.id]} className="chatText" placeHolder="Add a public reply..." value={this.state.arrBody[comment.id] ? this.state.arrBody[comment.id] : ""} onChange={e => this.updateBody(e, comment.id)} />
                     <div>
                         <button hidden={this.state.arrHidden[comment.id]} className="cancel" onClick={() => this.cancel(comment.id)}>Cancel</button>
                         <button hidden={this.state.arrHidden[comment.id]} className="createComment" onClick={() => this.createComment(comment.id)}>REPLY</button>
@@ -146,7 +150,10 @@ class Comments extends React.Component {
                             {this.props.comments[childId] ?
                                 <div>
                                     <div>{this.props.comments[childId].body}</div>
-                                    <LikesContainer likes={this.props.likes} likeable="Comment" likeableId={childId} currentUser={this.props.currentUser} />
+                                    <div className="likeReply">
+                                        <LikesContainer likes={this.props.likes} likeable="Comment" likeableId={childId} currentUser={this.props.currentUser} />
+                                        <span onClick={() => this.unHide(comment.id)}>REPLY</span>
+                                    </div>
                                 </div> : ""}
                         </div>
                     }) : ""} 

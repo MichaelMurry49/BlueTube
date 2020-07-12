@@ -89,3 +89,14 @@ input.chatText:focus {
     background-color: transparent;
     border: none;
 }
+
+.likeReply {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    color: gray
+}
+
+.likeReply > * {
+    margin-right: 10px;
+}
