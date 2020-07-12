@@ -42,9 +42,9 @@ input.chatText:focus {
     background-color: transparent;
 }
 
-.main-reply > div > button:first-of-type {
-    background-color: blue; 
-    color: white;
+.cancel {
+    background-color: transparent; 
+    color: black;
     border: none;
     justify-self: flex-end;
     align-self: flex-end; 
@@ -76,7 +76,16 @@ input.chatText:focus {
     justify-content: flex-end;
 }
 
-.reply {
+.reply > div {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.toggleComments {
+    color: darkblue;
+    margin-top: 5px;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
 }
