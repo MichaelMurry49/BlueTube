@@ -42,7 +42,7 @@ input.chatText:focus {
     background-color: transparent;
 }
 
-button.createComment {
+.main-reply > div > button:first-of-type {
     background-color: blue; 
     color: white;
     border: none;
@@ -56,9 +56,24 @@ button.createComment {
     padding-top: 10px;
 }
 
-.main-reply {
+.createComment {
+    background-color: blue; 
+    color: white;
+    border: none;
+    justify-self: flex-end;
+    align-self: flex-end; 
+    margin-right: 5px;
+    margin-top: 10px;
+    height: 40px;
+    width: 100px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.main-reply > div {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: flex-end;
 }
 
 .reply {

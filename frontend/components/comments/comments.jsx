@@ -10,10 +10,12 @@ class Comments extends React.Component {
         this.state = {
             arrBody: {},
             arrHidden: {},
+            hidden: true,
             body: "",
             video_id: props.videoId,
             author_id: parseInt(props.currentUser, 10),
         }
+        // this.hidden = true;
     }
 
     componentDidMount(){
@@ -21,6 +23,7 @@ class Comments extends React.Component {
     }
 
     updateBody(e, commentId = null) {
+        this.setState({ hidden: false })
         if (commentId === null) {
             this.setState({ arrBody: {} });
             this.setState({ body: e.target.value })
@@ -31,6 +34,15 @@ class Comments extends React.Component {
             this.setState({ arrBody: temp });
         }
 
+    }
+
+    unHide(){
+        this.setState({hidden: false})
+    }
+
+    cancel(){
+        this.setState({hidden: true})
+        this.setState({ body: "" });
     }
 
     createComment(parentId) {
@@ -48,6 +60,7 @@ class Comments extends React.Component {
             this.setState({ arrBody: {} });
             this.setState({ body: "" });
             this.props.createComment(comment).then(() => this.props.fetchComments(this.props.videoId)).then(() => this.props.fetchVideo(this.props.videoId));
+            this.cancel();
         }
 
 
@@ -89,8 +102,11 @@ class Comments extends React.Component {
         return(
             <div class="commentBox">
                 <div class="main-reply">
-                    <input className="chatText" type="text" placeHolder="Add a public comment..." value={this.state.body} onChange={e => this.updateBody(e)} />
-                    <button className="createComment" onClick={() => this.createComment(null)}>COMMENT</button>
+                    <input className="chatText" type="text" placeHolder="Add a public comment..." value={this.state.body} onSelect={() => this.unhide()} onChange={e => this.updateBody(e)} />
+                    <div>
+                        <button hidden={this.state.hidden} onClick={() => this.cancel()}>Cancel</button>
+                        <button className="createComment" hidden={this.state.hidden} onClick={() => this.createComment(null)}>COMMENT</button>
+                    </div>
                 </div>
                 
                 <div className="comments">
