@@ -94,7 +94,7 @@ class Studio extends React.Component {
                             <button onClick={e => this.deleteVideos()}>Delete</button>
                         </tr>
                         <div className="grid-cells">
-                            { Object.values(this.props.videos)?.map(video => {
+                            { Object.values(this.props.videos)?.filter(video => parseInt(video.authorId,10) === parseInt(this.props.currentUser.id,10)).map(video => {
                                 return (<tr>
                                     <input id="video" type="checkbox" onChange={() => this.updateIds(video.id)} />
                                         <img onClick={() => this.update(video.id)} src={video.thumbnail} />

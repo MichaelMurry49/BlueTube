@@ -100,3 +100,16 @@ input.chatText:focus {
 .likeReply > * {
     margin-right: 10px;
 }
+
+.commentHeader {
+    margin-bottom: 20px;
+}
+.commentHeader > span {
+    margin-right: 10px;
+    /* margin-bottom: 20px; */
+}
+
+.commentHeader > button {
+    background-color: transparent;
+    border: none;
+}

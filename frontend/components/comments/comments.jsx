@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import LikesContainer from "../likes/like_container";
 import Time from "../time";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { faSortDown, faSortUp, faSortAmountUp } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 
 
@@ -28,6 +28,7 @@ class Comments extends React.Component {
             body: "",
             video_id: props.videoId,
             author_id: parseInt(props.currentUser, 10),
+            sortOptions: false,
         }
         this.proxyReset = new Proxy({}, {
             get: function (object, property) {
@@ -36,6 +37,16 @@ class Comments extends React.Component {
             }
         })
         // this.hidden = true;
+        // this.showOptions = false;
+    }
+
+    sortComments(s){
+        this.setState({sortOptions: false})
+        if(s === "newest"){
+            this.props.video.comments.sort((a,b) => a-b)
+        } else {
+            this.props.video.comments.sort((a, b) => this.props.comments[b].likes.filter(like => like).length - this.props.comments[a].likes.filter(like => like).length)
+        }
     }
 
     componentDidMount(){
@@ -137,7 +148,7 @@ class Comments extends React.Component {
                         
                 </div>
 
-                {comment.comments?.length > 0 ? <button className="toggleComments" onClick={() => this.toggleComments(comment.id)}> {this.state.childComments[comment.id] ? <div><FontAwesomeIcon icon={faArrowDown} /> {`View ${comment.comments.length} replies`}</div> : <div><FontAwesomeIcon icon={faArrowUp} /> {`Hide ${comment.comments.length} replies`}</div>}</button> : ""}
+                {comment.comments?.length > 0 ? <button className="toggleComments" onClick={() => this.toggleComments(comment.id)}> {this.state.childComments[comment.id] ? <div><FontAwesomeIcon icon={faSortDown} /> {`View ${comment.comments.length} replies`}</div> : <div><FontAwesomeIcon icon={faSortUp} /> {`Hide ${comment.comments.length} replies`}</div>}</button> : ""}
                 <div hidden={this.state.childComments[comment.id]}>
                    {comment.comments ? comment.comments.map(childId => {
                         return <div className="childComment">
@@ -167,6 +178,15 @@ class Comments extends React.Component {
         const { video, comments } = this.props;
         return(
             <div class="commentBox">
+                <div class="commentHeader">
+                    <span>{video.comments.length} Comments</span>
+                    <button onClick={() => this.sortComments("most likes")}>
+                        <FontAwesomeIcon icon={faSortAmountUp} />
+                        <span>SORT BY</span>
+                    </button>
+                        
+                </div>
+                <div></div>
                 <div class="main-reply">
                     <input className="chatText" type="text" placeHolder="Add a public comment..." value={this.state.body} onSelect={() => this.unHide(null)} onChange={e => this.updateBody(e)} />
                     <div>
