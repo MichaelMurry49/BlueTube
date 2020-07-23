@@ -7,12 +7,133 @@
     color: rgb(90,90,90);
 }
 
+.childComments {
+    position: relative;
+}
+
 .comment {
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    position: relative;
+}
+
+.comment > div {
+    width: 100%;
 }
 
 .comment > span {
     color: rgb(90,90,90);
+}
+
+.e-d-comment {
+    background-color: transparent;
+    border: none;
+    /* justify-self: center; */
+    /* align-self: center; */
+    visibility: hidden;
+    align-self: center;
+    justify-self: end;
+    margin-left: auto;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    /* padding-bottom: 50px; */
+}
+
+.commentSection {
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+
+.childcommenttemp {
+    position: relative;
+}
+
+div:hover > .tc > .e-d-comment {
+    visibility: visible;
+}
+
+.tcc {
+    width: 100%;
+}
+.tc {
+    position: absolute;
+    right: 0;
+    top: 30px;
+    margin-left: auto;
+    /* width: 100%; */
+}
+
+/* .tc > * {
+    position: absolute;
+    right: 0;
+} */
+
+.tc > button {
+    /* margin-left: 100px;
+    cursor: pointer; */
+}
+
+.comment-options {
+    position: absolute;
+    width: 131px;
+    height: 88px;
+    background-color: white;
+    border: solid black 1px;
+    /* display: flex; */
+}
+
+.report-co {
+    margin-top: 32px;
+    width: 100%;
+}
+
+.report-co > button {
+    border: none;
+    width: 100%;
+    height: 22px;
+    background-color: transparent;
+}
+
+.report-co > button:hover {
+    background-color: lightgray;
+}
+
+.uphalf-co {
+    margin-top: 22px;
+    width: 100%;
+}
+
+.uphalf-co > button {
+    border: none;
+    width: 100%;
+    height: 22px;
+    background-color: transparent;
+}
+
+.uphalf-co > button:hover {
+    background-color: lightgray;
+}
+
+.downhalf-co {
+    margin-bottom: 22px;
+    width: 100%;
+}
+
+.downhalf-co > button {
+    border: none;
+    width: 100%;
+    height: 22px;
+    background-color: transparent;
+} 
+
+.downhalf-co > button:hover {
+    background-color: lightgray;
 }
 
 input.chatText {
@@ -110,6 +231,40 @@ input.chatText:focus {
 }
 
 .commentHeader > button {
+    background-color: transparent;
+    border: none;
+}
+
+.commentHeader > button > div {
+    background-color: white;
+    width: 126px;
+    height: 96px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    position: absolute;
+    border: gray solid 1px;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+}
+
+.commentHeader > button > div > button {
+    width: 100%;
+    height: 48px;
+    background-color: transparent;
+    border: none;
+}
+
+.commentHeader > button > div > button:hover {
+    width: 100%;
+    height: 48px;
+    background-color: gray;
+    border: none;
+}
+
+.commentHeader > button > div > button {
+    width: 100%;
+    height: 48px;
     background-color: transparent;
     border: none;
 }

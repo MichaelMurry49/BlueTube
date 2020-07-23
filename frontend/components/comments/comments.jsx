@@ -25,7 +25,11 @@ class Comments extends React.Component {
                 }
             }),
             hidden: true,
+            hiddenSort: true,
+            hiddenCommentOptions: -1,
+            selectedSort: "newest",
             body: "",
+            edit: -1,
             video_id: props.videoId,
             author_id: parseInt(props.currentUser, 10),
             sortOptions: false,
@@ -43,10 +47,11 @@ class Comments extends React.Component {
     sortComments(s){
         this.setState({sortOptions: false})
         if(s === "newest"){
-            this.props.video.comments.sort((a,b) => a-b)
+            this.props.video.comments.sort((a,b) => b-a)
         } else {
             this.props.video.comments.sort((a, b) => this.props.comments[b].likes.filter(like => like).length - this.props.comments[a].likes.filter(like => like).length)
         }
+        this.setState({selectedSort: s})
     }
 
     componentDidMount(){
@@ -104,6 +109,34 @@ class Comments extends React.Component {
         
     }
 
+    deleteComment(id) {
+        this.props.deleteComment(id).then(() => this.props.fetchComments());
+
+    }
+
+    editComment(comment){
+        debugger;
+        if (this.state.body !== "") {
+            console.log("here")
+            comment.body = this.state.body;
+        }
+        console.log(comment.body, "lala", this.state.body);
+        let c = {
+            body: comment.body,
+            id: comment.id
+        }
+        this.props.updateComment(c);
+        this.setState({body: ""})
+        this.setState({edit: -1})
+        this.setState({hiddenCommentOptions: -1})
+    }
+
+    cancelEdit(){
+        this.setState({ body: "" })
+        this.setState({ edit: -1 })
+        this.setState({ hiddenCommentOptions: -1 })
+    }
+
     createComment(parentId) {
         if (parentId !== null) {
             let comment = {
@@ -113,13 +146,14 @@ class Comments extends React.Component {
             this.setState({ arrBody: {} });
             this.setState({ body: "" })
             this.props.createComment(comment).then(() => this.props.fetchComments(this.props.videoId)).then(() => this.props.fetchVideo(this.props.videoId));
+            this.cancel(parentId)
         } else {
             delete this.state.arrBody;
             let comment = this.state;
             this.setState({ arrBody: {} });
             this.setState({ body: "" });
             this.props.createComment(comment).then(() => this.props.fetchComments(this.props.videoId)).then(() => this.props.fetchVideo(this.props.videoId));
-            this.cancel();
+            this.cancel(null);
         }
 
 
@@ -128,48 +162,94 @@ class Comments extends React.Component {
     renderComment(comment) {
         if (!comment) return null;
         console.log(this.state.arrHidden);
+        debugger
         return (
+            <div className="commentSection">
+
+            
             <div className="comment">
-                <Link to={`/channel/${comment.authorId}`} className="username">{this.props.users[comment.authorId] ? this.props.users[comment.authorId].username : ""}</Link> <Time start={comment.createdAt}/>
-                <div>{comment.body}</div>
-                <div className="likeReply">
-                    <LikesContainer likes={this.props.likes} likeable="Comment" likeableId={comment.id} currentUser={this.props.currentUser} />
-                    <span onClick={() => this.unHide(comment.id)}>REPLY</span>
-                </div>
+                {this.state.edit !== comment.id ? 
+                    <div>
+                        <Link to={`/channel/${comment.authorId}`} className="username">{this.props.users[comment.authorId] ? this.props.users[comment.authorId].username : ""}</Link> <Time start={comment.createdAt}/>
+                        <div>{comment.body}</div>
+                        <div className="likeReply">
+                            <LikesContainer likes={this.props.likes} likeable="Comment" likeableId={comment.id} currentUser={this.props.currentUser} />
+                            <span onClick={() => this.unHide(comment.id)}>REPLY</span>
+                        </div>
+                        <div className="tc">
+                            <button className="e-d-comment" onClick={() => this.setState({hiddenCommentOptions: this.state.hiddenCommentOptions === comment.id ? -1 : comment.id})}>⁝</button>
+                            <div className="comment-options" hidden={this.state.hiddenCommentOptions !== comment.id}>
+                                {parseInt(this.props.currentUser,10) === comment.authorId ? 
+                                <div><div className="uphalf-co"><button onClick={() => this.setState({edit: comment.id})}>Edit</button></div>
+                                <div className="downhalf-co"><button onClick={() => this.props.deleteComment(comment.id)}>Delete</button></div></div>
+                                : <div className="report-co"><button onClick={() => this.setState({hiddenCommentOptions: -1})}>Report</button></div> }
+                            </div>
+                        </div>
+                    </div> :
+                    <div className="reply">
+                        <input className="chatText" placeHolder={comment.body} value={this.state.body } onChange={e => this.updateBody(e, null)} />
+                        <div>
+                            <button className="cancel" onClick={() => this.cancelEdit()}>Cancel</button>
+                            <button className="createComment" onClick={() => this.editComment(comment)}>REPLY</button>
+                        </div>
+
+                    </div>
+                }
+                
                 
                 
             
                 <div className="reply">
-                    <input hidden={this.state.arrHidden[comment.id]} className="chatText" placeHolder="Add a public reply..." value={this.state.arrBody[comment.id] ? this.state.arrBody[comment.id] : ""} onChange={e => this.updateBody(e, comment.id)} />
+                    <input hidden={this.state.arrHidden[comment.id] || this.state.edit === comment.id} className="chatText" placeHolder="Add a public reply..." value={this.state.arrBody[comment.id] ? this.state.arrBody[comment.id] : ""} onChange={e => this.updateBody(e, comment.id)} />
                     <div>
-                        <button hidden={this.state.arrHidden[comment.id]} className="cancel" onClick={() => this.cancel(comment.id)}>Cancel</button>
-                        <button hidden={this.state.arrHidden[comment.id]} className="createComment" onClick={() => this.createComment(comment.id)}>REPLY</button>
+                            <button hidden={this.state.arrHidden[comment.id] || this.state.edit === comment.id} className="cancel" onClick={() => this.cancel(comment.id)}>Cancel</button>
+                            <button hidden={this.state.arrHidden[comment.id] || this.state.edit === comment.id} className="createComment" onClick={() => this.createComment(comment.id)}>REPLY</button>
                     </div>
                         
                 </div>
 
                 {comment.comments?.length > 0 ? <button className="toggleComments" onClick={() => this.toggleComments(comment.id)}> {this.state.childComments[comment.id] ? <div><FontAwesomeIcon icon={faSortDown} /> {`View ${comment.comments.length} replies`}</div> : <div><FontAwesomeIcon icon={faSortUp} /> {`Hide ${comment.comments.length} replies`}</div>}</button> : ""}
-                <div hidden={this.state.childComments[comment.id]}>
+                <div  className="childComments" hidden={this.state.childComments[comment.id]}>
                    {comment.comments ? comment.comments.map(childId => {
-                        return <div className="childComment">
+                        return <div>{this.state.edit && this.props.comments[childId] ? <div className="childComment">
                             {
                                 this.props.comments[childId] && this.props.users ?
                                     <Link to={`/channel/${this.props.comments[childId].authorId}`} className="username">{this.props.users[this.props.comments[childId].authorId] ? this.props.users[this.props.comments[childId].authorId].username : ""}</Link> :
                                     ""
                             }
+                
                             <Time start={this.props.comments[childId].createdAt} />
                             {this.props.comments[childId] ?
-                                <div>
+                                this.state.edit !== childId ? <div className="childcommenttemp">
                                     <div>{this.props.comments[childId].body}</div>
                                     <div className="likeReply">
                                         <LikesContainer likes={this.props.likes} likeable="Comment" likeableId={childId} currentUser={this.props.currentUser} />
                                         <span onClick={() => this.unHide(comment.id)}>REPLY</span>
                                     </div>
+                                    < div className="tc">
+                                        <button className="e-d-comment" onClick={() => this.setState({ hiddenCommentOptions: this.state.hiddenCommentOptions === childId ? -1 : childId })}>⁝</button>
+                                        <div className="comment-options" hidden={this.state.hiddenCommentOptions !== childId}>
+                                            {parseInt(this.props.currentUser, 10) === this.props.comments[childId].authorId ?
+                                                <div><div className="uphalf-co"><button onClick={() => this.setState({ edit: childId })}>Edit</button></div>
+                                                    <div className="downhalf-co"><button onClick={() => this.deleteComment(childId)}>Delete</button></div></div>
+                                                : <div className="report-co"><button onClick={() => this.setState({ hiddenCommentOptions: -1 })}>Report</button></div>}
+                                            {/* <div className="uphalf-co"><button onClick={() => this.setState({edit: childId})}>Edit</button></div>
+                                            <div className="downhalf-co"><button onClick={() => this.deleteComment(childId)}>Delete</button></div> */}
+                                        </div>
+                                    </div>
+                                </div> : 
+                                <div className="reply">
+                                    <input className="chatText" placeHolder={comment.body} value={this.state.body} onChange={e => this.updateBody(e, null)} />
+                                    <div>
+                                        <button className="cancel" onClick={() => this.cancelEdit()}>Cancel</button>
+                                        <button className="createComment" onClick={() => this.editComment(this.props.comments[childId])}>REPLY</button>
+                                    </div>
+
                                 </div> : ""}
-                        </div>
+                        </div> : ""}</div>
                     }) : ""} 
                 </div>
-                
+            </div>
             </div>
         )
     }
@@ -180,9 +260,15 @@ class Comments extends React.Component {
             <div class="commentBox">
                 <div class="commentHeader">
                     <span>{video.comments.length} Comments</span>
-                    <button onClick={() => this.sortComments("most likes")}>
+                    <button onClick={() => this.setState({ hiddenSort: !this.state.hiddenSort })}>
                         <FontAwesomeIcon icon={faSortAmountUp} />
                         <span>SORT BY</span>
+                        <br/>
+                        <div hidden={this.state.hiddenSort}>
+                            <button onClick={() => this.sortComments("most likes")}>Top comments</button>
+                            <br/>
+                            <button onClick={() => this.sortComments("newest")}>Newest first</button>
+                        </div>
                     </button>
                         
                 </div>

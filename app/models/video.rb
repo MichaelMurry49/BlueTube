@@ -5,10 +5,12 @@ class Video < ApplicationRecord
         foreign_key: :author_id,
         class_name: :User
     has_many :comments,
+        dependent: :destroy,
         foreign_key: :video_id,
         class_name: :Comment
     
-    has_many :likes, as: :likeable
+    has_many :likes, as: :likeable,
+        dependent: :destroy
 
     has_one_attached :upload
 

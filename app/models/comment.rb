@@ -15,8 +15,10 @@ class Comment < ApplicationRecord
         optional: :true
     
     has_many :comments,
+        dependent: :destroy,
         foreign_key: :parent_id,
         class_name: :Comment
     
-    has_many :likes, as: :likeable   
+    has_many :likes, as: :likeable,
+        dependent: :destroy   
 end

@@ -12,12 +12,15 @@ class Like extends React.Component {
     }
 
     createLike(like) {
-        let match = Object.values(this.props.likes).filter(el => parseInt(like.liker_id, 10) === el.likerId &&
+        let match = Object.values(this.props.likes).filter(el => parseInt(like.liker_id, 10) === parseInt(el.likerId, 10) &&
             like.likeable_id === el.likeableId && like.likeable_type === el.likeableType);
+        debugger    
         if (match.length > 0) {
             if (like.positive_like === match[0].positiveLike) {
+                debugger
                 this.props.deleteLike(match[0].id);
             } else {
+                debugger
                 like.id = match[0].id;
                 like.liker_id = parseInt(like.liker_id, 10);
                 this.props.updateLike(like);

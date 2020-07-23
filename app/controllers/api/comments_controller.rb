@@ -10,8 +10,9 @@ class Api::CommentsController < ApplicationController
     end
 
     def update
+        # debugger
         @comment = Comment.find_by(id: params[:id])
-        if @comment.update
+        if @comment.update(comment_params)
             render :show
         else
             render json: @comment.errors.full_messages, status: 422
@@ -41,6 +42,6 @@ class Api::CommentsController < ApplicationController
     private
     def comment_params
         puts params
-        params.require(:comment).permit(:body, :video_id, :author_id, :parent_id)
+        params.require(:comment).permit(:id, :body, :video_id, :author_id, :parent_id)
     end
 end
