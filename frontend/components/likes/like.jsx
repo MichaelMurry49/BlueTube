@@ -45,7 +45,7 @@ class Like extends React.Component {
         debugger;
         return(
             <div>
-                {posLikes.filter(like => like.likerId = parseInt(currentUser,10)).length > 0 ?
+                {posLikes.filter(like => like.likerId === parseInt(currentUser,10)).length > 0 ?
                     <button className={"like " + "blue"} onClick={() => this.createLike({ liker_id: this.props.currentUser, likeable_id: likeableId, likeable_type: likeable, positive_like: true })}>
                         <FontAwesomeIcon icon={faThumbsUp} />
                     </button> :
@@ -54,7 +54,7 @@ class Like extends React.Component {
                     </button>
                 }
                 {posLikes.length}  
-                {negLikes.filter(like => like.likerId = parseInt(currentUser, 10)).length > 0 ? 
+                {negLikes.filter(like => like.likerId === parseInt(currentUser, 10)).length > 0 ? 
                     <button className={"like " + "blue"} onClick={() => this.createLike({ liker_id: this.props.currentUser, likeable_id: likeableId, likeable_type: likeable, positive_like: false })}>
                         <FontAwesomeIcon icon={faThumbsUp} />
                     </button> :

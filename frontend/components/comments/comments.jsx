@@ -29,9 +29,10 @@ class Comments extends React.Component {
             hiddenCommentOptions: -1,
             selectedSort: "newest",
             body: "",
+            editBody: "",
             edit: -1,
-            video_id: props.videoId,
-            author_id: parseInt(props.currentUser, 10),
+            // video_id: props.videoId,
+            // author_id: parseInt(props.currentUser, 10),
             sortOptions: false,
         }
         this.proxyReset = new Proxy({}, {
@@ -58,17 +59,18 @@ class Comments extends React.Component {
         this.props.fetchComments(this.state.videoId);
     }
 
-    updateBody(e, commentId = null) {
+    updateBody(e, commentId = null, editBody = false) {
         // this.setState({ hidden: false })
         if (commentId === null) {
             this.setState({ hidden: false })
             this.setState({ arrHiden: this.proxyReset })
             this.setState({ arrBody: {} });
-            this.setState({ body: e.target.value })
+            !editBody ? this.setState({ body: e.target.value }) : this.setState({ editBody: e.target.value})
         } else {
             let temp = {};
             temp[commentId] = e.target.value;
             this.setState({ body: "" });
+            this.setState({ editBody: "" });
             this.setState({ arrBody: temp });
             temp = this.proxyReset;
             temp[commentId] = false;
@@ -116,31 +118,33 @@ class Comments extends React.Component {
 
     editComment(comment){
         debugger;
-        if (this.state.body !== "") {
+        if (this.state.editBody !== "") {
             console.log("here")
-            comment.body = this.state.body;
+            comment.body = this.state.editBody;
+        } else {
+            comment.body = "";
         }
-        console.log(comment.body, "lala", this.state.body);
         let c = {
             body: comment.body,
             id: comment.id
         }
         this.props.updateComment(c);
-        this.setState({body: ""})
+        this.setState({editBody: ""})
         this.setState({edit: -1})
         this.setState({hiddenCommentOptions: -1})
     }
 
     cancelEdit(){
-        this.setState({ body: "" })
+        this.setState({ editBody: "" })
         this.setState({ edit: -1 })
         this.setState({ hiddenCommentOptions: -1 })
     }
 
     createComment(parentId) {
+        debugger;
         if (parentId !== null) {
             let comment = {
-                body: this.state.arrBody[parentId], video_id: this.state.video_id,
+                body: this.state.arrBody[parentId], video_id: this.props.videoId,
                 author_id: this.state.author_id, parent_id: parentId
             }
             this.setState({ arrBody: {} });
@@ -149,7 +153,10 @@ class Comments extends React.Component {
             this.cancel(parentId)
         } else {
             delete this.state.arrBody;
-            let comment = this.state;
+            let comment = {
+                body: this.state.body, video_id: this.props.videoId,
+                author_id: parseInt(this.props.currentUser, 10), parent_id: null
+            }
             this.setState({ arrBody: {} });
             this.setState({ body: "" });
             this.props.createComment(comment).then(() => this.props.fetchComments(this.props.videoId)).then(() => this.props.fetchVideo(this.props.videoId));
@@ -173,7 +180,7 @@ class Comments extends React.Component {
                         <Link to={`/channel/${comment.authorId}`} className="username">{this.props.users[comment.authorId] ? this.props.users[comment.authorId].username : ""}</Link> <Time start={comment.createdAt}/>
                         <div>{comment.body}</div>
                         <div className="likeReply">
-                            <LikesContainer likes={this.props.likes} likeable="Comment" likeableId={comment.id} currentUser={this.props.currentUser} />
+                            <LikesContainer likeable="Comment" likeableId={comment.id} />
                             <span onClick={() => this.unHide(comment.id)}>REPLY</span>
                         </div>
                         <div className="tc">
@@ -187,7 +194,7 @@ class Comments extends React.Component {
                         </div>
                     </div> :
                     <div className="reply">
-                        <input className="chatText" placeHolder={comment.body} value={this.state.body } onChange={e => this.updateBody(e, null)} />
+                        <input className="chatText" placeHolder={comment.body} value={this.state.editBody } onChange={e => this.updateBody(e, null, true)} />
                         <div>
                             <button className="cancel" onClick={() => this.cancelEdit()}>Cancel</button>
                             <button className="createComment" onClick={() => this.editComment(comment)}>REPLY</button>
@@ -223,7 +230,7 @@ class Comments extends React.Component {
                                 this.state.edit !== childId ? <div className="childcommenttemp">
                                     <div>{this.props.comments[childId].body}</div>
                                     <div className="likeReply">
-                                        <LikesContainer likes={this.props.likes} likeable="Comment" likeableId={childId} currentUser={this.props.currentUser} />
+                                        <LikesContainer likeable="Comment" likeableId={childId} />
                                         <span onClick={() => this.unHide(comment.id)}>REPLY</span>
                                     </div>
                                     < div className="tc">
@@ -239,7 +246,7 @@ class Comments extends React.Component {
                                     </div>
                                 </div> : 
                                 <div className="reply">
-                                    <input className="chatText" placeHolder={comment.body} value={this.state.body} onChange={e => this.updateBody(e, null)} />
+                                    <input className="chatText" placeHolder={comment.body} value={this.state.editBody} onChange={e => this.updateBody(e, null, true)} />
                                     <div>
                                         <button className="cancel" onClick={() => this.cancelEdit()}>Cancel</button>
                                         <button className="createComment" onClick={() => this.editComment(this.props.comments[childId])}>REPLY</button>

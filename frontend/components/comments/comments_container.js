@@ -5,6 +5,7 @@ import Comments from "./comments";
 
 
 const mapStateToProps = (state, ownProps) => {
+    debugger
     let video = state.entities.videos[ownProps.videoId];
     return {
         comments: state.entities.comments,
@@ -12,7 +13,7 @@ const mapStateToProps = (state, ownProps) => {
         users: state.entities.users,
         video: video,
         videoId: ownProps.videoId,
-        likes: ownProps.likes,
+        // likes: ownProps.likes,
     }
 }
 

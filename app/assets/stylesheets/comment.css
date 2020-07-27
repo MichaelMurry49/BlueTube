@@ -243,6 +243,7 @@ input.chatText:focus {
     padding-bottom: 8px;
     position: absolute;
     border: gray solid 1px;
+    z-index: 50;
     /* display: flex;
     flex-direction: column;
     justify-content: center; */
