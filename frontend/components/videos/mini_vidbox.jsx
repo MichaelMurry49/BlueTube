@@ -35,6 +35,7 @@ class MiniVidBox extends React.Component {
                         </div>
                     </div>
                 </Link>
+                
         </div>
         )
     }
