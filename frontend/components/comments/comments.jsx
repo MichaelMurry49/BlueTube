@@ -4,8 +4,6 @@ import LikesContainer from "../likes/like_container";
 import Time from "../time";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortDown, faSortUp, faSortAmountUp } from '@fortawesome/free-solid-svg-icons';
-import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
-
 
 class Comments extends React.Component {
     constructor(props){
@@ -31,8 +29,6 @@ class Comments extends React.Component {
             body: "",
             editBody: "",
             edit: -1,
-            // video_id: props.videoId,
-            // author_id: parseInt(props.currentUser, 10),
             sortOptions: false,
         }
         this.proxyReset = new Proxy({}, {
@@ -41,18 +37,16 @@ class Comments extends React.Component {
                     object[property] : true;
             }
         })
-        // this.hidden = true;
-        // this.showOptions = false;
     }
 
-    sortComments(s){
+    sortComments(sortBy){
         this.setState({sortOptions: false})
-        if(s === "newest"){
+        if(sortBy === "newest"){
             this.props.video.comments.sort((a,b) => b-a)
         } else {
             this.props.video.comments.sort((a, b) => this.props.comments[b].likes.filter(like => like).length - this.props.comments[a].likes.filter(like => like).length)
         }
-        this.setState({selectedSort: s})
+        this.setState({selectedSort: sortBy})
     }
 
     componentDidMount(){
@@ -60,7 +54,6 @@ class Comments extends React.Component {
     }
 
     updateBody(e, commentId = null, editBody = false) {
-        // this.setState({ hidden: false })
         if (commentId === null) {
             this.setState({ hidden: false })
             this.setState({ arrHiden: this.proxyReset })
@@ -117,7 +110,6 @@ class Comments extends React.Component {
     }
 
     editComment(comment){
-        debugger;
         if (this.state.editBody !== "") {
             console.log("here")
             comment.body = this.state.editBody;
@@ -141,7 +133,6 @@ class Comments extends React.Component {
     }
 
     createComment(parentId) {
-        debugger;
         if (parentId !== null) {
             let comment = {
                 body: this.state.arrBody[parentId], video_id: this.props.videoId,
@@ -169,7 +160,6 @@ class Comments extends React.Component {
     renderComment(comment) {
         if (!comment) return null;
         console.log(this.state.arrHidden);
-        debugger
         return (
             <div className="commentSection">
 
@@ -240,8 +230,6 @@ class Comments extends React.Component {
                                                 <div><div className="uphalf-co"><button onClick={() => this.setState({ edit: childId })}>Edit</button></div>
                                                     <div className="downhalf-co"><button onClick={() => this.deleteComment(childId)}>Delete</button></div></div>
                                                 : <div className="report-co"><button onClick={() => this.setState({ hiddenCommentOptions: -1 })}>Report</button></div>}
-                                            {/* <div className="uphalf-co"><button onClick={() => this.setState({edit: childId})}>Edit</button></div>
-                                            <div className="downhalf-co"><button onClick={() => this.deleteComment(childId)}>Delete</button></div> */}
                                         </div>
                                     </div>
                                 </div> : 
