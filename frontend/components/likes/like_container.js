@@ -3,10 +3,8 @@ import { connect } from "react-redux";
 import Like from "./like";
 
 const mapStateToProps = (state, ownProps) => {
-    debugger;
     return {
         users: state.entities.users,
-        // likes: state.entities.likes,
         comments: state.entities.comments,
         likeable: ownProps.likeable,
         likeableId: ownProps.likeableId,
