@@ -16,12 +16,10 @@ class Popup extends React.Component{
     }
 
     closePopup(){
-        // this.props.clearVideoErrors();
         this.videoId = -1;
         this.props.closePopup();
     }
     updateVideo(e){
-        // debugger
         this.setState({selectedVideo: e.target.files[0]});
     }
     updateThumbnail(e){
@@ -40,17 +38,13 @@ class Popup extends React.Component{
         let description = this.state.description;
         let upload = this.state.selectedVideo;
         let thumbnail = this.state.selectedThumbNail;
-        let authorId = this.props.currentUser;
-        // formData.append('video[title]', this.state.title);
-        // formData.append('video[description]', this.state.description);
-        // formData.append('video[upload]', this.state.selectedVideo);
-        // formData.append('video[thumbnail]', this.state.selectedThumbNail);
+
         formData.append('video[author_id]', this.props.currentUser)
         this.setState({title: ""});
         this.setState({ description: "" });
         this.setState({ selectedVideo: "" });
         this.setState({ selectedThumbNail: "" });
-        debugger;
+
         if (this.props.task === "Upload Video"){
             formData.append('video[view_count]', 0);
             formData.append('video[title]', title);
@@ -65,9 +59,7 @@ class Popup extends React.Component{
             if(thumbnail) formData.append('video[thumbnail]', thumbnail);
             formData.append('video[id]', this.props.videoId)
             this.props.updateVideo(formData).then(() => this.closePopup());
-        }
-        
-        
+        }   
     }
     render(){
         const { popup, task } = this.props;
