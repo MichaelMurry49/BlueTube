@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import PopupContainer from "./popup_container";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBars, faVideo, faHome, faUserCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
@@ -61,7 +60,6 @@ class StudioNav extends React.Component {
         debugger;
         return (
             <div className="nav">
-                {/* <PopupContainer task={this.task} /> */}
                 <div className="nav-logo-plus-title">
                     <div className={this.sbc}>
                         <Link className="channel-button" to={`/channel/${this.props.currentUser.id}`}>
