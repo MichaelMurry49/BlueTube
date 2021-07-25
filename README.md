@@ -1,7 +1,7 @@
 # README
 
 # Description
-Blue Tube is a video hosting website influenced by You Tube's design structure. Users can upload and view other users videos. Videos can only be deleted by the user that posted it.
+BlueTube is a video hosting website influenced by YouTube's design structure. Users can upload and view other users videos. Videos can only be deleted by the user that posted it.
 
 # Link to Blue Tube
 https://blue-tube.herokuapp.com/#/
